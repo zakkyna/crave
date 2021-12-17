@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
     Key? key,
     this.onPressed,
     this.label = 'Submit',
-    this.color = AppColors.orangeButton,
+    this.color = AppColors.mainColor,
     this.fontColor = Colors.white,
     this.borderColor = Colors.transparent,
     this.gradient,

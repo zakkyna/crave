@@ -35,8 +35,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
+  flutter_hooks: ^0.18.1
   flutter_localizations:
     sdk: flutter
+  flutter_multi_formatter: ^2.4.4
   flutter_screenutil: ^5.0.1
   flutter_secure_storage: ^4.2.1
   flutter_svg: ^0.23.0+1
@@ -82,6 +84,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/subscription/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

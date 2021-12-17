@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.crave_app">
+    package="com.craveapp">
    <application
         android:label="crave_app"
         android:icon="@mipmap/ic_launcher">

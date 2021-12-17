@@ -1,0 +1,25 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'subscription.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$_Subscription _$$_SubscriptionFromJson(Map<String, dynamic> json) =>
+    _$_Subscription(
+      id: json['id'] as int,
+      price: (json['price'] as num).toDouble(),
+      title: json['title'] as String,
+      description: json['description'] as String,
+      bannerUrl: json['bannerUrl'] as String,
+    );
+
+Map<String, dynamic> _$$_SubscriptionToJson(_$_Subscription instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'title': instance.title,
+      'description': instance.description,
+      'bannerUrl': instance.bannerUrl,
+    };

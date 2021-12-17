@@ -1,4 +1,4 @@
-package com.example.crave_app
+package com.craveapp
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -3,7 +3,6 @@ part of 'theme.dart';
 class AppColors {
   AppColors._();
   static const mainColor = Color(0xFF8F0115);
-  static const orangeButton = Color(0xFFF36E36);
   static const buttonDisabled = Color(0xFFE6B1B9);
   static const shadowColor = Color(0xFF000000);
   static const inputEnabledBorder = Color(0xFFD0D0D0);
@@ -11,6 +10,7 @@ class AppColors {
   static const inputHintColor = Color(0xFFD0D0D0);
   static const dividerColor = Color(0xFFD0D0D0);
   static const landingBackground = Color(0xFFFFFFFF);
+  static const greyBackground = Color(0xFFF0F0F0);
 
   static Map<int, Color> mainColorSwatch = {
     50: mainColor.withOpacity(.1),

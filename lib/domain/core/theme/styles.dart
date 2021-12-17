@@ -3,79 +3,79 @@ part of 'theme.dart';
 class Styles {
   Styles._();
 
-  static TextStyle appBarTitleStyle = const TextStyle(
+  static TextStyle appBarTitleStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.white,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle buttonLabelStyle = const TextStyle(
+  static TextStyle buttonLabelStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.white,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle inputStyle = const TextStyle(
+  static TextStyle inputStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle inputHintStyle = const TextStyle(
+  static TextStyle inputHintStyle = TextStyle(
     fontFamily: 'Kefa',
     color: AppColors.inputHintColor,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle inputErrorStyle = const TextStyle(
+  static TextStyle inputErrorStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.red,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle linkStyle = const TextStyle(
+  static TextStyle linkStyle = TextStyle(
     fontFamily: 'Kefa',
     color: AppColors.mainColor,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle inputLabelStyle = const TextStyle(
+  static TextStyle inputLabelStyle = TextStyle(
     fontFamily: 'Kefa',
     color: AppColors.mainColor,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle normalStyle = const TextStyle(
+  static TextStyle normalStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
   );
 
-  static TextStyle smallStyle = const TextStyle(
+  static TextStyle smallStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 10,
+    fontSize: 10.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle mediumStyle = const TextStyle(
+  static TextStyle mediumStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle bottomNavTextStyle = const TextStyle(
+  static TextStyle bottomNavTextStyle = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w700,
   );
 
@@ -89,15 +89,6 @@ class Styles {
     ),
     elevation: 0,
   );
-  static ButtonStyle orangeOutlinedButton = OutlinedButton.styleFrom(
-      padding: const EdgeInsets.all(10),
-      alignment: Alignment.center,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-      ),
-      side: const BorderSide(
-        color: AppColors.orangeButton,
-      ));
 
   static ButtonStyle buttonOutlined = OutlinedButton.styleFrom(
     padding: const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
@@ -111,313 +102,313 @@ class Styles {
     ),
   );
 
-  static TextStyle kefa11Light = const TextStyle(
+  static TextStyle kefa11Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa11Regular = const TextStyle(
+  static TextStyle kefa11Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa11Medium = const TextStyle(
+  static TextStyle kefa11Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa11SemiBold = const TextStyle(
+  static TextStyle kefa11SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa11Bold = const TextStyle(
+  static TextStyle kefa11Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 11,
+    fontSize: 11.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa12Light = const TextStyle(
+  static TextStyle kefa12Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa12Regular = const TextStyle(
+  static TextStyle kefa12Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa12Medium = const TextStyle(
+  static TextStyle kefa12Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa12SemiBold = const TextStyle(
+  static TextStyle kefa12SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa12Bold = const TextStyle(
+  static TextStyle kefa12Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa13Light = const TextStyle(
+  static TextStyle kefa13Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa13Regular = const TextStyle(
+  static TextStyle kefa13Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa13Medium = const TextStyle(
+  static TextStyle kefa13Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa13SemiBold = const TextStyle(
+  static TextStyle kefa13SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa13Bold = const TextStyle(
+  static TextStyle kefa13Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa14Light = const TextStyle(
+  static TextStyle kefa14Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa14Regular = const TextStyle(
+  static TextStyle kefa14Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa14Medium = const TextStyle(
+  static TextStyle kefa14Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa14SemiBold = const TextStyle(
+  static TextStyle kefa14SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa14Bold = const TextStyle(
+  static TextStyle kefa14Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa15Light = const TextStyle(
+  static TextStyle kefa15Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 15.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa15Regular = const TextStyle(
+  static TextStyle kefa15Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 15.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa15Medium = const TextStyle(
+  static TextStyle kefa15Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 15.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa15SemiBold = const TextStyle(
+  static TextStyle kefa15SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 15.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa15Bold = const TextStyle(
+  static TextStyle kefa15Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 15.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa16Light = const TextStyle(
+  static TextStyle kefa16Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa16Regular = const TextStyle(
+  static TextStyle kefa16Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa16Medium = const TextStyle(
+  static TextStyle kefa16Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa16SemiBold = const TextStyle(
+  static TextStyle kefa16SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa16Bold = const TextStyle(
+  static TextStyle kefa16Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa18Light = const TextStyle(
+  static TextStyle kefa18Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa18Regular = const TextStyle(
+  static TextStyle kefa18Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa18Medium = const TextStyle(
+  static TextStyle kefa18Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa18SemiBold = const TextStyle(
+  static TextStyle kefa18SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa18Bold = const TextStyle(
+  static TextStyle kefa18Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa20Light = const TextStyle(
+  static TextStyle kefa20Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa20Regular = const TextStyle(
+  static TextStyle kefa20Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa20Medium = const TextStyle(
+  static TextStyle kefa20Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa20SemiBold = const TextStyle(
+  static TextStyle kefa20SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa20Bold = const TextStyle(
+  static TextStyle kefa20Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 20,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa22Light = const TextStyle(
+  static TextStyle kefa22Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa22Regular = const TextStyle(
+  static TextStyle kefa22Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa22Medium = const TextStyle(
+  static TextStyle kefa22Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa22SemiBold = const TextStyle(
+  static TextStyle kefa22SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa22Bold = const TextStyle(
+  static TextStyle kefa22Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle kefa24Light = const TextStyle(
+  static TextStyle kefa24Light = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w300,
   );
-  static TextStyle kefa24Regular = const TextStyle(
+  static TextStyle kefa24Regular = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle kefa24Medium = const TextStyle(
+  static TextStyle kefa24Medium = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w500,
   );
-  static TextStyle kefa24SemiBold = const TextStyle(
+  static TextStyle kefa24SemiBold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle kefa24Bold = const TextStyle(
+  static TextStyle kefa24Bold = TextStyle(
     fontFamily: 'Kefa',
     color: Colors.black,
-    fontSize: 24,
+    fontSize: 24.sp,
     fontWeight: FontWeight.w700,
   );
 }

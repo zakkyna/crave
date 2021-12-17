@@ -12,6 +12,9 @@ class CustomCard extends StatelessWidget {
   final Offset offset;
   final BorderRadius borderRadius;
   final void Function()? onTap;
+  final double width;
+  final double height;
+  final BoxBorder? border;
 
   const CustomCard({
     Key? key,
@@ -20,28 +23,35 @@ class CustomCard extends StatelessWidget {
     this.child = const SizedBox(width: double.infinity),
     this.color = Colors.white,
     this.shadowColor = AppColors.shadowColor,
-    this.spreadRadius = 8,
-    this.blurRadius = 15,
+    this.spreadRadius = 4,
+    this.blurRadius = 12,
     this.offset = const Offset(0, 4),
     this.borderRadius = const BorderRadius.all(
       Radius.circular(10),
     ),
+    this.width = double.infinity,
+    this.height = double.infinity,
     this.onTap,
+    this.border,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin,
-      child: Material(
-        color: Colors.transparent,
+    return Material(
+      color: Colors.transparent,
+      borderRadius: borderRadius,
+      child: Container(
+        padding: margin,
+        width: width,
+        height: height,
         child: Ink(
           decoration: BoxDecoration(
             color: color,
             borderRadius: borderRadius,
+            border: border,
             boxShadow: [
               BoxShadow(
-                color: shadowColor.withOpacity(0.2),
+                color: shadowColor.withOpacity(0.1),
                 spreadRadius: spreadRadius,
                 blurRadius: blurRadius,
                 offset: offset,

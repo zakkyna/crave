@@ -7,7 +7,7 @@ part 'app_event.dart';
 part 'app_state.dart';
 part 'app_bloc.freezed.dart';
 
-@injectable
+@lazySingleton
 class AppBloc extends Bloc<AppEvent, AppState> {
   final IStorage _storage;
   AppBloc(this._storage) : super(AppState.initial()) {
