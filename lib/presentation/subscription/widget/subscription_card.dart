@@ -1,7 +1,9 @@
 import 'package:crave_app/domain/subscription/subscription.dart';
+import 'package:crave_app/presentation/routers/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class SubscriptionCard extends StatelessWidget {
   final Subscription subscription;
@@ -17,7 +19,7 @@ class SubscriptionCard extends StatelessWidget {
       child: Ink(
         child: InkWell(
           onTap: () {
-            print('Tapped');
+            Get.toNamed(Routers.completeProfile);
           },
           child: ClipRect(
             child: Align(

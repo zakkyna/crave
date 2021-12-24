@@ -5,7 +5,7 @@ part 'user.freezed.dart';
 class User with _$User {
   const factory User({
     required String id,
-    required String username,
-    required String email,
+    required String? image,
+    required String? email,
   }) = _User;
 }

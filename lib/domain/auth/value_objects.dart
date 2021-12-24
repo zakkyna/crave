@@ -3,6 +3,32 @@ import 'package:crave_app/domain/core/failures.dart';
 import 'package:crave_app/domain/core/value_objects.dart';
 import 'package:crave_app/domain/core/value_validators.dart';
 
+class PhoneNumber extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory PhoneNumber(String input) {
+    return PhoneNumber._(
+      ValueValidators.validatePhone(input),
+    );
+  }
+
+  const PhoneNumber._(this.value);
+}
+
+class OtpCode extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory OtpCode(String input) {
+    return OtpCode._(
+      ValueValidators.validatePinOrOtp(value: input, length: 6),
+    );
+  }
+
+  const OtpCode._(this.value);
+}
+
 class EmailAddress extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;

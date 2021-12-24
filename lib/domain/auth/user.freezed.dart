@@ -18,10 +18,10 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String id, required String username, required String email}) {
+      {required String id, required String? image, required String? email}) {
     return _User(
       id: id,
-      username: username,
+      image: image,
       email: email,
     );
   }
@@ -33,8 +33,8 @@ const $User = _$UserTearOff();
 /// @nodoc
 mixin _$User {
   String get id => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String id, String username, String email});
+  $Res call({String id, String? image, String? email});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
+    Object? image = freezed,
     Object? email = freezed,
   }) {
     return _then(_value.copyWith(
@@ -66,14 +66,14 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -83,7 +83,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String username, String email});
+  $Res call({String id, String? image, String? email});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? username = freezed,
+    Object? image = freezed,
     Object? email = freezed,
   }) {
     return _then(_User(
@@ -106,14 +106,14 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -121,19 +121,18 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_User implements _User {
-  const _$_User(
-      {required this.id, required this.username, required this.email});
+  const _$_User({required this.id, required this.image, required this.email});
 
   @override
   final String id;
   @override
-  final String username;
+  final String? image;
   @override
-  final String email;
+  final String? email;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, email: $email)';
+    return 'User(id: $id, image: $image, email: $email)';
   }
 
   @override
@@ -142,13 +141,12 @@ class _$_User implements _User {
         (other.runtimeType == runtimeType &&
             other is _User &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, email);
+  int get hashCode => Object.hash(runtimeType, id, image, email);
 
   @JsonKey(ignore: true)
   @override
@@ -159,15 +157,15 @@ class _$_User implements _User {
 abstract class _User implements User {
   const factory _User(
       {required String id,
-      required String username,
-      required String email}) = _$_User;
+      required String? image,
+      required String? email}) = _$_User;
 
   @override
   String get id;
   @override
-  String get username;
+  String? get image;
   @override
-  String get email;
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

@@ -20,6 +20,12 @@ class _$AppEventTearOff {
   _Started started() {
     return const _Started();
   }
+
+  _ConnectionChanged connectionChanged(ConnectivityResult connection) {
+    return _ConnectionChanged(
+      connection,
+    );
+  }
 }
 
 /// @nodoc
@@ -30,32 +36,38 @@ mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ConnectivityResult connection) connectionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ConnectionChanged value) connectionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +127,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(ConnectivityResult connection) connectionChanged,
   }) {
     return started();
   }
@@ -123,6 +136,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
   }) {
     return started?.call();
   }
@@ -131,6 +145,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -143,6 +158,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_ConnectionChanged value) connectionChanged,
   }) {
     return started(this);
   }
@@ -151,6 +167,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
   }) {
     return started?.call(this);
   }
@@ -159,6 +176,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -173,13 +191,152 @@ abstract class _Started implements AppEvent {
 }
 
 /// @nodoc
+abstract class _$ConnectionChangedCopyWith<$Res> {
+  factory _$ConnectionChangedCopyWith(
+          _ConnectionChanged value, $Res Function(_ConnectionChanged) then) =
+      __$ConnectionChangedCopyWithImpl<$Res>;
+  $Res call({ConnectivityResult connection});
+}
+
+/// @nodoc
+class __$ConnectionChangedCopyWithImpl<$Res>
+    extends _$AppEventCopyWithImpl<$Res>
+    implements _$ConnectionChangedCopyWith<$Res> {
+  __$ConnectionChangedCopyWithImpl(
+      _ConnectionChanged _value, $Res Function(_ConnectionChanged) _then)
+      : super(_value, (v) => _then(v as _ConnectionChanged));
+
+  @override
+  _ConnectionChanged get _value => super._value as _ConnectionChanged;
+
+  @override
+  $Res call({
+    Object? connection = freezed,
+  }) {
+    return _then(_ConnectionChanged(
+      connection == freezed
+          ? _value.connection
+          : connection // ignore: cast_nullable_to_non_nullable
+              as ConnectivityResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ConnectionChanged implements _ConnectionChanged {
+  const _$_ConnectionChanged(this.connection);
+
+  @override
+  final ConnectivityResult connection;
+
+  @override
+  String toString() {
+    return 'AppEvent.connectionChanged(connection: $connection)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ConnectionChanged &&
+            (identical(other.connection, connection) ||
+                other.connection == connection));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, connection);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ConnectionChangedCopyWith<_ConnectionChanged> get copyWith =>
+      __$ConnectionChangedCopyWithImpl<_ConnectionChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(ConnectivityResult connection) connectionChanged,
+  }) {
+    return connectionChanged(connection);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
+  }) {
+    return connectionChanged?.call(connection);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
+    required TResult orElse(),
+  }) {
+    if (connectionChanged != null) {
+      return connectionChanged(connection);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ConnectionChanged value) connectionChanged,
+  }) {
+    return connectionChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
+  }) {
+    return connectionChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
+    required TResult orElse(),
+  }) {
+    if (connectionChanged != null) {
+      return connectionChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConnectionChanged implements AppEvent {
+  const factory _ConnectionChanged(ConnectivityResult connection) =
+      _$_ConnectionChanged;
+
+  ConnectivityResult get connection;
+  @JsonKey(ignore: true)
+  _$ConnectionChangedCopyWith<_ConnectionChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$AppStateTearOff {
   const _$AppStateTearOff();
 
-  _AppState call({required bool isLoading, required bool isPreinstalled}) {
+  _AppState call(
+      {required bool isLoading,
+      required bool isPreinstalled,
+      required ConnectivityResult connectionStatus}) {
     return _AppState(
       isLoading: isLoading,
       isPreinstalled: isPreinstalled,
+      connectionStatus: connectionStatus,
     );
   }
 }
@@ -191,6 +348,7 @@ const $AppState = _$AppStateTearOff();
 mixin _$AppState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isPreinstalled => throw _privateConstructorUsedError;
+  ConnectivityResult get connectionStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
@@ -201,7 +359,10 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading, bool isPreinstalled});
+  $Res call(
+      {bool isLoading,
+      bool isPreinstalled,
+      ConnectivityResult connectionStatus});
 }
 
 /// @nodoc
@@ -216,6 +377,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   $Res call({
     Object? isLoading = freezed,
     Object? isPreinstalled = freezed,
+    Object? connectionStatus = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -226,6 +388,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.isPreinstalled
           : isPreinstalled // ignore: cast_nullable_to_non_nullable
               as bool,
+      connectionStatus: connectionStatus == freezed
+          ? _value.connectionStatus
+          : connectionStatus // ignore: cast_nullable_to_non_nullable
+              as ConnectivityResult,
     ));
   }
 }
@@ -235,7 +401,10 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
       __$AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading, bool isPreinstalled});
+  $Res call(
+      {bool isLoading,
+      bool isPreinstalled,
+      ConnectivityResult connectionStatus});
 }
 
 /// @nodoc
@@ -251,6 +420,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = freezed,
     Object? isPreinstalled = freezed,
+    Object? connectionStatus = freezed,
   }) {
     return _then(_AppState(
       isLoading: isLoading == freezed
@@ -261,6 +431,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.isPreinstalled
           : isPreinstalled // ignore: cast_nullable_to_non_nullable
               as bool,
+      connectionStatus: connectionStatus == freezed
+          ? _value.connectionStatus
+          : connectionStatus // ignore: cast_nullable_to_non_nullable
+              as ConnectivityResult,
     ));
   }
 }
@@ -268,16 +442,21 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppState implements _AppState {
-  const _$_AppState({required this.isLoading, required this.isPreinstalled});
+  const _$_AppState(
+      {required this.isLoading,
+      required this.isPreinstalled,
+      required this.connectionStatus});
 
   @override
   final bool isLoading;
   @override
   final bool isPreinstalled;
+  @override
+  final ConnectivityResult connectionStatus;
 
   @override
   String toString() {
-    return 'AppState(isLoading: $isLoading, isPreinstalled: $isPreinstalled)';
+    return 'AppState(isLoading: $isLoading, isPreinstalled: $isPreinstalled, connectionStatus: $connectionStatus)';
   }
 
   @override
@@ -288,11 +467,14 @@ class _$_AppState implements _AppState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isPreinstalled, isPreinstalled) ||
-                other.isPreinstalled == isPreinstalled));
+                other.isPreinstalled == isPreinstalled) &&
+            (identical(other.connectionStatus, connectionStatus) ||
+                other.connectionStatus == connectionStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isPreinstalled);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, isPreinstalled, connectionStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -302,12 +484,16 @@ class _$_AppState implements _AppState {
 
 abstract class _AppState implements AppState {
   const factory _AppState(
-      {required bool isLoading, required bool isPreinstalled}) = _$_AppState;
+      {required bool isLoading,
+      required bool isPreinstalled,
+      required ConnectivityResult connectionStatus}) = _$_AppState;
 
   @override
   bool get isLoading;
   @override
   bool get isPreinstalled;
+  @override
+  ConnectivityResult get connectionStatus;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>

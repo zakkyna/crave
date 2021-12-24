@@ -3,15 +3,17 @@ import 'package:crave_app/presentation/auth/auth_page.dart';
 import 'package:crave_app/presentation/auth/welcome_page.dart';
 import 'package:crave_app/presentation/intro/intro_page.dart';
 import 'package:crave_app/presentation/landing/landing_page.dart';
+import 'package:crave_app/presentation/profile/complete_profile_page.dart';
 import 'package:crave_app/presentation/subscription/buy_subscription_page.dart';
 import 'package:get/get.dart';
 
 class Routers {
   static const String main = '/';
-  static const String home = '/home';
+  static const String landing = '/landing';
   static const String intro = '/intro';
   static const String auth = '/auth';
   static const String buySubscription = '/buy_subscription';
+  static const String completeProfile = '/complete_profile';
 
   final List<GetPage> routers = [
     GetPage(
@@ -22,7 +24,7 @@ class Routers {
       ),
     ),
     GetPage(
-      name: Routers.home,
+      name: Routers.landing,
       page: () => const LandingPage(),
     ),
     GetPage(
@@ -36,6 +38,10 @@ class Routers {
     GetPage(
       name: Routers.buySubscription,
       page: () => const BuySubscriptionPage(),
+    ),
+    GetPage(
+      name: Routers.completeProfile,
+      page: () => const CompleteProfilePage(),
     ),
   ];
 }

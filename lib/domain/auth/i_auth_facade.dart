@@ -5,15 +5,13 @@ import 'package:crave_app/domain/auth/value_objects.dart';
 
 abstract class IAuthFacade {
   Future<Option<User>> getSignedInUser();
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
-    required FullName fullName,
-    required EmailAddress emailAddress,
-    required Password password,
+  Future<Either<AuthFailure, String>> verifyPhoneNumber({
+    required PhoneNumber phoneNumber,
   });
-  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
+  Future<Either<AuthFailure, Unit>> signInWithPhoneNumberOtp({
+    required String verificationId,
+    required OtpCode otpCode,
   });
-  Future<Either<AuthFailure, Unit>> signInWithGoogle();
+  Future<Either<AuthFailure, Unit>> signInWithApple();
   Future<void> signOut();
 }

@@ -411,4 +411,11 @@ class Styles {
     fontSize: 24.sp,
     fontWeight: FontWeight.w700,
   );
+
+  static TextStyle sfProDisplay = TextStyle(
+    fontFamily: 'SF Pro',
+    color: Colors.black,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+  );
 }

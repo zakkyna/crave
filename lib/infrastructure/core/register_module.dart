@@ -5,6 +5,7 @@ import 'package:crave_app/domain/core/i_storage.dart';
 import 'package:crave_app/infrastructure/core/auth_interceptor.dart';
 import 'package:crave_app/infrastructure/core/logger_interceptor.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -32,6 +33,9 @@ abstract class RegisterModule {
 
   @lazySingleton
   IStorage get storage => StorageImpl();
+
+  @lazySingleton
+  FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
 
   @preResolve
   @lazySingleton

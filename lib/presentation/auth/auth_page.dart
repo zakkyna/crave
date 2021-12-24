@@ -33,7 +33,6 @@ class AuthPage extends HookWidget {
     final page = useState(0);
     pageController.addListener(() {
       page.value = pageController.page?.round() ?? 0;
-      print('pageController.page?.round() ${pageController.page?.round()}');
     });
 
     onNext() => pageController.nextPage(

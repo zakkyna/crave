@@ -37,12 +37,13 @@ class VerifyOtpPage extends StatelessWidget {
           padding: const EdgeInsets.all(Dimens.defaultMargin),
           child: TextFormField(
             focusNode: focusNode,
+            autofocus: true,
             controller: textEditingController,
             style: Styles.kefa24Medium,
             keyboardType: TextInputType.number,
             inputFormatters: <TextInputFormatter>[
               MaskedInputFormatter(
-                '000-000',
+                '### ###',
               )
             ],
             decoration: const InputDecoration(

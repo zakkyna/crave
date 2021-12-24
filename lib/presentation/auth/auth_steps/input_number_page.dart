@@ -37,10 +37,10 @@ class InputNumberPage extends StatelessWidget {
               child: TextFormField(
                 controller: textEditingController,
                 focusNode: focusNode,
+                autofocus: true,
                 keyboardType: TextInputType.number,
                 style: Styles.kefa24Medium,
                 inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly,
                   PhoneInputFormatter(allowEndlessPhone: true),
                 ],
                 decoration: const InputDecoration(

@@ -26,6 +26,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
   final int? maxLength;
   final FocusNode? focusNode;
+  final EdgeInsetsGeometry? contentPadding;
   const CustomTextField({
     Key? key,
     this.border = true,
@@ -50,6 +51,8 @@ class CustomTextField extends StatelessWidget {
     this.onFieldSubmitted,
     this.maxLength,
     this.focusNode,
+    this.contentPadding =
+        const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
   }) : super(key: key);
 
   @override
@@ -69,8 +72,7 @@ class CustomTextField extends StatelessWidget {
       style: inputStyle ?? Styles.inputStyle,
       decoration: InputDecoration(
         prefixIcon: prefix,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        contentPadding: contentPadding,
         focusedBorder: border == true
             ? OutlineInputBorder(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
