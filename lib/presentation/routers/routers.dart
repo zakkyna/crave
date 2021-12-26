@@ -1,6 +1,7 @@
 import 'package:crave_app/presentation/auth/auth_listener.dart';
 import 'package:crave_app/presentation/auth/auth_page.dart';
 import 'package:crave_app/presentation/auth/welcome_page.dart';
+import 'package:crave_app/presentation/chat/chat_room_page.dart';
 import 'package:crave_app/presentation/intro/intro_page.dart';
 import 'package:crave_app/presentation/landing/landing_page.dart';
 import 'package:crave_app/presentation/profile/complete_profile_page.dart';
@@ -14,6 +15,7 @@ class Routers {
   static const String auth = '/auth';
   static const String buySubscription = '/buy_subscription';
   static const String completeProfile = '/complete_profile';
+  static const String chatRoom = '/chatroom';
 
   final List<GetPage> routers = [
     GetPage(
@@ -42,6 +44,10 @@ class Routers {
     GetPage(
       name: Routers.completeProfile,
       page: () => const CompleteProfilePage(),
+    ),
+    GetPage(
+      name: Routers.chatRoom,
+      page: () => const ChatRoomPage(),
     ),
   ];
 }

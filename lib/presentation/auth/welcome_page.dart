@@ -1,7 +1,9 @@
 import 'package:crave_app/domain/core/theme/theme.dart';
+import 'package:crave_app/presentation/core/widget/custom_button.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:crave_app/presentation/routers/routers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -75,68 +77,118 @@ class WelcomePage extends StatelessWidget {
             left: 0,
             right: 0,
             child: SafeArea(
-              child: Row(
+              child: Column(
                 children: [
-                  Expanded(
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {},
-                        splashColor: Colors.grey,
-                        child: Ink(
-                          padding: const EdgeInsets.all(20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'LOGIN',
-                                style: Styles.normalStyle.copyWith(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SvgPicture.asset('assets/images/next_icon.svg'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 1,
-                    height: 40,
+                  CustomButton(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: Dimens.defaultMargin),
+                    height: 56.h,
+                    onPressed: () => Get.toNamed(Routers.auth),
                     color: Colors.white,
-                  ),
-                  Expanded(
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed(Routers.intro);
-                        },
-                        splashColor: Colors.grey,
-                        child: Ink(
-                          padding: const EdgeInsets.all(20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'REGISTER',
-                                style: Styles.normalStyle.copyWith(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SvgPicture.asset('assets/images/next_icon.svg'),
-                            ],
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset('assets/icon/sign_in_phone_icon.svg'),
+                        addHorizontalSpace(5),
+                        Text(
+                          'Continue with Phone',
+                          style: Styles.sfProDisplay.copyWith(
+                            color: AppColors.mainColor,
+                            fontSize: 18.sp,
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
+                  addVerticalSpace(25.h),
+                  CustomButton(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: Dimens.defaultMargin),
+                    height: 56.h,
+                    onPressed: () {},
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset('assets/icon/sign_in_apple_icon.svg'),
+                        addHorizontalSpace(5),
+                        Text(
+                          'Continue with Apple',
+                          style: Styles.sfProDisplay.copyWith(
+                            color: Colors.black,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  addVerticalSpace(15.h),
                 ],
               ),
             ),
+            // child: SafeArea(
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: Material(
+            //           color: Colors.transparent,
+            //           child: InkWell(
+            //             onTap: () {},
+            //             splashColor: Colors.grey,
+            //             child: Ink(
+            //               padding: const EdgeInsets.all(20),
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 children: [
+            //                   Text(
+            //                     'LOGIN',
+            //                     style: Styles.normalStyle.copyWith(
+            //                       color: Colors.white,
+            //                       fontSize: 18,
+            //                     ),
+            //                   ),
+            //                   SvgPicture.asset('assets/images/next_icon.svg'),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         width: 1,
+            //         height: 40,
+            //         color: Colors.white,
+            //       ),
+            //       Expanded(
+            //         child: Material(
+            //           color: Colors.transparent,
+            //           child: InkWell(
+            //             onTap: () {
+            //               Get.toNamed(Routers.intro);
+            //             },
+            //             splashColor: Colors.grey,
+            //             child: Ink(
+            //               padding: const EdgeInsets.all(20),
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 children: [
+            //                   Text(
+            //                     'REGISTER',
+            //                     style: Styles.normalStyle.copyWith(
+            //                       color: Colors.white,
+            //                       fontSize: 18,
+            //                     ),
+            //                   ),
+            //                   SvgPicture.asset('assets/images/next_icon.svg'),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
         ],
       ),
