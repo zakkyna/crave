@@ -1,18 +1,18 @@
 import 'dart:typed_data';
+import 'package:crave_app/domain/core/interfaces/i_storage.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:crave_app/domain/core/i_storage.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: IStorage)
 class StorageImpl<T> implements IStorage<T> {
-  late LazyBox<T> _box;
+  final HiveInterface _hive;
 
-  late HiveInterface _hive;
-
-  StorageImpl() {
-    _hive = Hive;
-  }
+  StorageImpl(
+    this._hive,
+  );
 
   @override
   Future<void> init({
@@ -28,27 +28,32 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<void> openBox(
+  Future<LazyBox> openBox(
     StorageConstants boxName,
   ) async {
     final List<int> hiveKey = await hiveKeys;
 
-    _box = await _hive.openLazyBox<T>(
+    final _box = await _hive.openLazyBox<T>(
       describeEnum(boxName),
       encryptionCipher: HiveAesCipher(hiveKey),
     );
     debugPrint('====================Open Box=================');
     debugPrint('Database $boxName Open');
     debugPrint('=============================================');
+    return _box;
   }
 
-  Future close() async {
+  @override
+  Future<void> close(
+    LazyBox _box,
+  ) async {
     await _box.close();
     return;
   }
 
   @override
-  Future<void> putData({
+  Future<void> putData(
+    LazyBox _box, {
     required Map<dynamic, T> data,
   }) async {
     try {
@@ -66,7 +71,8 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<void> putDanum({
+  Future<void> putDanum(
+    LazyBox _box, {
     required dynamic key,
     required T value,
   }) async {
@@ -85,7 +91,8 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<void> putListData({
+  Future<void> putListData(
+    LazyBox _box, {
     required IList<T> dataList,
   }) async {
     try {
@@ -105,7 +112,8 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<T?> getData({
+  Future<T?> getData(
+    LazyBox _box, {
     required dynamic key,
   }) async {
     debugPrint('====================Get Data=================');
@@ -116,7 +124,9 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<IList<T>?> getListData() async {
+  Future<IList<T>?> getListData(
+    LazyBox _box,
+  ) async {
     IList<T> data = <T>[].lock;
     for (int x = 0; x < _box.length; x++) {
       final T? item = await _box.getAt(x);
@@ -129,13 +139,16 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<void> clear() async {
+  Future<void> clear(
+    LazyBox _box,
+  ) async {
     await _box.clear();
     return;
   }
 
   @override
-  Future<void> delete({
+  Future<void> delete(
+    LazyBox _box, {
     required String key,
   }) async {
     await _box.delete(key);
@@ -144,7 +157,8 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  Future<void> deleteList({
+  Future<void> deleteList(
+    LazyBox _box, {
     required Iterable<dynamic> key,
   }) async {
     await _box.deleteAll(key);
@@ -168,12 +182,15 @@ class StorageImpl<T> implements IStorage<T> {
   }
 
   @override
-  bool isOpen() {
+  bool isOpen(
+    LazyBox _box,
+  ) {
     return _box.isOpen;
   }
 
   @override
-  ValueListenable<LazyBox> listenable({
+  ValueListenable<LazyBox> listenable(
+    LazyBox _box, {
     List? keys,
   }) =>
       _box.listenable(

@@ -1,5 +1,5 @@
+import 'package:crave_app/domain/core/interfaces/i_storage.dart';
 import 'package:dio/dio.dart';
-import 'package:crave_app/domain/core/i_storage.dart';
 
 enum AuthType { basic, bearer, custom }
 
@@ -32,15 +32,15 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    if (storage.isOpen()) {
-      final String? security = await storage.getData(key: authKey) as String?;
+    final box = await storage.openBox(StorageConstants.security);
+    final String? security =
+        await storage.getData(box, key: authKey) as String?;
 
-      final Map<String, dynamic> headers = options.headers;
-      if (security != null) {
-        headers.addAll({"Authorization": "${authType.type} $security"});
-      }
-      options.headers = headers;
+    final Map<String, dynamic> headers = options.headers;
+    if (security != null) {
+      headers.addAll({"Authorization": "${authType.type} $security"});
     }
+    options.headers = headers;
 
     super.onRequest(options, handler);
   }

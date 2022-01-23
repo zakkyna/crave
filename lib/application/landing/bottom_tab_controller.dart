@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class BottomTabController extends GetxController {
   RxInt tabIndex = 0.obs;
 

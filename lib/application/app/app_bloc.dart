@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:crave_app/domain/core/i_storage.dart';
+import 'package:crave_app/domain/auth/user_status.dart';
+import 'package:crave_app/domain/core/interfaces/i_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -25,10 +26,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               isLoading: true,
             ),
           );
-          await _storage.openBox(StorageConstants.base);
-          final isPreInstalled = await _storage.getData(key: 'isPreInstalled');
+          final box = await _storage.openBox(StorageConstants.base);
+          final isPreInstalled =
+              await _storage.getData(box, key: 'isPreInstalled');
           if (isPreInstalled == null) {
             await _storage.putDanum(
+              box,
               key: 'isPreInstalled',
               value: true,
             );
@@ -47,6 +50,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
             ),
           );
         },
+        statusChanged: (_event) {},
       );
     });
   }

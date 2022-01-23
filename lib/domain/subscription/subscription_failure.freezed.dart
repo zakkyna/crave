@@ -28,6 +28,10 @@ class _$SubscriptionFailureTearOff {
   _Unexpected unexpected() {
     return const _Unexpected();
   }
+
+  _Unauthenticated unauthenticated() {
+    return const _Unauthenticated();
+  }
 }
 
 /// @nodoc
@@ -40,6 +44,7 @@ mixin _$SubscriptionFailure {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +52,7 @@ mixin _$SubscriptionFailure {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +60,7 @@ mixin _$SubscriptionFailure {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +69,7 @@ mixin _$SubscriptionFailure {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_Unauthenticated value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +77,7 @@ mixin _$SubscriptionFailure {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +85,7 @@ mixin _$SubscriptionFailure {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -142,6 +152,7 @@ class _$_NoInternet implements _NoInternet {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() unauthenticated,
   }) {
     return noInternet();
   }
@@ -152,6 +163,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
   }) {
     return noInternet?.call();
   }
@@ -162,6 +174,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
     if (noInternet != null) {
@@ -176,6 +189,7 @@ class _$_NoInternet implements _NoInternet {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return noInternet(this);
   }
@@ -186,6 +200,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return noInternet?.call(this);
   }
@@ -196,6 +211,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (noInternet != null) {
@@ -253,6 +269,7 @@ class _$_ServerError implements _ServerError {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() unauthenticated,
   }) {
     return serverError();
   }
@@ -263,6 +280,7 @@ class _$_ServerError implements _ServerError {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
   }) {
     return serverError?.call();
   }
@@ -273,6 +291,7 @@ class _$_ServerError implements _ServerError {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -287,6 +306,7 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return serverError(this);
   }
@@ -297,6 +317,7 @@ class _$_ServerError implements _ServerError {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return serverError?.call(this);
   }
@@ -307,6 +328,7 @@ class _$_ServerError implements _ServerError {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -364,6 +386,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() unauthenticated,
   }) {
     return unexpected();
   }
@@ -374,6 +397,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
   }) {
     return unexpected?.call();
   }
@@ -384,6 +408,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -398,6 +423,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return unexpected(this);
   }
@@ -408,6 +434,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return unexpected?.call(this);
   }
@@ -418,6 +445,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -429,4 +457,121 @@ class _$_Unexpected implements _Unexpected {
 
 abstract class _Unexpected implements SubscriptionFailure {
   const factory _Unexpected() = _$_Unexpected;
+}
+
+/// @nodoc
+abstract class _$UnauthenticatedCopyWith<$Res> {
+  factory _$UnauthenticatedCopyWith(
+          _Unauthenticated value, $Res Function(_Unauthenticated) then) =
+      __$UnauthenticatedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UnauthenticatedCopyWithImpl<$Res>
+    extends _$SubscriptionFailureCopyWithImpl<$Res>
+    implements _$UnauthenticatedCopyWith<$Res> {
+  __$UnauthenticatedCopyWithImpl(
+      _Unauthenticated _value, $Res Function(_Unauthenticated) _then)
+      : super(_value, (v) => _then(v as _Unauthenticated));
+
+  @override
+  _Unauthenticated get _value => super._value as _Unauthenticated;
+}
+
+/// @nodoc
+
+class _$_Unauthenticated implements _Unauthenticated {
+  const _$_Unauthenticated();
+
+  @override
+  String toString() {
+    return 'SubscriptionFailure.unauthenticated()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Unauthenticated);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noInternet,
+    required TResult Function() serverError,
+    required TResult Function() unexpected,
+    required TResult Function() unauthenticated,
+  }) {
+    return unauthenticated();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
+  }) {
+    return unauthenticated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unexpected,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+  }) {
+    return unauthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+  }) {
+    return unauthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (unauthenticated != null) {
+      return unauthenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unauthenticated implements SubscriptionFailure {
+  const factory _Unauthenticated() = _$_Unauthenticated;
 }

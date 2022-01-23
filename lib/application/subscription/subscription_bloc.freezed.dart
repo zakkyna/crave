@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SubscriptionEventTearOff {
   const _$SubscriptionEventTearOff();
 
-  _SubCheck subsCheck() {
-    return const _SubCheck();
+  _CheckSubscription checkSubscription() {
+    return const _CheckSubscription();
   }
 
   _BuySubs buySubs(int id) {
@@ -35,38 +35,38 @@ const $SubscriptionEvent = _$SubscriptionEventTearOff();
 mixin _$SubscriptionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subsCheck,
+    required TResult Function() checkSubscription,
     required TResult Function(int id) buySubs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? subsCheck,
+    TResult Function()? checkSubscription,
     TResult Function(int id)? buySubs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subsCheck,
+    TResult Function()? checkSubscription,
     TResult Function(int id)? buySubs,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SubCheck value) subsCheck,
+    required TResult Function(_CheckSubscription value) checkSubscription,
     required TResult Function(_BuySubs value) buySubs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SubCheck value)? subsCheck,
+    TResult Function(_CheckSubscription value)? checkSubscription,
     TResult Function(_BuySubs value)? buySubs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SubCheck value)? subsCheck,
+    TResult Function(_CheckSubscription value)? checkSubscription,
     TResult Function(_BuySubs value)? buySubs,
     required TResult orElse(),
   }) =>
@@ -91,36 +91,38 @@ class _$SubscriptionEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SubCheckCopyWith<$Res> {
-  factory _$SubCheckCopyWith(_SubCheck value, $Res Function(_SubCheck) then) =
-      __$SubCheckCopyWithImpl<$Res>;
+abstract class _$CheckSubscriptionCopyWith<$Res> {
+  factory _$CheckSubscriptionCopyWith(
+          _CheckSubscription value, $Res Function(_CheckSubscription) then) =
+      __$CheckSubscriptionCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SubCheckCopyWithImpl<$Res>
+class __$CheckSubscriptionCopyWithImpl<$Res>
     extends _$SubscriptionEventCopyWithImpl<$Res>
-    implements _$SubCheckCopyWith<$Res> {
-  __$SubCheckCopyWithImpl(_SubCheck _value, $Res Function(_SubCheck) _then)
-      : super(_value, (v) => _then(v as _SubCheck));
+    implements _$CheckSubscriptionCopyWith<$Res> {
+  __$CheckSubscriptionCopyWithImpl(
+      _CheckSubscription _value, $Res Function(_CheckSubscription) _then)
+      : super(_value, (v) => _then(v as _CheckSubscription));
 
   @override
-  _SubCheck get _value => super._value as _SubCheck;
+  _CheckSubscription get _value => super._value as _CheckSubscription;
 }
 
 /// @nodoc
 
-class _$_SubCheck implements _SubCheck {
-  const _$_SubCheck();
+class _$_CheckSubscription implements _CheckSubscription {
+  const _$_CheckSubscription();
 
   @override
   String toString() {
-    return 'SubscriptionEvent.subsCheck()';
+    return 'SubscriptionEvent.checkSubscription()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SubCheck);
+        (other.runtimeType == runtimeType && other is _CheckSubscription);
   }
 
   @override
@@ -129,30 +131,30 @@ class _$_SubCheck implements _SubCheck {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subsCheck,
+    required TResult Function() checkSubscription,
     required TResult Function(int id) buySubs,
   }) {
-    return subsCheck();
+    return checkSubscription();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? subsCheck,
+    TResult Function()? checkSubscription,
     TResult Function(int id)? buySubs,
   }) {
-    return subsCheck?.call();
+    return checkSubscription?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subsCheck,
+    TResult Function()? checkSubscription,
     TResult Function(int id)? buySubs,
     required TResult orElse(),
   }) {
-    if (subsCheck != null) {
-      return subsCheck();
+    if (checkSubscription != null) {
+      return checkSubscription();
     }
     return orElse();
   }
@@ -160,37 +162,37 @@ class _$_SubCheck implements _SubCheck {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SubCheck value) subsCheck,
+    required TResult Function(_CheckSubscription value) checkSubscription,
     required TResult Function(_BuySubs value) buySubs,
   }) {
-    return subsCheck(this);
+    return checkSubscription(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SubCheck value)? subsCheck,
+    TResult Function(_CheckSubscription value)? checkSubscription,
     TResult Function(_BuySubs value)? buySubs,
   }) {
-    return subsCheck?.call(this);
+    return checkSubscription?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SubCheck value)? subsCheck,
+    TResult Function(_CheckSubscription value)? checkSubscription,
     TResult Function(_BuySubs value)? buySubs,
     required TResult orElse(),
   }) {
-    if (subsCheck != null) {
-      return subsCheck(this);
+    if (checkSubscription != null) {
+      return checkSubscription(this);
     }
     return orElse();
   }
 }
 
-abstract class _SubCheck implements SubscriptionEvent {
-  const factory _SubCheck() = _$_SubCheck;
+abstract class _CheckSubscription implements SubscriptionEvent {
+  const factory _CheckSubscription() = _$_CheckSubscription;
 }
 
 /// @nodoc
@@ -254,7 +256,7 @@ class _$_BuySubs implements _BuySubs {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subsCheck,
+    required TResult Function() checkSubscription,
     required TResult Function(int id) buySubs,
   }) {
     return buySubs(id);
@@ -263,7 +265,7 @@ class _$_BuySubs implements _BuySubs {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? subsCheck,
+    TResult Function()? checkSubscription,
     TResult Function(int id)? buySubs,
   }) {
     return buySubs?.call(id);
@@ -272,7 +274,7 @@ class _$_BuySubs implements _BuySubs {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subsCheck,
+    TResult Function()? checkSubscription,
     TResult Function(int id)? buySubs,
     required TResult orElse(),
   }) {
@@ -285,7 +287,7 @@ class _$_BuySubs implements _BuySubs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SubCheck value) subsCheck,
+    required TResult Function(_CheckSubscription value) checkSubscription,
     required TResult Function(_BuySubs value) buySubs,
   }) {
     return buySubs(this);
@@ -294,7 +296,7 @@ class _$_BuySubs implements _BuySubs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SubCheck value)? subsCheck,
+    TResult Function(_CheckSubscription value)? checkSubscription,
     TResult Function(_BuySubs value)? buySubs,
   }) {
     return buySubs?.call(this);
@@ -303,7 +305,7 @@ class _$_BuySubs implements _BuySubs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SubCheck value)? subsCheck,
+    TResult Function(_CheckSubscription value)? checkSubscription,
     TResult Function(_BuySubs value)? buySubs,
     required TResult orElse(),
   }) {
@@ -338,6 +340,12 @@ class _$SubscriptionStateTearOff {
   _Unsubscribed unsubscribed() {
     return const _Unsubscribed();
   }
+
+  _Failure failure(SubscriptionFailure failure) {
+    return _Failure(
+      failure,
+    );
+  }
 }
 
 /// @nodoc
@@ -350,6 +358,7 @@ mixin _$SubscriptionState {
     required TResult Function() initial,
     required TResult Function() subscribed,
     required TResult Function() unsubscribed,
+    required TResult Function(SubscriptionFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -357,6 +366,7 @@ mixin _$SubscriptionState {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -364,6 +374,7 @@ mixin _$SubscriptionState {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -372,6 +383,7 @@ mixin _$SubscriptionState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Subscribed value) subscribed,
     required TResult Function(_Unsubscribed value) unsubscribed,
+    required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -379,6 +391,7 @@ mixin _$SubscriptionState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -386,6 +399,7 @@ mixin _$SubscriptionState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -449,6 +463,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() subscribed,
     required TResult Function() unsubscribed,
+    required TResult Function(SubscriptionFailure failure) failure,
   }) {
     return initial();
   }
@@ -459,6 +474,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
   }) {
     return initial?.call();
   }
@@ -469,6 +485,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -483,6 +500,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Subscribed value) subscribed,
     required TResult Function(_Unsubscribed value) unsubscribed,
+    required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
   }
@@ -493,6 +511,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -503,6 +522,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -560,6 +580,7 @@ class _$_Subscribed implements _Subscribed {
     required TResult Function() initial,
     required TResult Function() subscribed,
     required TResult Function() unsubscribed,
+    required TResult Function(SubscriptionFailure failure) failure,
   }) {
     return subscribed();
   }
@@ -570,6 +591,7 @@ class _$_Subscribed implements _Subscribed {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
   }) {
     return subscribed?.call();
   }
@@ -580,6 +602,7 @@ class _$_Subscribed implements _Subscribed {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (subscribed != null) {
@@ -594,6 +617,7 @@ class _$_Subscribed implements _Subscribed {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Subscribed value) subscribed,
     required TResult Function(_Unsubscribed value) unsubscribed,
+    required TResult Function(_Failure value) failure,
   }) {
     return subscribed(this);
   }
@@ -604,6 +628,7 @@ class _$_Subscribed implements _Subscribed {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
   }) {
     return subscribed?.call(this);
   }
@@ -614,6 +639,7 @@ class _$_Subscribed implements _Subscribed {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (subscribed != null) {
@@ -671,6 +697,7 @@ class _$_Unsubscribed implements _Unsubscribed {
     required TResult Function() initial,
     required TResult Function() subscribed,
     required TResult Function() unsubscribed,
+    required TResult Function(SubscriptionFailure failure) failure,
   }) {
     return unsubscribed();
   }
@@ -681,6 +708,7 @@ class _$_Unsubscribed implements _Unsubscribed {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
   }) {
     return unsubscribed?.call();
   }
@@ -691,6 +719,7 @@ class _$_Unsubscribed implements _Unsubscribed {
     TResult Function()? initial,
     TResult Function()? subscribed,
     TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
     required TResult orElse(),
   }) {
     if (unsubscribed != null) {
@@ -705,6 +734,7 @@ class _$_Unsubscribed implements _Unsubscribed {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Subscribed value) subscribed,
     required TResult Function(_Unsubscribed value) unsubscribed,
+    required TResult Function(_Failure value) failure,
   }) {
     return unsubscribed(this);
   }
@@ -715,6 +745,7 @@ class _$_Unsubscribed implements _Unsubscribed {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
   }) {
     return unsubscribed?.call(this);
   }
@@ -725,6 +756,7 @@ class _$_Unsubscribed implements _Unsubscribed {
     TResult Function(_Initial value)? initial,
     TResult Function(_Subscribed value)? subscribed,
     TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (unsubscribed != null) {
@@ -736,4 +768,155 @@ class _$_Unsubscribed implements _Unsubscribed {
 
 abstract class _Unsubscribed implements SubscriptionState {
   const factory _Unsubscribed() = _$_Unsubscribed;
+}
+
+/// @nodoc
+abstract class _$FailureCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
+      __$FailureCopyWithImpl<$Res>;
+  $Res call({SubscriptionFailure failure});
+
+  $SubscriptionFailureCopyWith<$Res> get failure;
+}
+
+/// @nodoc
+class __$FailureCopyWithImpl<$Res> extends _$SubscriptionStateCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
+      : super(_value, (v) => _then(v as _Failure));
+
+  @override
+  _Failure get _value => super._value as _Failure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_Failure(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as SubscriptionFailure,
+    ));
+  }
+
+  @override
+  $SubscriptionFailureCopyWith<$Res> get failure {
+    return $SubscriptionFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_Failure implements _Failure {
+  const _$_Failure(this.failure);
+
+  @override
+  final SubscriptionFailure failure;
+
+  @override
+  String toString() {
+    return 'SubscriptionState.failure(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Failure &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FailureCopyWith<_Failure> get copyWith =>
+      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() subscribed,
+    required TResult Function() unsubscribed,
+    required TResult Function(SubscriptionFailure failure) failure,
+  }) {
+    return failure(this.failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? subscribed,
+    TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
+  }) {
+    return failure?.call(this.failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? subscribed,
+    TResult Function()? unsubscribed,
+    TResult Function(SubscriptionFailure failure)? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this.failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Subscribed value) subscribed,
+    required TResult Function(_Unsubscribed value) unsubscribed,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Subscribed value)? subscribed,
+    TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Subscribed value)? subscribed,
+    TResult Function(_Unsubscribed value)? unsubscribed,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Failure implements SubscriptionState {
+  const factory _Failure(SubscriptionFailure failure) = _$_Failure;
+
+  SubscriptionFailure get failure;
+  @JsonKey(ignore: true)
+  _$FailureCopyWith<_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

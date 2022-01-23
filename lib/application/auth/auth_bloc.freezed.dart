@@ -24,6 +24,10 @@ class _$AuthEventTearOff {
   SignedOut signedOut() {
     return const SignedOut();
   }
+
+  PostToken postToken() {
+    return const PostToken();
+  }
 }
 
 /// @nodoc
@@ -35,18 +39,21 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
+    required TResult Function() postToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
+    TResult Function()? postToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
+    TResult Function()? postToken,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,18 +61,21 @@ mixin _$AuthEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthCheckRequested value) authCheckRequested,
     required TResult Function(SignedOut value) signedOut,
+    required TResult Function(PostToken value) postToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? authCheckRequested,
     TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? authCheckRequested,
     TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +139,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
+    required TResult Function() postToken,
   }) {
     return authCheckRequested();
   }
@@ -138,6 +149,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
+    TResult Function()? postToken,
   }) {
     return authCheckRequested?.call();
   }
@@ -147,6 +159,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
+    TResult Function()? postToken,
     required TResult orElse(),
   }) {
     if (authCheckRequested != null) {
@@ -160,6 +173,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthCheckRequested value) authCheckRequested,
     required TResult Function(SignedOut value) signedOut,
+    required TResult Function(PostToken value) postToken,
   }) {
     return authCheckRequested(this);
   }
@@ -169,6 +183,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? authCheckRequested,
     TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
   }) {
     return authCheckRequested?.call(this);
   }
@@ -178,6 +193,7 @@ class _$AuthCheckRequested implements AuthCheckRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? authCheckRequested,
     TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
     required TResult orElse(),
   }) {
     if (authCheckRequested != null) {
@@ -231,6 +247,7 @@ class _$SignedOut implements SignedOut {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
+    required TResult Function() postToken,
   }) {
     return signedOut();
   }
@@ -240,6 +257,7 @@ class _$SignedOut implements SignedOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
+    TResult Function()? postToken,
   }) {
     return signedOut?.call();
   }
@@ -249,6 +267,7 @@ class _$SignedOut implements SignedOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
+    TResult Function()? postToken,
     required TResult orElse(),
   }) {
     if (signedOut != null) {
@@ -262,6 +281,7 @@ class _$SignedOut implements SignedOut {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthCheckRequested value) authCheckRequested,
     required TResult Function(SignedOut value) signedOut,
+    required TResult Function(PostToken value) postToken,
   }) {
     return signedOut(this);
   }
@@ -271,6 +291,7 @@ class _$SignedOut implements SignedOut {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? authCheckRequested,
     TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
   }) {
     return signedOut?.call(this);
   }
@@ -280,6 +301,7 @@ class _$SignedOut implements SignedOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCheckRequested value)? authCheckRequested,
     TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
     required TResult orElse(),
   }) {
     if (signedOut != null) {
@@ -291,6 +313,114 @@ class _$SignedOut implements SignedOut {
 
 abstract class SignedOut implements AuthEvent {
   const factory SignedOut() = _$SignedOut;
+}
+
+/// @nodoc
+abstract class $PostTokenCopyWith<$Res> {
+  factory $PostTokenCopyWith(PostToken value, $Res Function(PostToken) then) =
+      _$PostTokenCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$PostTokenCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements $PostTokenCopyWith<$Res> {
+  _$PostTokenCopyWithImpl(PostToken _value, $Res Function(PostToken) _then)
+      : super(_value, (v) => _then(v as PostToken));
+
+  @override
+  PostToken get _value => super._value as PostToken;
+}
+
+/// @nodoc
+
+class _$PostToken implements PostToken {
+  const _$PostToken();
+
+  @override
+  String toString() {
+    return 'AuthEvent.postToken()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PostToken);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() authCheckRequested,
+    required TResult Function() signedOut,
+    required TResult Function() postToken,
+  }) {
+    return postToken();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? authCheckRequested,
+    TResult Function()? signedOut,
+    TResult Function()? postToken,
+  }) {
+    return postToken?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? authCheckRequested,
+    TResult Function()? signedOut,
+    TResult Function()? postToken,
+    required TResult orElse(),
+  }) {
+    if (postToken != null) {
+      return postToken();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthCheckRequested value) authCheckRequested,
+    required TResult Function(SignedOut value) signedOut,
+    required TResult Function(PostToken value) postToken,
+  }) {
+    return postToken(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCheckRequested value)? authCheckRequested,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
+  }) {
+    return postToken?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthCheckRequested value)? authCheckRequested,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(PostToken value)? postToken,
+    required TResult orElse(),
+  }) {
+    if (postToken != null) {
+      return postToken(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PostToken implements AuthEvent {
+  const factory PostToken() = _$PostToken;
 }
 
 /// @nodoc
@@ -308,6 +438,10 @@ class _$AuthStateTearOff {
   Unauthenticated unauthenticated() {
     return const Unauthenticated();
   }
+
+  NewUser newUser() {
+    return const NewUser();
+  }
 }
 
 /// @nodoc
@@ -320,6 +454,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -327,6 +462,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -334,6 +470,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -342,6 +479,7 @@ mixin _$AuthState {
     required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(NewUser value) newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -349,6 +487,7 @@ mixin _$AuthState {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -356,6 +495,7 @@ mixin _$AuthState {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -417,6 +557,7 @@ class _$Initial implements Initial {
     required TResult Function() initial,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() newUser,
   }) {
     return initial();
   }
@@ -427,6 +568,7 @@ class _$Initial implements Initial {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
   }) {
     return initial?.call();
   }
@@ -437,6 +579,7 @@ class _$Initial implements Initial {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -451,6 +594,7 @@ class _$Initial implements Initial {
     required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(NewUser value) newUser,
   }) {
     return initial(this);
   }
@@ -461,6 +605,7 @@ class _$Initial implements Initial {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
   }) {
     return initial?.call(this);
   }
@@ -471,6 +616,7 @@ class _$Initial implements Initial {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -527,6 +673,7 @@ class _$Authenticated implements Authenticated {
     required TResult Function() initial,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() newUser,
   }) {
     return authenticated();
   }
@@ -537,6 +684,7 @@ class _$Authenticated implements Authenticated {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
   }) {
     return authenticated?.call();
   }
@@ -547,6 +695,7 @@ class _$Authenticated implements Authenticated {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -561,6 +710,7 @@ class _$Authenticated implements Authenticated {
     required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(NewUser value) newUser,
   }) {
     return authenticated(this);
   }
@@ -571,6 +721,7 @@ class _$Authenticated implements Authenticated {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
   }) {
     return authenticated?.call(this);
   }
@@ -581,6 +732,7 @@ class _$Authenticated implements Authenticated {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
@@ -637,6 +789,7 @@ class _$Unauthenticated implements Unauthenticated {
     required TResult Function() initial,
     required TResult Function() authenticated,
     required TResult Function() unauthenticated,
+    required TResult Function() newUser,
   }) {
     return unauthenticated();
   }
@@ -647,6 +800,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
   }) {
     return unauthenticated?.call();
   }
@@ -657,6 +811,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function()? initial,
     TResult Function()? authenticated,
     TResult Function()? unauthenticated,
+    TResult Function()? newUser,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -671,6 +826,7 @@ class _$Unauthenticated implements Unauthenticated {
     required TResult Function(Initial value) initial,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(NewUser value) newUser,
   }) {
     return unauthenticated(this);
   }
@@ -681,6 +837,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
   }) {
     return unauthenticated?.call(this);
   }
@@ -691,6 +848,7 @@ class _$Unauthenticated implements Unauthenticated {
     TResult Function(Initial value)? initial,
     TResult Function(Authenticated value)? authenticated,
     TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -702,4 +860,118 @@ class _$Unauthenticated implements Unauthenticated {
 
 abstract class Unauthenticated implements AuthState {
   const factory Unauthenticated() = _$Unauthenticated;
+}
+
+/// @nodoc
+abstract class $NewUserCopyWith<$Res> {
+  factory $NewUserCopyWith(NewUser value, $Res Function(NewUser) then) =
+      _$NewUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NewUserCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements $NewUserCopyWith<$Res> {
+  _$NewUserCopyWithImpl(NewUser _value, $Res Function(NewUser) _then)
+      : super(_value, (v) => _then(v as NewUser));
+
+  @override
+  NewUser get _value => super._value as NewUser;
+}
+
+/// @nodoc
+
+class _$NewUser implements NewUser {
+  const _$NewUser();
+
+  @override
+  String toString() {
+    return 'AuthState.newUser()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is NewUser);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() authenticated,
+    required TResult Function() unauthenticated,
+    required TResult Function() newUser,
+  }) {
+    return newUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? newUser,
+  }) {
+    return newUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? authenticated,
+    TResult Function()? unauthenticated,
+    TResult Function()? newUser,
+    required TResult orElse(),
+  }) {
+    if (newUser != null) {
+      return newUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Authenticated value) authenticated,
+    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(NewUser value) newUser,
+  }) {
+    return newUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
+  }) {
+    return newUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(NewUser value)? newUser,
+    required TResult orElse(),
+  }) {
+    if (newUser != null) {
+      return newUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NewUser implements AuthState {
+  const factory NewUser() = _$NewUser;
 }

@@ -25,8 +25,8 @@ class GenderWidget extends StatelessWidget {
     return CustomCard(
       onTap: onTap,
       borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-      width: 160.w,
-      height: 180.h,
+      width: 180.w,
+      height: 200.h,
       border: isSelected
           ? Border.all(color: AppColors.mainColor, width: 2.w)
           : null,
@@ -35,7 +35,7 @@ class GenderWidget extends StatelessWidget {
       child: Column(
         children: [
           SvgPicture.asset(asset, width: 50.w, height: 50.h),
-          addVerticalSpace(18),
+          addVerticalSpace(18.h),
           Text(
             title,
             style: Styles.kefa18Medium,

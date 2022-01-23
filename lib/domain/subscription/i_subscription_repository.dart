@@ -4,6 +4,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class ISubscriptionRepository {
+  Future<Either<SubscriptionFailure, bool>> isUserSubscribedOrNotMale();
   Future<Option<Subscription>> getMySubscription();
   Future<Either<SubscriptionFailure, IList<Subscription>>>
       getListSubscription();

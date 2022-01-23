@@ -49,7 +49,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCIdqLJn5dmdhjad_VAJ2ii053yht55tRQ',
-    appId: '1:817400347390:android:75b745ec6b55e3a4cd03af',
+    appId: '1:817400347390:android:765fd889d527deb9cd03af',
     messagingSenderId: '817400347390',
     projectId: 'crave-chat-app',
     storageBucket: 'crave-chat-app.appspot.com',
@@ -57,11 +57,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBrPZJLwN09-02NvDRT4YwFjqmgFV-QhEg',
-    appId: '1:817400347390:ios:cb743e07f29b75accd03af',
+    appId: '1:817400347390:ios:4cc8ee87449e922ccd03af',
     messagingSenderId: '817400347390',
     projectId: 'crave-chat-app',
     storageBucket: 'crave-chat-app.appspot.com',
-    iosClientId: '817400347390-c4edvgordtoeiebtta29hgk6kuhu99tm.apps.googleusercontent.com',
-    iosBundleId: 'com.craveapp',
+    androidClientId: '817400347390-cdh6bsqr4h7ofqvktl84knhl8e54mprh.apps.googleusercontent.com',
+    iosClientId: '817400347390-r963linqhhrlf1n6opr266r67mek7vi4.apps.googleusercontent.com',
+    iosBundleId: 'com.wbdigital.crave',
   );
 }

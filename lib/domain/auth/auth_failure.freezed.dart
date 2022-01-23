@@ -37,6 +37,14 @@ class _$AuthFailureTearOff {
     return const EmailAlreadyInUse();
   }
 
+  InvalidOtpCode invalidOtpCode() {
+    return const InvalidOtpCode();
+  }
+
+  ExpiredCredential expiredCredential() {
+    return const ExpiredCredential();
+  }
+
   InvalidEmailAndPasswordCombination invalidEmailAndPasswordCombination() {
     return const InvalidEmailAndPasswordCombination();
   }
@@ -54,6 +62,8 @@ mixin _$AuthFailure {
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,6 +74,8 @@ mixin _$AuthFailure {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +86,8 @@ mixin _$AuthFailure {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) =>
@@ -85,6 +99,8 @@ mixin _$AuthFailure {
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) =>
@@ -96,6 +112,8 @@ mixin _$AuthFailure {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) =>
@@ -107,6 +125,8 @@ mixin _$AuthFailure {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -176,6 +196,8 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser();
@@ -189,6 +211,8 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser?.call();
@@ -202,6 +226,8 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -219,6 +245,8 @@ class _$CancelledByUser implements CancelledByUser {
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -233,6 +261,8 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -247,6 +277,8 @@ class _$CancelledByUser implements CancelledByUser {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -307,6 +339,8 @@ class _$ServerError implements ServerError {
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return serverError();
@@ -320,6 +354,8 @@ class _$ServerError implements ServerError {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return serverError?.call();
@@ -333,6 +369,8 @@ class _$ServerError implements ServerError {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -350,6 +388,8 @@ class _$ServerError implements ServerError {
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -364,6 +404,8 @@ class _$ServerError implements ServerError {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -378,6 +420,8 @@ class _$ServerError implements ServerError {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -437,6 +481,8 @@ class _$NoInternet implements NoInternet {
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return noInternet();
@@ -450,6 +496,8 @@ class _$NoInternet implements NoInternet {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return noInternet?.call();
@@ -463,6 +511,8 @@ class _$NoInternet implements NoInternet {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -480,6 +530,8 @@ class _$NoInternet implements NoInternet {
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -494,6 +546,8 @@ class _$NoInternet implements NoInternet {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -508,6 +562,8 @@ class _$NoInternet implements NoInternet {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -567,6 +623,8 @@ class _$Unexpected implements Unexpected {
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return unexpected();
@@ -580,6 +638,8 @@ class _$Unexpected implements Unexpected {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return unexpected?.call();
@@ -593,6 +653,8 @@ class _$Unexpected implements Unexpected {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -610,6 +672,8 @@ class _$Unexpected implements Unexpected {
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -624,6 +688,8 @@ class _$Unexpected implements Unexpected {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -638,6 +704,8 @@ class _$Unexpected implements Unexpected {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -699,6 +767,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return emailAlreadyInUse();
@@ -712,6 +782,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return emailAlreadyInUse?.call();
@@ -725,6 +797,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -742,6 +816,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -756,6 +832,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -770,6 +848,8 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),
@@ -783,6 +863,293 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
 
 abstract class EmailAlreadyInUse implements AuthFailure {
   const factory EmailAlreadyInUse() = _$EmailAlreadyInUse;
+}
+
+/// @nodoc
+abstract class $InvalidOtpCodeCopyWith<$Res> {
+  factory $InvalidOtpCodeCopyWith(
+          InvalidOtpCode value, $Res Function(InvalidOtpCode) then) =
+      _$InvalidOtpCodeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InvalidOtpCodeCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
+    implements $InvalidOtpCodeCopyWith<$Res> {
+  _$InvalidOtpCodeCopyWithImpl(
+      InvalidOtpCode _value, $Res Function(InvalidOtpCode) _then)
+      : super(_value, (v) => _then(v as InvalidOtpCode));
+
+  @override
+  InvalidOtpCode get _value => super._value as InvalidOtpCode;
+}
+
+/// @nodoc
+
+class _$InvalidOtpCode implements InvalidOtpCode {
+  const _$InvalidOtpCode();
+
+  @override
+  String toString() {
+    return 'AuthFailure.invalidOtpCode()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InvalidOtpCode);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function() unexpected,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
+    required TResult Function() invalidEmailAndPasswordCombination,
+  }) {
+    return invalidOtpCode();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function()? unexpected,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
+    TResult Function()? invalidEmailAndPasswordCombination,
+  }) {
+    return invalidOtpCode?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function()? unexpected,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (invalidOtpCode != null) {
+      return invalidOtpCode();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(NoInternet value) noInternet,
+    required TResult Function(Unexpected value) unexpected,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+  }) {
+    return invalidOtpCode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+  }) {
+    return invalidOtpCode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (invalidOtpCode != null) {
+      return invalidOtpCode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidOtpCode implements AuthFailure {
+  const factory InvalidOtpCode() = _$InvalidOtpCode;
+}
+
+/// @nodoc
+abstract class $ExpiredCredentialCopyWith<$Res> {
+  factory $ExpiredCredentialCopyWith(
+          ExpiredCredential value, $Res Function(ExpiredCredential) then) =
+      _$ExpiredCredentialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ExpiredCredentialCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res>
+    implements $ExpiredCredentialCopyWith<$Res> {
+  _$ExpiredCredentialCopyWithImpl(
+      ExpiredCredential _value, $Res Function(ExpiredCredential) _then)
+      : super(_value, (v) => _then(v as ExpiredCredential));
+
+  @override
+  ExpiredCredential get _value => super._value as ExpiredCredential;
+}
+
+/// @nodoc
+
+class _$ExpiredCredential implements ExpiredCredential {
+  const _$ExpiredCredential();
+
+  @override
+  String toString() {
+    return 'AuthFailure.expiredCredential()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ExpiredCredential);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function() unexpected,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
+    required TResult Function() invalidEmailAndPasswordCombination,
+  }) {
+    return expiredCredential();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function()? unexpected,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
+    TResult Function()? invalidEmailAndPasswordCombination,
+  }) {
+    return expiredCredential?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function()? unexpected,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (expiredCredential != null) {
+      return expiredCredential();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(NoInternet value) noInternet,
+    required TResult Function(Unexpected value) unexpected,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+  }) {
+    return expiredCredential(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+  }) {
+    return expiredCredential?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(NoInternet value)? noInternet,
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    required TResult orElse(),
+  }) {
+    if (expiredCredential != null) {
+      return expiredCredential(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ExpiredCredential implements AuthFailure {
+  const factory ExpiredCredential() = _$ExpiredCredential;
 }
 
 /// @nodoc
@@ -836,6 +1203,8 @@ class _$InvalidEmailAndPasswordCombination
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidOtpCode,
+    required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return invalidEmailAndPasswordCombination();
@@ -849,6 +1218,8 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return invalidEmailAndPasswordCombination?.call();
@@ -862,6 +1233,8 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidOtpCode,
+    TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
@@ -879,6 +1252,8 @@ class _$InvalidEmailAndPasswordCombination
     required TResult Function(NoInternet value) noInternet,
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidOtpCode value) invalidOtpCode,
+    required TResult Function(ExpiredCredential value) expiredCredential,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
   }) {
@@ -893,6 +1268,8 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
   }) {
@@ -907,6 +1284,8 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function(NoInternet value)? noInternet,
     TResult Function(Unexpected value)? unexpected,
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidOtpCode value)? invalidOtpCode,
+    TResult Function(ExpiredCredential value)? expiredCredential,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
     required TResult orElse(),

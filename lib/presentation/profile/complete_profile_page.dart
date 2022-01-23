@@ -1,163 +1,340 @@
+import 'package:badges/badges.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crave_app/application/profile/profile_bloc.dart';
+import 'package:crave_app/application/profile/update_profile/update_profile_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
+import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/custom_button.dart';
 import 'package:crave_app/presentation/core/widget/custom_textfield.dart';
-import 'package:crave_app/presentation/routers/routers.dart';
+import 'package:crave_app/presentation/core/widget/stack_with_progress.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart' hide Svg;
 import 'package:get/get.dart';
 
 class CompleteProfilePage extends StatelessWidget {
-  const CompleteProfilePage({Key? key}) : super(key: key);
+  final Profile currentProfile;
+  const CompleteProfilePage(this.currentProfile, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _bloc = context.read<UpdateProfileBloc>();
+    final _profileBloc = context.read<ProfileBloc>();
+    final bioController = TextEditingController();
+    bioController.addListener(() {
+      _bloc.add(UpdateProfileEvent.bioChanged(bioController.text));
+    });
+    void _handleAddPhoto() {
+      showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return SafeArea(
+              child: SizedBox(
+                height: 160.h,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    addVerticalSpace(10.h),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                        _bloc.add(
+                          const UpdateProfileEvent.addPhotoViaCamera(),
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                          10.h,
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Camera',
+                            style: Styles.kefa16Regular.copyWith(
+                              color: AppColors.mainColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                        _bloc.add(
+                          const UpdateProfileEvent.addPhotoViaGallery(),
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                          10.h,
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Gallery',
+                            style: Styles.kefa16Regular.copyWith(
+                              color: AppColors.mainColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    addVerticalSpace(30.h),
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+
+    void _handleDeletePhoto(String url) {
+      showModalBottomSheet<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return SafeArea(
+              child: SizedBox(
+                height: 120.h,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    addVerticalSpace(10.h),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                        _bloc.add(
+                          UpdateProfileEvent.deletePhoto(url),
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(
+                          10.h,
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Delete',
+                            style: Styles.kefa16Regular.copyWith(
+                              color: AppColors.mainColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        body: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(Dimens.defaultMargin),
-              child: Text(
-                "complete profile".toUpperCase(),
-                style: Styles.kefa18Medium,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 60.r,
-                    backgroundColor: const Color(0xFFFFEBEE),
-                    child: SvgPicture.asset('assets/images/empty_image.svg'),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: CircleAvatar(
-                      radius: 17.r,
-                      backgroundColor: AppColors.mainColor,
-                      child: SvgPicture.asset('assets/images/camera_icon.svg'),
+        body: BlocConsumer<UpdateProfileBloc, UpdateProfileState>(
+          bloc: _bloc..add(UpdateProfileEvent.init(currentProfile)),
+          listener: (context, state) {
+            state.updateProfileFailureOrSuccessOption.match((failureOrSuccess) {
+              failureOrSuccess.match(
+                (failure) {
+                  final message = failure.map(
+                    noInternet: (_) => 'No internet',
+                    unexpected: (_) => 'Unexpected error',
+                    notFound: (_) => 'Data not found',
+                    unauthenticated: (_) => 'Unauthenticated',
+                    serverError: (_) => 'Server error',
+                    cancelledByUser: (_) => 'Cancelled',
+                  );
+                  Get.snackbar(
+                    'Sorry',
+                    message,
+                  );
+                },
+                (path) {
+                  _profileBloc.add(const ProfileEvent.getCurrentProfile());
+                },
+              );
+            }, () {});
+            state.pickPhotoFailureOrSuccessOption.match((failureOrSuccess) {
+              failureOrSuccess.match(
+                (failure) {
+                  final message = failure.map(
+                    noInternet: (_) => 'No internet',
+                    unexpected: (_) => 'Unexpected error',
+                    notFound: (_) => 'Data not found',
+                    unauthenticated: (_) => 'Unauthenticated',
+                    serverError: (_) => 'Server error',
+                    cancelledByUser: (_) => 'Cancelled',
+                  );
+                  Get.snackbar(
+                    'Sorry',
+                    message,
+                  );
+                },
+                (path) {
+                  _bloc.add(UpdateProfileEvent.uploadPhoto(path));
+                },
+              );
+            }, () {});
+            state.uploadPhotoFailureOrSuccessOption.match((failureOrSuccess) {
+              failureOrSuccess.match(
+                (failure) {
+                  final message = failure.map(
+                    noInternet: (_) => 'No internet',
+                    unexpected: (_) => 'Unexpected error',
+                    notFound: (_) => 'Data not found',
+                    unauthenticated: (_) => 'Unauthenticated',
+                    serverError: (_) => 'Server error',
+                    cancelledByUser: (_) => 'Cancelled',
+                  );
+                  Get.snackbar(
+                    'Sorry',
+                    message,
+                  );
+                },
+                (path) {
+                  _bloc.add(UpdateProfileEvent.successUpload(path));
+                },
+              );
+            }, () {});
+            state.deletePhotoFailureOrSuccessOption.match((failureOrSuccess) {
+              failureOrSuccess.match(
+                (failure) {
+                  final message = failure.map(
+                    noInternet: (_) => 'No internet',
+                    unexpected: (_) => 'Unexpected error',
+                    notFound: (_) => 'Data not found',
+                    unauthenticated: (_) => 'Unauthenticated',
+                    serverError: (_) => 'Server error',
+                    cancelledByUser: (_) => 'Cancelled',
+                  );
+                  Get.snackbar(
+                    'Sorry',
+                    message,
+                  );
+                },
+                (path) {
+                  _bloc.add(UpdateProfileEvent.successDelete(path));
+                },
+              );
+            }, () {});
+          },
+          builder: (context, state) {
+            return StackWithProgress(
+              isLoading: state.isLoading,
+              children: [
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: Dimens.defaultMargin),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 10.h),
+                            child: Text(
+                              'COMPLETE PROFILE',
+                              style: Styles.kefa18SemiBold,
+                            ),
+                          ),
+                        ),
+                        addVerticalSpace(30.h),
+                        Expanded(
+                          child: CustomTextField(
+                            controller: bioController,
+                            fillColor: Colors.transparent,
+                            border: false,
+                            expands: true,
+                            inputStyle: Styles.kefa16Regular,
+                            hintStyle: Styles.kefa16Regular.copyWith(
+                              color: Colors.grey[400],
+                              height: 1.6,
+                            ),
+                            hintMaxLines: 3,
+                            hintText:
+                                'Write what you want to tell the others on Crave... '
+                                    .toUpperCase(),
+                          ),
+                        ),
+                        addVerticalSpace(20.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ...List.generate(
+                              3,
+                              (index) => index + 1,
+                            ).map(
+                              (index) => state.photos.length < index
+                                  ? Ink.image(
+                                      height: 160.h,
+                                      width: 100.w,
+                                      fit: BoxFit.contain,
+                                      image: Svg(
+                                        'assets/images/add_photo_$index.svg',
+                                        size: Size(100.w, 160.h),
+                                      ),
+                                      padding: EdgeInsets.zero,
+                                      child: InkWell(
+                                        borderRadius:
+                                            BorderRadius.circular(12.w),
+                                        onTap: () => _handleAddPhoto(),
+                                      ),
+                                    )
+                                  : Ink(
+                                      height: 160.h,
+                                      width: 100.w,
+                                      padding: EdgeInsets.zero,
+                                      child: Badge(
+                                        position: BadgePosition.topEnd(
+                                          top: 6.h,
+                                          end: 6.w,
+                                        ),
+                                        badgeColor: Colors.black45,
+                                        badgeContent: const Icon(
+                                          Icons.close,
+                                          color: Colors.white,
+                                          size: 12,
+                                        ),
+                                        child: InkWell(
+                                          borderRadius:
+                                              BorderRadius.circular(12.w),
+                                          onTap: () => _handleDeletePhoto(
+                                              state.photos[index - 1]),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            child: CachedNetworkImage(
+                                              imageUrl: state.photos[index - 1],
+                                              fit: BoxFit.cover,
+                                              height: 160.h,
+                                              width: 100.w,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                          ],
+                        ),
+                        addVerticalSpace(20.h),
+                        CustomButton(
+                          height: 56.h,
+                          onPressed: state.photos.isNotEmpty &&
+                                  state.bio.isValid()
+                              ? () => _bloc
+                                  .add(const UpdateProfileEvent.postPressed())
+                              : null,
+                          label: 'POST',
+                        ),
+                        addVerticalSpace(20.h)
+                      ],
                     ),
-                  )
-                ],
-              ),
-            ),
-            addVerticalSpace(20),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Dimens.defaultMargin,
-              ),
-              child: Text(
-                "Add your best photos (Max 3 Photos)",
-                style: Styles.kefa14Regular.copyWith(
-                  color: Colors.grey,
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            addVerticalSpace(20),
-            // CustomButton(
-            //   margin: const EdgeInsets.all(Dimens.defaultMargin),
-            //   padding: const EdgeInsets.all(
-            //     8,
-            //   ),
-            //   height: 50.h,
-            //   onPressed: () {},
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       SvgPicture.asset('assets/images/upload_icon.svg'),
-            //       addHorizontalSpace(10),
-            //       Text(
-            //         'Upload your Photos',
-            //         style: Styles.kefa14Regular.copyWith(
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          Dimens.defaultBorderRadius,
-                        ),
-                        color: const Color(0xFFFFEBEE),
-                      ),
-                      height: 160.h,
-                      child: Center(
-                        child: SvgPicture.asset('assets/images/add_photo.svg'),
-                      ),
-                    ),
-                  ),
-                  addHorizontalSpace(12.w),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          Dimens.defaultBorderRadius,
-                        ),
-                        color: const Color(0xFFFFEBEE),
-                      ),
-                      height: 160.h,
-                      child: Center(
-                        child: SvgPicture.asset('assets/images/add_photo.svg'),
-                      ),
-                    ),
-                  ),
-                  addHorizontalSpace(12.w),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          Dimens.defaultBorderRadius,
-                        ),
-                        color: const Color(0xFFFFEBEE),
-                      ),
-                      height: 160.h,
-                      child: Center(
-                        child: SvgPicture.asset('assets/images/add_photo.svg'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(Dimens.defaultMargin),
-              child: CustomTextField(
-                fillColor: const Color(0xFFFFEBEE),
-                maxLines: 10,
-                hintText: 'Type your memo here...',
-                hintStyle: Styles.kefa14Regular.copyWith(
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-            CustomButton(
-              margin: const EdgeInsets.symmetric(
-                horizontal: Dimens.defaultMargin,
-                vertical: Dimens.defaultMargin,
-              ),
-              height: 56.h,
-              onPressed: () {
-                Get.toNamed(Routers.landing);
-              },
-              label: 'CONTINUE',
-            ),
-            addVerticalSpace(40)
-          ],
+              ],
+            );
+          },
         ),
       ),
     );

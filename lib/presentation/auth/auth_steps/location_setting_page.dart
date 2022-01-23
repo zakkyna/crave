@@ -1,19 +1,29 @@
+import 'package:crave_app/application/auth/register/register_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/presentation/core/widget/custom_button.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocationSettingPage extends StatelessWidget {
   final Function onNext;
+  final bool isInPage;
 
   const LocationSettingPage({
     Key? key,
     required this.onNext,
+    required this.isInPage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (context.read<RegisterBloc>().state.locationPermissionAllowed &&
+        isInPage) {
+      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+        onNext();
+      });
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -44,10 +54,12 @@ class LocationSettingPage extends StatelessWidget {
             vertical: Dimens.defaultMargin * 2,
           ),
           onPressed: () {
-            onNext();
+            context.read<RegisterBloc>().add(
+                  const RegisterEvent.setLocationPermission(),
+                );
           },
           label: 'TURN ON LOCATION',
-        )
+        ),
       ],
     );
   }

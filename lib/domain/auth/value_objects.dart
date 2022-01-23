@@ -1,7 +1,7 @@
+import 'package:crave_app/domain/core/entity/failures.dart';
+import 'package:crave_app/domain/core/entity/value_objects.dart';
+import 'package:crave_app/domain/core/entity/value_validators.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:crave_app/domain/core/failures.dart';
-import 'package:crave_app/domain/core/value_objects.dart';
-import 'package:crave_app/domain/core/value_validators.dart';
 
 class PhoneNumber extends ValueObject<String> {
   @override

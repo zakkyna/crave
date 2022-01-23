@@ -26,6 +26,12 @@ class _$AppEventTearOff {
       connection,
     );
   }
+
+  _StatusChanged statusChanged(UserStatus userStatus) {
+    return _StatusChanged(
+      userStatus,
+    );
+  }
 }
 
 /// @nodoc
@@ -37,18 +43,21 @@ mixin _$AppEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ConnectivityResult connection) connectionChanged,
+    required TResult Function(UserStatus userStatus) statusChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,18 +65,21 @@ mixin _$AppEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ConnectionChanged value) connectionChanged,
+    required TResult Function(_StatusChanged value) statusChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +140,7 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ConnectivityResult connection) connectionChanged,
+    required TResult Function(UserStatus userStatus) statusChanged,
   }) {
     return started();
   }
@@ -137,6 +150,7 @@ class _$_Started implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
   }) {
     return started?.call();
   }
@@ -146,6 +160,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -159,6 +174,7 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ConnectionChanged value) connectionChanged,
+    required TResult Function(_StatusChanged value) statusChanged,
   }) {
     return started(this);
   }
@@ -168,6 +184,7 @@ class _$_Started implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
   }) {
     return started?.call(this);
   }
@@ -177,6 +194,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -257,6 +275,7 @@ class _$_ConnectionChanged implements _ConnectionChanged {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(ConnectivityResult connection) connectionChanged,
+    required TResult Function(UserStatus userStatus) statusChanged,
   }) {
     return connectionChanged(connection);
   }
@@ -266,6 +285,7 @@ class _$_ConnectionChanged implements _ConnectionChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
   }) {
     return connectionChanged?.call(connection);
   }
@@ -275,6 +295,7 @@ class _$_ConnectionChanged implements _ConnectionChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
     required TResult orElse(),
   }) {
     if (connectionChanged != null) {
@@ -288,6 +309,7 @@ class _$_ConnectionChanged implements _ConnectionChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_ConnectionChanged value) connectionChanged,
+    required TResult Function(_StatusChanged value) statusChanged,
   }) {
     return connectionChanged(this);
   }
@@ -297,6 +319,7 @@ class _$_ConnectionChanged implements _ConnectionChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
   }) {
     return connectionChanged?.call(this);
   }
@@ -306,6 +329,7 @@ class _$_ConnectionChanged implements _ConnectionChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
     required TResult orElse(),
   }) {
     if (connectionChanged != null) {
@@ -322,6 +346,154 @@ abstract class _ConnectionChanged implements AppEvent {
   ConnectivityResult get connection;
   @JsonKey(ignore: true)
   _$ConnectionChangedCopyWith<_ConnectionChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$StatusChangedCopyWith<$Res> {
+  factory _$StatusChangedCopyWith(
+          _StatusChanged value, $Res Function(_StatusChanged) then) =
+      __$StatusChangedCopyWithImpl<$Res>;
+  $Res call({UserStatus userStatus});
+
+  $UserStatusCopyWith<$Res> get userStatus;
+}
+
+/// @nodoc
+class __$StatusChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$StatusChangedCopyWith<$Res> {
+  __$StatusChangedCopyWithImpl(
+      _StatusChanged _value, $Res Function(_StatusChanged) _then)
+      : super(_value, (v) => _then(v as _StatusChanged));
+
+  @override
+  _StatusChanged get _value => super._value as _StatusChanged;
+
+  @override
+  $Res call({
+    Object? userStatus = freezed,
+  }) {
+    return _then(_StatusChanged(
+      userStatus == freezed
+          ? _value.userStatus
+          : userStatus // ignore: cast_nullable_to_non_nullable
+              as UserStatus,
+    ));
+  }
+
+  @override
+  $UserStatusCopyWith<$Res> get userStatus {
+    return $UserStatusCopyWith<$Res>(_value.userStatus, (value) {
+      return _then(_value.copyWith(userStatus: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_StatusChanged implements _StatusChanged {
+  const _$_StatusChanged(this.userStatus);
+
+  @override
+  final UserStatus userStatus;
+
+  @override
+  String toString() {
+    return 'AppEvent.statusChanged(userStatus: $userStatus)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _StatusChanged &&
+            (identical(other.userStatus, userStatus) ||
+                other.userStatus == userStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userStatus);
+
+  @JsonKey(ignore: true)
+  @override
+  _$StatusChangedCopyWith<_StatusChanged> get copyWith =>
+      __$StatusChangedCopyWithImpl<_StatusChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(ConnectivityResult connection) connectionChanged,
+    required TResult Function(UserStatus userStatus) statusChanged,
+  }) {
+    return statusChanged(userStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
+  }) {
+    return statusChanged?.call(userStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(ConnectivityResult connection)? connectionChanged,
+    TResult Function(UserStatus userStatus)? statusChanged,
+    required TResult orElse(),
+  }) {
+    if (statusChanged != null) {
+      return statusChanged(userStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ConnectionChanged value) connectionChanged,
+    required TResult Function(_StatusChanged value) statusChanged,
+  }) {
+    return statusChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
+  }) {
+    return statusChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ConnectionChanged value)? connectionChanged,
+    TResult Function(_StatusChanged value)? statusChanged,
+    required TResult orElse(),
+  }) {
+    if (statusChanged != null) {
+      return statusChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StatusChanged implements AppEvent {
+  const factory _StatusChanged(UserStatus userStatus) = _$_StatusChanged;
+
+  UserStatus get userStatus;
+  @JsonKey(ignore: true)
+  _$StatusChangedCopyWith<_StatusChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

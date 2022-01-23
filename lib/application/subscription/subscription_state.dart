@@ -5,4 +5,6 @@ class SubscriptionState with _$SubscriptionState {
   const factory SubscriptionState.initial() = _Initial;
   const factory SubscriptionState.subscribed() = _Subscribed;
   const factory SubscriptionState.unsubscribed() = _Unsubscribed;
+  const factory SubscriptionState.failure(SubscriptionFailure failure) =
+      _Failure;
 }

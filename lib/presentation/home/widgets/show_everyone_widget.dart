@@ -1,7 +1,8 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crave_app/application/post/post_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
+import 'package:crave_app/domain/post/post.dart';
+import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,12 +10,25 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowEveryOneWidget extends StatelessWidget {
-  const ShowEveryOneWidget({Key? key}) : super(key: key);
+  final Post post;
+  final Profile currentProfile;
+  const ShowEveryOneWidget({
+    Key? key,
+    required this.post,
+    required this.currentProfile,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _bloc = context.read<PostBloc>();
+    Future<bool> onLikeButtonTapped(bool isLiked) async {
+      _bloc.add(PostEvent.likePost(post.uid, !isLiked));
+      return !isLiked;
+    }
+
     final pageController = PageController();
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -23,69 +37,35 @@ class ShowEveryOneWidget extends StatelessWidget {
       child: Stack(
         fit: StackFit.loose,
         children: [
-          1 == 1
-              ? SizedBox(
-                  height: 415.h,
-                  width: double.infinity,
-                  child: PageView(
-                    controller: pageController,
-                    children: [
-                      CachedNetworkImage(
-                        imageUrl:
-                            'https://placeimg.com/48${Random().nextInt(9)}/600/people',
-                        imageBuilder: (context, imageProvider) => Container(
-                          height: 415.h,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                Dimens.defaultBorderRadius),
-                            image: DecorationImage(
-                                image: imageProvider, fit: BoxFit.cover),
-                          ),
-                        ),
-                        placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => const Center(
-                          child: Icon(Icons.error),
-                        ),
+          SizedBox(
+            height: 415.h,
+            width: double.infinity,
+            child: PageView(
+              controller: pageController,
+              children: [
+                ...post.photos.map((photo) {
+                  return CachedNetworkImage(
+                    imageUrl: photo,
+                    imageBuilder: (context, imageProvider) => Container(
+                      height: 415.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimens.defaultBorderRadius),
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
                       ),
-                      CachedNetworkImage(
-                        imageUrl:
-                            'https://placeimg.com/48${Random().nextInt(9)}/600/people',
-                        imageBuilder: (context, imageProvider) => Container(
-                          height: 415.h,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                Dimens.defaultBorderRadius),
-                            image: DecorationImage(
-                                image: imageProvider, fit: BoxFit.cover),
-                          ),
-                        ),
-                        placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => const Center(
-                          child: Icon(Icons.error),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : CachedNetworkImage(
-                  imageUrl: 'https://placeimg.com/480/600/people',
-                  imageBuilder: (context, imageProvider) => Container(
-                    height: 415.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(Dimens.defaultBorderRadius),
-                      image: DecorationImage(
-                          image: imageProvider, fit: BoxFit.cover),
                     ),
-                  ),
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                    placeholder: (context, url) =>
+                        const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => const Center(
+                      child: Icon(Icons.error),
+                    ),
+                  );
+                }).toList(),
+              ],
+            ),
+          ),
           SizedBox(
             height: (Get.mediaQuery.size.height * 0.5) + 32.h,
             width: double.infinity,
@@ -107,7 +87,7 @@ class ShowEveryOneWidget extends StatelessWidget {
                                   'assets/images/location_icon.svg'),
                               addHorizontalSpace(5),
                               Text(
-                                '12 mi Boston VA',
+                                '${post.distanceInMiles(currentProfile.location!.geopoint)} ${post.city ?? ''}, ${post.state ?? ''}',
                                 style: Styles.sfProDisplay.copyWith(
                                   fontSize: 14.sp,
                                   height: 1.4,
@@ -125,16 +105,17 @@ class ShowEveryOneWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SmoothPageIndicator(
-                          controller: pageController,
-                          effect: WormEffect(
-                            activeDotColor: Colors.white,
-                            dotColor: Colors.grey,
-                            dotHeight: 8.h,
-                            dotWidth: 8.h,
+                        if (post.photos.length > 1)
+                          SmoothPageIndicator(
+                            controller: pageController,
+                            effect: WormEffect(
+                              activeDotColor: Colors.white,
+                              dotColor: Colors.grey,
+                              dotHeight: 8.h,
+                              dotWidth: 8.h,
+                            ),
+                            count: post.photos.length,
                           ),
-                          count: 2,
-                        ),
                       ],
                     ),
                   ),
@@ -144,7 +125,8 @@ class ShowEveryOneWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: RawMaterialButton(
-                        onPressed: () {},
+                        onPressed: () =>
+                            _bloc.add(PostEvent.dismissPost(post.uid)),
                         elevation: 2.0,
                         fillColor: Colors.white,
                         child: Icon(
@@ -176,13 +158,16 @@ class ShowEveryOneWidget extends StatelessWidget {
                           ],
                         ),
                         child: LikeButton(
+                          isLiked: post.isLikedByMe(currentProfile.uid),
                           size: 64.r,
-                          circleColor: CircleColor(
+                          circleColor: const CircleColor(
                               start: Color(0xff00ddff), end: Color(0xff0099cc)),
-                          bubblesColor: BubblesColor(
+                          bubblesColor: const BubblesColor(
                             dotPrimaryColor: Color(0xff33b5e5),
                             dotSecondaryColor: Color(0xff0099cc),
                           ),
+                          onTap: onLikeButtonTapped,
+                          animationDuration: const Duration(milliseconds: 500),
                           likeBuilder: (bool isLiked) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,

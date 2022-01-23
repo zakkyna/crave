@@ -3,6 +3,7 @@ part of 'theme.dart';
 class AppColors {
   AppColors._();
   static const mainColor = Color(0xFF8F0115);
+  static const mainColor2 = Color(0xFF7A008F);
   static const buttonDisabled = Color(0xFFE6B1B9);
   static const shadowColor = Color(0xFF000000);
   static const inputEnabledBorder = Color(0xFFD0D0D0);

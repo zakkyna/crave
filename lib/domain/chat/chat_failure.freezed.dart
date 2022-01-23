@@ -21,8 +21,14 @@ class _$ChatFailureTearOff {
     return const _Unexpected();
   }
 
-  _ServerError serverError() {
-    return const _ServerError();
+  _NoInternet noInternet() {
+    return const _NoInternet();
+  }
+
+  _ServerError serverError(String message) {
+    return _ServerError(
+      message,
+    );
   }
 
   _Unauthenticated unauthenticated() {
@@ -33,8 +39,20 @@ class _$ChatFailureTearOff {
     return const _Unauthorized();
   }
 
+  _UserNotFound userNotFound() {
+    return const _UserNotFound();
+  }
+
   _Expired expired() {
     return const _Expired();
+  }
+
+  _MessageNotSent messageNotSent(
+      {required ChatFailure failure, required SendChat content}) {
+    return _MessageNotSent(
+      failure: failure,
+      content: content,
+    );
   }
 }
 
@@ -46,56 +64,75 @@ mixin _$ChatFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
     required TResult Function() unauthenticated,
     required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
     required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
     required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,10 +195,14 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
     required TResult Function() unauthenticated,
     required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
     required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
   }) {
     return unexpected();
   }
@@ -170,10 +211,13 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
   }) {
     return unexpected?.call();
   }
@@ -182,10 +226,13 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -198,10 +245,13 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
     required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
   }) {
     return unexpected(this);
   }
@@ -210,10 +260,13 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
   }) {
     return unexpected?.call(this);
   }
@@ -222,10 +275,13 @@ class _$_Unexpected implements _Unexpected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -240,10 +296,152 @@ abstract class _Unexpected implements ChatFailure {
 }
 
 /// @nodoc
+abstract class _$NoInternetCopyWith<$Res> {
+  factory _$NoInternetCopyWith(
+          _NoInternet value, $Res Function(_NoInternet) then) =
+      __$NoInternetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NoInternetCopyWithImpl<$Res> extends _$ChatFailureCopyWithImpl<$Res>
+    implements _$NoInternetCopyWith<$Res> {
+  __$NoInternetCopyWithImpl(
+      _NoInternet _value, $Res Function(_NoInternet) _then)
+      : super(_value, (v) => _then(v as _NoInternet));
+
+  @override
+  _NoInternet get _value => super._value as _NoInternet;
+}
+
+/// @nodoc
+
+class _$_NoInternet implements _NoInternet {
+  const _$_NoInternet();
+
+  @override
+  String toString() {
+    return 'ChatFailure.noInternet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NoInternet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
+    required TResult Function() unauthenticated,
+    required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
+    required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
+  }) {
+    return noInternet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
+    TResult Function()? unauthenticated,
+    TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
+    TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
+  }) {
+    return noInternet?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
+    TResult Function()? unauthenticated,
+    TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
+    TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
+    required TResult orElse(),
+  }) {
+    if (noInternet != null) {
+      return noInternet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
+    required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
+  }) {
+    return noInternet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
+  }) {
+    return noInternet?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
+    required TResult orElse(),
+  }) {
+    if (noInternet != null) {
+      return noInternet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoInternet implements ChatFailure {
+  const factory _NoInternet() = _$_NoInternet;
+}
+
+/// @nodoc
 abstract class _$ServerErrorCopyWith<$Res> {
   factory _$ServerErrorCopyWith(
           _ServerError value, $Res Function(_ServerError) then) =
       __$ServerErrorCopyWithImpl<$Res>;
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -255,63 +453,95 @@ class __$ServerErrorCopyWithImpl<$Res> extends _$ChatFailureCopyWithImpl<$Res>
 
   @override
   _ServerError get _value => super._value as _ServerError;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_ServerError(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ServerError implements _ServerError {
-  const _$_ServerError();
+  const _$_ServerError(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'ChatFailure.serverError()';
+    return 'ChatFailure.serverError(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _ServerError);
+        (other.runtimeType == runtimeType &&
+            other is _ServerError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ServerErrorCopyWith<_ServerError> get copyWith =>
+      __$ServerErrorCopyWithImpl<_ServerError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
     required TResult Function() unauthenticated,
     required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
     required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
   }) {
-    return serverError();
+    return serverError(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
   }) {
-    return serverError?.call();
+    return serverError?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
     required TResult orElse(),
   }) {
     if (serverError != null) {
-      return serverError();
+      return serverError(message);
     }
     return orElse();
   }
@@ -320,10 +550,13 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
     required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
   }) {
     return serverError(this);
   }
@@ -332,10 +565,13 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
   }) {
     return serverError?.call(this);
   }
@@ -344,10 +580,13 @@ class _$_ServerError implements _ServerError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -358,7 +597,12 @@ class _$_ServerError implements _ServerError {
 }
 
 abstract class _ServerError implements ChatFailure {
-  const factory _ServerError() = _$_ServerError;
+  const factory _ServerError(String message) = _$_ServerError;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$ServerErrorCopyWith<_ServerError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -403,10 +647,14 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
     required TResult Function() unauthenticated,
     required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
     required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
   }) {
     return unauthenticated();
   }
@@ -415,10 +663,13 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
   }) {
     return unauthenticated?.call();
   }
@@ -427,10 +678,13 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -443,10 +697,13 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
     required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
   }) {
     return unauthenticated(this);
   }
@@ -455,10 +712,13 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
   }) {
     return unauthenticated?.call(this);
   }
@@ -467,10 +727,13 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
@@ -525,10 +788,14 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
     required TResult Function() unauthenticated,
     required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
     required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
   }) {
     return unauthorized();
   }
@@ -537,10 +804,13 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
   }) {
     return unauthorized?.call();
   }
@@ -549,10 +819,13 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -565,10 +838,13 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
     required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
   }) {
     return unauthorized(this);
   }
@@ -577,10 +853,13 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
   }) {
     return unauthorized?.call(this);
   }
@@ -589,10 +868,13 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -604,6 +886,147 @@ class _$_Unauthorized implements _Unauthorized {
 
 abstract class _Unauthorized implements ChatFailure {
   const factory _Unauthorized() = _$_Unauthorized;
+}
+
+/// @nodoc
+abstract class _$UserNotFoundCopyWith<$Res> {
+  factory _$UserNotFoundCopyWith(
+          _UserNotFound value, $Res Function(_UserNotFound) then) =
+      __$UserNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UserNotFoundCopyWithImpl<$Res> extends _$ChatFailureCopyWithImpl<$Res>
+    implements _$UserNotFoundCopyWith<$Res> {
+  __$UserNotFoundCopyWithImpl(
+      _UserNotFound _value, $Res Function(_UserNotFound) _then)
+      : super(_value, (v) => _then(v as _UserNotFound));
+
+  @override
+  _UserNotFound get _value => super._value as _UserNotFound;
+}
+
+/// @nodoc
+
+class _$_UserNotFound implements _UserNotFound {
+  const _$_UserNotFound();
+
+  @override
+  String toString() {
+    return 'ChatFailure.userNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _UserNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
+    required TResult Function() unauthenticated,
+    required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
+    required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
+  }) {
+    return userNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
+    TResult Function()? unauthenticated,
+    TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
+    TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
+  }) {
+    return userNotFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
+    TResult Function()? unauthenticated,
+    TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
+    TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
+    required TResult orElse(),
+  }) {
+    if (userNotFound != null) {
+      return userNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
+    required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
+  }) {
+    return userNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
+  }) {
+    return userNotFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
+    required TResult orElse(),
+  }) {
+    if (userNotFound != null) {
+      return userNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserNotFound implements ChatFailure {
+  const factory _UserNotFound() = _$_UserNotFound;
 }
 
 /// @nodoc
@@ -645,10 +1068,14 @@ class _$_Expired implements _Expired {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
-    required TResult Function() serverError,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
     required TResult Function() unauthenticated,
     required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
     required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
   }) {
     return expired();
   }
@@ -657,10 +1084,13 @@ class _$_Expired implements _Expired {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
   }) {
     return expired?.call();
   }
@@ -669,10 +1099,13 @@ class _$_Expired implements _Expired {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
-    TResult Function()? serverError,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
     TResult Function()? unauthenticated,
     TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
     TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
     required TResult orElse(),
   }) {
     if (expired != null) {
@@ -685,10 +1118,13 @@ class _$_Expired implements _Expired {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
     required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
   }) {
     return expired(this);
   }
@@ -697,10 +1133,13 @@ class _$_Expired implements _Expired {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
   }) {
     return expired?.call(this);
   }
@@ -709,10 +1148,13 @@ class _$_Expired implements _Expired {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
     TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
     required TResult orElse(),
   }) {
     if (expired != null) {
@@ -724,4 +1166,202 @@ class _$_Expired implements _Expired {
 
 abstract class _Expired implements ChatFailure {
   const factory _Expired() = _$_Expired;
+}
+
+/// @nodoc
+abstract class _$MessageNotSentCopyWith<$Res> {
+  factory _$MessageNotSentCopyWith(
+          _MessageNotSent value, $Res Function(_MessageNotSent) then) =
+      __$MessageNotSentCopyWithImpl<$Res>;
+  $Res call({ChatFailure failure, SendChat content});
+
+  $ChatFailureCopyWith<$Res> get failure;
+  $SendChatCopyWith<$Res> get content;
+}
+
+/// @nodoc
+class __$MessageNotSentCopyWithImpl<$Res>
+    extends _$ChatFailureCopyWithImpl<$Res>
+    implements _$MessageNotSentCopyWith<$Res> {
+  __$MessageNotSentCopyWithImpl(
+      _MessageNotSent _value, $Res Function(_MessageNotSent) _then)
+      : super(_value, (v) => _then(v as _MessageNotSent));
+
+  @override
+  _MessageNotSent get _value => super._value as _MessageNotSent;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+    Object? content = freezed,
+  }) {
+    return _then(_MessageNotSent(
+      failure: failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as ChatFailure,
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as SendChat,
+    ));
+  }
+
+  @override
+  $ChatFailureCopyWith<$Res> get failure {
+    return $ChatFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
+
+  @override
+  $SendChatCopyWith<$Res> get content {
+    return $SendChatCopyWith<$Res>(_value.content, (value) {
+      return _then(_value.copyWith(content: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_MessageNotSent implements _MessageNotSent {
+  const _$_MessageNotSent({required this.failure, required this.content});
+
+  @override
+  final ChatFailure failure;
+  @override
+  final SendChat content;
+
+  @override
+  String toString() {
+    return 'ChatFailure.messageNotSent(failure: $failure, content: $content)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _MessageNotSent &&
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.content, content) || other.content == content));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure, content);
+
+  @JsonKey(ignore: true)
+  @override
+  _$MessageNotSentCopyWith<_MessageNotSent> get copyWith =>
+      __$MessageNotSentCopyWithImpl<_MessageNotSent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() noInternet,
+    required TResult Function(String message) serverError,
+    required TResult Function() unauthenticated,
+    required TResult Function() unauthorized,
+    required TResult Function() userNotFound,
+    required TResult Function() expired,
+    required TResult Function(ChatFailure failure, SendChat content)
+        messageNotSent,
+  }) {
+    return messageNotSent(failure, content);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
+    TResult Function()? unauthenticated,
+    TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
+    TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
+  }) {
+    return messageNotSent?.call(failure, content);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? noInternet,
+    TResult Function(String message)? serverError,
+    TResult Function()? unauthenticated,
+    TResult Function()? unauthorized,
+    TResult Function()? userNotFound,
+    TResult Function()? expired,
+    TResult Function(ChatFailure failure, SendChat content)? messageNotSent,
+    required TResult orElse(),
+  }) {
+    if (messageNotSent != null) {
+      return messageNotSent(failure, content);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_UserNotFound value) userNotFound,
+    required TResult Function(_Expired value) expired,
+    required TResult Function(_MessageNotSent value) messageNotSent,
+  }) {
+    return messageNotSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
+  }) {
+    return messageNotSent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_UserNotFound value)? userNotFound,
+    TResult Function(_Expired value)? expired,
+    TResult Function(_MessageNotSent value)? messageNotSent,
+    required TResult orElse(),
+  }) {
+    if (messageNotSent != null) {
+      return messageNotSent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MessageNotSent implements ChatFailure {
+  const factory _MessageNotSent(
+      {required ChatFailure failure,
+      required SendChat content}) = _$_MessageNotSent;
+
+  ChatFailure get failure;
+  SendChat get content;
+  @JsonKey(ignore: true)
+  _$MessageNotSentCopyWith<_MessageNotSent> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:crave_app/domain/core/entity/network_error.dart';
+import 'package:crave_app/domain/core/interfaces/i_network_service.dart';
 import 'package:dio/adapter.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:crave_app/domain/core/i_network_service.dart';
-import 'package:crave_app/domain/core/network_error.dart';
 
 class NetworkService implements INetworkService {
   late final Dio dio;
