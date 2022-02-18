@@ -19,7 +19,7 @@ class LandingPage extends GetView<BottomTabController> {
   Widget build(BuildContext context) {
     // return Scaffold(
     //   bottomNavigationBar: const BottomTab(),
-    //   body: Obx(() => pages[controller.tabIndex.value]),
+    //   child: Obx(() => pages[controller.tabIndex.value]),
     // );
     return SubscriptionListener(
       unsubscribed: const BuySubscriptionPage(),
@@ -44,7 +44,7 @@ class BottomTabView extends GetView<BottomTabController> {
   Widget build(BuildContext context) {
     Get.lazyPut(() => BottomTabController());
     final pages = [
-      const HomePage(),
+      HomePage(currentProfile),
       RoomsPage(currentProfile),
       ProfilePage(currentProfile),
     ];
@@ -72,52 +72,39 @@ class BottomTabView extends GetView<BottomTabController> {
     return Obx(
       () => Scaffold(
         body: pages[controller.tabIndex.value],
-        bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                spreadRadius: 1,
-                blurRadius: 5,
+        bottomNavigationBar: Theme(
+          data: ThemeData(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          child: BottomNavigationBar(
+            items: <BottomNavigationBarItem>[
+              buildBottomNavItem(
+                assets: 'assets/icon/tab_icon_home_active.svg',
+                title: 'Home',
+              ),
+              buildBottomNavItem(
+                assets: 'assets/icon/tab_icon_chat_active.svg',
+                title: 'Chat',
+              ),
+              buildBottomNavItem(
+                assets: 'assets/icon/tab_icon_profile_active.svg',
+                title: 'Profile',
               ),
             ],
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-            child: BottomNavigationBar(
-              items: <BottomNavigationBarItem>[
-                buildBottomNavItem(
-                  assets: 'assets/icon/tab_icon_home_active.svg',
-                  title: 'Home',
-                ),
-                buildBottomNavItem(
-                  assets: 'assets/icon/tab_icon_chat_active.svg',
-                  title: 'Chat',
-                ),
-                buildBottomNavItem(
-                  assets: 'assets/icon/tab_icon_profile_active.svg',
-                  title: 'Profile',
-                ),
-              ],
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              currentIndex: controller.tabIndex.value,
-              selectedItemColor: AppColors.mainColor,
-              selectedFontSize: 11,
-              unselectedFontSize: 11,
-              elevation: 25.0,
-              type: BottomNavigationBarType.fixed,
-              onTap: (index) {
-                controller.tabIndex.value = index;
-              },
-              backgroundColor: Colors.white,
-            ),
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            currentIndex: controller.tabIndex.value,
+            selectedItemColor: AppColors.mainColor,
+            selectedFontSize: 11,
+            unselectedFontSize: 11,
+            elevation: 25.0,
+            type: BottomNavigationBarType.fixed,
+            enableFeedback: false,
+            onTap: (index) {
+              controller.tabIndex.value = index;
+            },
+            backgroundColor: Colors.white,
           ),
         ),
       ),

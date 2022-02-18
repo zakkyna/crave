@@ -73,7 +73,7 @@ class ChatRoomPage extends StatelessWidget {
                       Icons.arrow_back_ios,
                     ),
                   ),
-                  addHorizontalSpace(20),
+                  AddHorizontalSpace(20),
                   CircleAvatar(
                     radius: 20.r,
                     backgroundColor: Colors.white,
@@ -96,7 +96,7 @@ class ChatRoomPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  addHorizontalSpace(20),
+                  AddHorizontalSpace(20),
                   Expanded(
                     child: Text(
                       isExpired
@@ -119,7 +119,7 @@ class ChatRoomPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  addHorizontalSpace(20),
+                  AddHorizontalSpace(20),
                   Material(
                     child: InkWell(
                       onTap: () {},
@@ -133,7 +133,7 @@ class ChatRoomPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  addHorizontalSpace(20),
+                  AddHorizontalSpace(20),
                   Material(
                     child: InkWell(
                       onTap: () {},
@@ -204,8 +204,8 @@ class ChatRoomPage extends StatelessWidget {
                           ),
                         ),
                         sendButtonIcon: OverflowBox(
-                          maxHeight: 50,
-                          maxWidth: 50,
+                          maxHeight: 60.h,
+                          maxWidth: 60.w,
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: const BoxDecoration(
@@ -213,17 +213,17 @@ class ChatRoomPage extends StatelessWidget {
                               color: AppColors.mainColor2,
                             ),
                             child: SvgPicture.asset('assets/icon/send_icon.svg',
-                                height: 22.h, width: 22.w, color: Colors.white),
+                                height: 30.h, width: 30.w, color: Colors.white),
                           ),
                         ),
                         attachmentButtonIcon: OverflowBox(
-                          maxHeight: 50,
-                          maxWidth: 50,
+                          maxHeight: 60.h,
+                          maxWidth: 60.h,
                           child: SpeedDial(
                             spacing: 15,
                             backgroundColor: AppColors.mainColor,
-                            buttonSize: Size(37.w, 37.h),
-                            childrenButtonSize: Size(38.w, 38.h),
+                            buttonSize: Size(42.w, 42.h),
+                            childrenButtonSize: Size(40.w, 40.h),
                             childPadding: EdgeInsets.zero,
                             childMargin: const EdgeInsets.all(10),
                             openCloseDial: controller.isDialOpen,
@@ -232,8 +232,8 @@ class ChatRoomPage extends StatelessWidget {
                                 backgroundColor: AppColors.mainColor,
                                 child: SvgPicture.asset(
                                   'assets/icon/attach_video_icon.svg',
-                                  height: 24.h,
-                                  width: 24.w,
+                                  height: 30.h,
+                                  width: 30.w,
                                   color: Colors.white,
                                 ),
                               ),
@@ -241,8 +241,8 @@ class ChatRoomPage extends StatelessWidget {
                                 backgroundColor: AppColors.mainColor,
                                 child: SvgPicture.asset(
                                   'assets/icon/attach_gallery_icon.svg',
-                                  height: 24.h,
-                                  width: 24.w,
+                                  height: 30.h,
+                                  width: 30.w,
                                   color: Colors.white,
                                 ),
                               ),
@@ -250,15 +250,15 @@ class ChatRoomPage extends StatelessWidget {
                                 backgroundColor: AppColors.mainColor,
                                 child: SvgPicture.asset(
                                   'assets/icon/attach_camera_icon.svg',
-                                  height: 24.h,
-                                  width: 24.w,
+                                  height: 30.h,
+                                  width: 30.w,
                                   color: Colors.white,
                                 ),
                               ),
                             ],
                             child: Icon(
                               Icons.add,
-                              size: 24.sp,
+                              size: 30.sp,
                               color: Colors.white,
                             ),
                           ),
@@ -449,7 +449,7 @@ class ChatRoomPage extends StatelessWidget {
 //     );
 //     return Scaffold(
 //       backgroundColor: Colors.black,
-//       body: SafeArea(
+//       child: SafeArea(
 //         child: Column(
 //           children: [
 //             Container(
@@ -472,7 +472,7 @@ class ChatRoomPage extends StatelessWidget {
 //                       Icons.arrow_back_ios,
 //                     ),
 //                   ),
-//                   addHorizontalSpace(20),
+//                   AddHorizontalSpace(20),
 //                   CircleAvatar(
 //                     radius: 20.r,
 //                     backgroundColor: Colors.white,
@@ -498,7 +498,7 @@ class ChatRoomPage extends StatelessWidget {
 //                       ],
 //                     ),
 //                   ),
-//                   addHorizontalSpace(20),
+//                   AddHorizontalSpace(20),
 //                   Expanded(
 //                     child: Text(
 //                       '38 min left',
@@ -517,7 +517,7 @@ class ChatRoomPage extends StatelessWidget {
 //                       ),
 //                     ),
 //                   ),
-//                   addHorizontalSpace(20),
+//                   AddHorizontalSpace(20),
 //                   Material(
 //                     child: InkWell(
 //                       onTap: () {},
@@ -531,7 +531,7 @@ class ChatRoomPage extends StatelessWidget {
 //                       ),
 //                     ),
 //                   ),
-//                   addHorizontalSpace(20),
+//                   AddHorizontalSpace(20),
 //                   Material(
 //                     child: InkWell(
 //                       onTap: () {},

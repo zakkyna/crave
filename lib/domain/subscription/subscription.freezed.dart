@@ -22,7 +22,7 @@ class _$SubscriptionTearOff {
   const _$SubscriptionTearOff();
 
   _Subscription call(
-      {required int id,
+      {required String id,
       required double price,
       required String title,
       required String description,
@@ -46,7 +46,7 @@ const $Subscription = _$SubscriptionTearOff();
 
 /// @nodoc
 mixin _$Subscription {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $SubscriptionCopyWith<$Res> {
           Subscription value, $Res Function(Subscription) then) =
       _$SubscriptionCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {String id,
       double price,
       String title,
       String description,
@@ -91,7 +91,7 @@ class _$SubscriptionCopyWithImpl<$Res> implements $SubscriptionCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -120,7 +120,7 @@ abstract class _$SubscriptionCopyWith<$Res>
       __$SubscriptionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {String id,
       double price,
       String title,
       String description,
@@ -149,7 +149,7 @@ class __$SubscriptionCopyWithImpl<$Res> extends _$SubscriptionCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ class _$_Subscription implements _Subscription {
       _$$_SubscriptionFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final double price;
   @override
@@ -230,7 +230,7 @@ class _$_Subscription implements _Subscription {
 
 abstract class _Subscription implements Subscription {
   const factory _Subscription(
-      {required int id,
+      {required String id,
       required double price,
       required String title,
       required String description,
@@ -240,7 +240,7 @@ abstract class _Subscription implements Subscription {
       _$_Subscription.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   double get price;
   @override

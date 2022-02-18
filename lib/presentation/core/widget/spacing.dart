@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
-Widget addVerticalSpace(double height) {
-  return SizedBox(height: height);
+class AddVerticalSpace extends StatelessWidget {
+  final double height;
+  const AddVerticalSpace(this.height, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: height);
+  }
 }
 
-Widget addHorizontalSpace(double width) {
-  return SizedBox(width: width);
+class AddHorizontalSpace extends StatelessWidget {
+  final double width;
+  const AddHorizontalSpace(this.width, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(width: width);
+  }
 }

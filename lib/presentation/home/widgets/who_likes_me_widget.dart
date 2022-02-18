@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crave_app/application/post/post_bloc.dart';
+import 'package:crave_app/domain/core/entity/coordinate.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/profile.dart';
@@ -14,10 +15,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class WhoLikesMeWidget extends StatelessWidget {
   final Post post;
   final Profile currentProfile;
+  final Coordinate coordinate;
   const WhoLikesMeWidget({
     Key? key,
     required this.post,
     required this.currentProfile,
+    required this.coordinate,
   }) : super(key: key);
 
   @override
@@ -79,7 +82,7 @@ class WhoLikesMeWidget extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                   'assets/images/location_icon.svg'),
-                              addHorizontalSpace(5),
+                              AddHorizontalSpace(5),
                               Text(
                                 '${post.distanceInMiles(currentProfile.location!.geopoint)} ${post.city ?? ''}, ${post.state ?? ''}',
                                 style: Styles.sfProDisplay.copyWith(
@@ -267,7 +270,7 @@ class WhoLikesMeWidget extends StatelessWidget {
     //                         children: [
     //                           SvgPicture.asset(
     //                               'assets/images/location_icon.svg'),
-    //                           addHorizontalSpace(5),
+    //                           AddHorizontalSpace(5),
     //                           Text(
     //                             '12 mi Boston VA',
     //                             style: Styles.sfProDisplay.copyWith(

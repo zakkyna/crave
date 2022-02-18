@@ -29,6 +29,10 @@ class _$SubscriptionFailureTearOff {
     return const _Unexpected();
   }
 
+  _VerificationFailed verificationFailed() {
+    return const _VerificationFailed();
+  }
+
   _Unauthenticated unauthenticated() {
     return const _Unauthenticated();
   }
@@ -44,6 +48,7 @@ mixin _$SubscriptionFailure {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() verificationFailed,
     required TResult Function() unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +57,7 @@ mixin _$SubscriptionFailure {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +66,7 @@ mixin _$SubscriptionFailure {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) =>
@@ -69,6 +76,7 @@ mixin _$SubscriptionFailure {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_VerificationFailed value) verificationFailed,
     required TResult Function(_Unauthenticated value) unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
@@ -77,6 +85,7 @@ mixin _$SubscriptionFailure {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
   }) =>
       throw _privateConstructorUsedError;
@@ -85,6 +94,7 @@ mixin _$SubscriptionFailure {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) =>
@@ -152,6 +162,7 @@ class _$_NoInternet implements _NoInternet {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() verificationFailed,
     required TResult Function() unauthenticated,
   }) {
     return noInternet();
@@ -163,6 +174,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
   }) {
     return noInternet?.call();
@@ -174,6 +186,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -189,6 +202,7 @@ class _$_NoInternet implements _NoInternet {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_VerificationFailed value) verificationFailed,
     required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return noInternet(this);
@@ -200,6 +214,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return noInternet?.call(this);
@@ -211,6 +226,7 @@ class _$_NoInternet implements _NoInternet {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -269,6 +285,7 @@ class _$_ServerError implements _ServerError {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() verificationFailed,
     required TResult Function() unauthenticated,
   }) {
     return serverError();
@@ -280,6 +297,7 @@ class _$_ServerError implements _ServerError {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
   }) {
     return serverError?.call();
@@ -291,6 +309,7 @@ class _$_ServerError implements _ServerError {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -306,6 +325,7 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_VerificationFailed value) verificationFailed,
     required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return serverError(this);
@@ -317,6 +337,7 @@ class _$_ServerError implements _ServerError {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return serverError?.call(this);
@@ -328,6 +349,7 @@ class _$_ServerError implements _ServerError {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -386,6 +408,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() verificationFailed,
     required TResult Function() unauthenticated,
   }) {
     return unexpected();
@@ -397,6 +420,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
   }) {
     return unexpected?.call();
@@ -408,6 +432,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -423,6 +448,7 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_VerificationFailed value) verificationFailed,
     required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return unexpected(this);
@@ -434,6 +460,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return unexpected?.call(this);
@@ -445,6 +472,7 @@ class _$_Unexpected implements _Unexpected {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {
@@ -457,6 +485,129 @@ class _$_Unexpected implements _Unexpected {
 
 abstract class _Unexpected implements SubscriptionFailure {
   const factory _Unexpected() = _$_Unexpected;
+}
+
+/// @nodoc
+abstract class _$VerificationFailedCopyWith<$Res> {
+  factory _$VerificationFailedCopyWith(
+          _VerificationFailed value, $Res Function(_VerificationFailed) then) =
+      __$VerificationFailedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$VerificationFailedCopyWithImpl<$Res>
+    extends _$SubscriptionFailureCopyWithImpl<$Res>
+    implements _$VerificationFailedCopyWith<$Res> {
+  __$VerificationFailedCopyWithImpl(
+      _VerificationFailed _value, $Res Function(_VerificationFailed) _then)
+      : super(_value, (v) => _then(v as _VerificationFailed));
+
+  @override
+  _VerificationFailed get _value => super._value as _VerificationFailed;
+}
+
+/// @nodoc
+
+class _$_VerificationFailed implements _VerificationFailed {
+  const _$_VerificationFailed();
+
+  @override
+  String toString() {
+    return 'SubscriptionFailure.verificationFailed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _VerificationFailed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noInternet,
+    required TResult Function() serverError,
+    required TResult Function() unexpected,
+    required TResult Function() verificationFailed,
+    required TResult Function() unauthenticated,
+  }) {
+    return verificationFailed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
+    TResult Function()? unauthenticated,
+  }) {
+    return verificationFailed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noInternet,
+    TResult Function()? serverError,
+    TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
+    TResult Function()? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (verificationFailed != null) {
+      return verificationFailed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_VerificationFailed value) verificationFailed,
+    required TResult Function(_Unauthenticated value) unauthenticated,
+  }) {
+    return verificationFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+  }) {
+    return verificationFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
+    TResult Function(_Unauthenticated value)? unauthenticated,
+    required TResult orElse(),
+  }) {
+    if (verificationFailed != null) {
+      return verificationFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VerificationFailed implements SubscriptionFailure {
+  const factory _VerificationFailed() = _$_VerificationFailed;
 }
 
 /// @nodoc
@@ -503,6 +654,7 @@ class _$_Unauthenticated implements _Unauthenticated {
     required TResult Function() noInternet,
     required TResult Function() serverError,
     required TResult Function() unexpected,
+    required TResult Function() verificationFailed,
     required TResult Function() unauthenticated,
   }) {
     return unauthenticated();
@@ -514,6 +666,7 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
   }) {
     return unauthenticated?.call();
@@ -525,6 +678,7 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult Function()? noInternet,
     TResult Function()? serverError,
     TResult Function()? unexpected,
+    TResult Function()? verificationFailed,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -540,6 +694,7 @@ class _$_Unauthenticated implements _Unauthenticated {
     required TResult Function(_NoInternet value) noInternet,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(_VerificationFailed value) verificationFailed,
     required TResult Function(_Unauthenticated value) unauthenticated,
   }) {
     return unauthenticated(this);
@@ -551,6 +706,7 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
   }) {
     return unauthenticated?.call(this);
@@ -562,6 +718,7 @@ class _$_Unauthenticated implements _Unauthenticated {
     TResult Function(_NoInternet value)? noInternet,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_Unexpected value)? unexpected,
+    TResult Function(_VerificationFailed value)? verificationFailed,
     TResult Function(_Unauthenticated value)? unauthenticated,
     required TResult orElse(),
   }) {

@@ -25,6 +25,8 @@ class _$ProfileTearOff {
       {required String uid,
       required bool isPublished,
       required bool isNewUser,
+      @JsonKey(includeIfNull: true, defaultValue: '')
+          required String? phoneNumber,
       String? bio,
       String? city,
       String? state,
@@ -33,12 +35,14 @@ class _$ProfileTearOff {
       String? profilePicture,
       List<String>? photos,
       bool? isOnline,
-      @TimeStampConverter() Timestamp? lastSeen,
+      @TimeStampConverter()
+          Timestamp? lastSeen,
       ProfileLocation? location}) {
     return _Profile(
       uid: uid,
       isPublished: isPublished,
       isNewUser: isNewUser,
+      phoneNumber: phoneNumber,
       bio: bio,
       city: city,
       state: state,
@@ -64,7 +68,10 @@ const $Profile = _$ProfileTearOff();
 mixin _$Profile {
   String get uid => throw _privateConstructorUsedError;
   bool get isPublished => throw _privateConstructorUsedError;
-  bool get isNewUser => throw _privateConstructorUsedError;
+  bool get isNewUser =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(includeIfNull: true, defaultValue: '')
+  String? get phoneNumber => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
@@ -90,6 +97,7 @@ abstract class $ProfileCopyWith<$Res> {
       {String uid,
       bool isPublished,
       bool isNewUser,
+      @JsonKey(includeIfNull: true, defaultValue: '') String? phoneNumber,
       String? bio,
       String? city,
       String? state,
@@ -117,6 +125,7 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
     Object? uid = freezed,
     Object? isPublished = freezed,
     Object? isNewUser = freezed,
+    Object? phoneNumber = freezed,
     Object? bio = freezed,
     Object? city = freezed,
     Object? state = freezed,
@@ -141,6 +150,10 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
           ? _value.isNewUser
           : isNewUser // ignore: cast_nullable_to_non_nullable
               as bool,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       bio: bio == freezed
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -205,6 +218,7 @@ abstract class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       {String uid,
       bool isPublished,
       bool isNewUser,
+      @JsonKey(includeIfNull: true, defaultValue: '') String? phoneNumber,
       String? bio,
       String? city,
       String? state,
@@ -234,6 +248,7 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
     Object? uid = freezed,
     Object? isPublished = freezed,
     Object? isNewUser = freezed,
+    Object? phoneNumber = freezed,
     Object? bio = freezed,
     Object? city = freezed,
     Object? state = freezed,
@@ -258,6 +273,10 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
           ? _value.isNewUser
           : isNewUser // ignore: cast_nullable_to_non_nullable
               as bool,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       bio: bio == freezed
           ? _value.bio
           : bio // ignore: cast_nullable_to_non_nullable
@@ -310,6 +329,7 @@ class _$_Profile implements _Profile {
       {required this.uid,
       required this.isPublished,
       required this.isNewUser,
+      @JsonKey(includeIfNull: true, defaultValue: '') required this.phoneNumber,
       this.bio,
       this.city,
       this.state,
@@ -330,6 +350,9 @@ class _$_Profile implements _Profile {
   final bool isPublished;
   @override
   final bool isNewUser;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeIfNull: true, defaultValue: '')
+  final String? phoneNumber;
   @override
   final String? bio;
   @override
@@ -354,7 +377,7 @@ class _$_Profile implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(uid: $uid, isPublished: $isPublished, isNewUser: $isNewUser, bio: $bio, city: $city, state: $state, address: $address, genderId: $genderId, profilePicture: $profilePicture, photos: $photos, isOnline: $isOnline, lastSeen: $lastSeen, location: $location)';
+    return 'Profile(uid: $uid, isPublished: $isPublished, isNewUser: $isNewUser, phoneNumber: $phoneNumber, bio: $bio, city: $city, state: $state, address: $address, genderId: $genderId, profilePicture: $profilePicture, photos: $photos, isOnline: $isOnline, lastSeen: $lastSeen, location: $location)';
   }
 
   @override
@@ -367,6 +390,8 @@ class _$_Profile implements _Profile {
                 other.isPublished == isPublished) &&
             (identical(other.isNewUser, isNewUser) ||
                 other.isNewUser == isNewUser) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.state, state) || other.state == state) &&
@@ -390,6 +415,7 @@ class _$_Profile implements _Profile {
       uid,
       isPublished,
       isNewUser,
+      phoneNumber,
       bio,
       city,
       state,
@@ -417,6 +443,8 @@ abstract class _Profile implements Profile {
       {required String uid,
       required bool isPublished,
       required bool isNewUser,
+      @JsonKey(includeIfNull: true, defaultValue: '')
+          required String? phoneNumber,
       String? bio,
       String? city,
       String? state,
@@ -425,7 +453,8 @@ abstract class _Profile implements Profile {
       String? profilePicture,
       List<String>? photos,
       bool? isOnline,
-      @TimeStampConverter() Timestamp? lastSeen,
+      @TimeStampConverter()
+          Timestamp? lastSeen,
       ProfileLocation? location}) = _$_Profile;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
@@ -436,6 +465,9 @@ abstract class _Profile implements Profile {
   bool get isPublished;
   @override
   bool get isNewUser;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(includeIfNull: true, defaultValue: '')
+  String? get phoneNumber;
   @override
   String? get bio;
   @override

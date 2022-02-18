@@ -4,10 +4,12 @@ import 'package:crave_app/application/home/home_controller.dart';
 import 'package:crave_app/application/landing/bottom_tab_controller.dart';
 import 'package:crave_app/application/post/post_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
+import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:crave_app/presentation/home/show_everyone_page.dart';
 import 'package:crave_app/presentation/home/who_likes_me_page.dart';
 import 'package:crave_app/presentation/home/widgets/top_tab_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +17,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+  final Profile currentProfile;
+  const HomePage(this.currentProfile, {Key? key}) : super(key: key);
 
   Future<bool> initializeController() {
     Completer<bool> completer = Completer<bool>();
@@ -78,7 +81,7 @@ class HomePage extends GetView<HomeController> {
         },
         child: Column(
           children: [
-            addVerticalSpace(Get.mediaQuery.padding.top + 10),
+            AddVerticalSpace(Get.mediaQuery.padding.top + 10),
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -86,7 +89,7 @@ class HomePage extends GetView<HomeController> {
                 child: SvgPicture.asset('assets/images/crave_logo.svg'),
               ),
             ),
-            addVerticalSpace(30.w),
+            AddVerticalSpace(30.w),
             Stack(
               fit: StackFit.loose,
               children: [
@@ -139,7 +142,7 @@ class HomePage extends GetView<HomeController> {
                 }),
               ],
             ),
-            addVerticalSpace(20),
+            AddVerticalSpace(20),
             Expanded(
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
@@ -147,9 +150,9 @@ class HomePage extends GetView<HomeController> {
                 onPageChanged: (index) {
                   controller.selectedTabIndex.value = index;
                 },
-                children: const [
-                  ShowEveryOnePage(),
-                  WhoLikesMePage(),
+                children: [
+                  ShowEveryOnePage(currentProfile),
+                  WhoLikesMePage(currentProfile),
                 ],
               ),
             ),

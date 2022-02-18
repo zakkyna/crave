@@ -17,6 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$NotificationEventTearOff {
   const _$NotificationEventTearOff();
 
+  _Init init() {
+    return const _Init();
+  }
+
   _LoadSettings loadSettings() {
     return const _LoadSettings();
   }
@@ -33,18 +37,21 @@ const $NotificationEvent = _$NotificationEventTearOff();
 mixin _$NotificationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loadSettings,
     required TResult Function() togglePushNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loadSettings,
     TResult Function()? togglePushNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loadSettings,
     TResult Function()? togglePushNotification,
     required TResult orElse(),
@@ -52,6 +59,7 @@ mixin _$NotificationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_LoadSettings value) loadSettings,
     required TResult Function(_TogglePushNotification value)
         togglePushNotification,
@@ -59,12 +67,14 @@ mixin _$NotificationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_LoadSettings value)? loadSettings,
     TResult Function(_TogglePushNotification value)? togglePushNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_LoadSettings value)? loadSettings,
     TResult Function(_TogglePushNotification value)? togglePushNotification,
     required TResult orElse(),
@@ -87,6 +97,115 @@ class _$NotificationEventCopyWithImpl<$Res>
   final NotificationEvent _value;
   // ignore: unused_field
   final $Res Function(NotificationEvent) _then;
+}
+
+/// @nodoc
+abstract class _$InitCopyWith<$Res> {
+  factory _$InitCopyWith(_Init value, $Res Function(_Init) then) =
+      __$InitCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InitCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
+    implements _$InitCopyWith<$Res> {
+  __$InitCopyWithImpl(_Init _value, $Res Function(_Init) _then)
+      : super(_value, (v) => _then(v as _Init));
+
+  @override
+  _Init get _value => super._value as _Init;
+}
+
+/// @nodoc
+
+class _$_Init implements _Init {
+  const _$_Init();
+
+  @override
+  String toString() {
+    return 'NotificationEvent.init()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Init);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() loadSettings,
+    required TResult Function() togglePushNotification,
+  }) {
+    return init();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loadSettings,
+    TResult Function()? togglePushNotification,
+  }) {
+    return init?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loadSettings,
+    TResult Function()? togglePushNotification,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_LoadSettings value) loadSettings,
+    required TResult Function(_TogglePushNotification value)
+        togglePushNotification,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_LoadSettings value)? loadSettings,
+    TResult Function(_TogglePushNotification value)? togglePushNotification,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_LoadSettings value)? loadSettings,
+    TResult Function(_TogglePushNotification value)? togglePushNotification,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements NotificationEvent {
+  const factory _Init() = _$_Init;
 }
 
 /// @nodoc
@@ -130,6 +249,7 @@ class _$_LoadSettings implements _LoadSettings {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loadSettings,
     required TResult Function() togglePushNotification,
   }) {
@@ -139,6 +259,7 @@ class _$_LoadSettings implements _LoadSettings {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loadSettings,
     TResult Function()? togglePushNotification,
   }) {
@@ -148,6 +269,7 @@ class _$_LoadSettings implements _LoadSettings {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loadSettings,
     TResult Function()? togglePushNotification,
     required TResult orElse(),
@@ -161,6 +283,7 @@ class _$_LoadSettings implements _LoadSettings {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_LoadSettings value) loadSettings,
     required TResult Function(_TogglePushNotification value)
         togglePushNotification,
@@ -171,6 +294,7 @@ class _$_LoadSettings implements _LoadSettings {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_LoadSettings value)? loadSettings,
     TResult Function(_TogglePushNotification value)? togglePushNotification,
   }) {
@@ -180,6 +304,7 @@ class _$_LoadSettings implements _LoadSettings {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_LoadSettings value)? loadSettings,
     TResult Function(_TogglePushNotification value)? togglePushNotification,
     required TResult orElse(),
@@ -236,6 +361,7 @@ class _$_TogglePushNotification implements _TogglePushNotification {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loadSettings,
     required TResult Function() togglePushNotification,
   }) {
@@ -245,6 +371,7 @@ class _$_TogglePushNotification implements _TogglePushNotification {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loadSettings,
     TResult Function()? togglePushNotification,
   }) {
@@ -254,6 +381,7 @@ class _$_TogglePushNotification implements _TogglePushNotification {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loadSettings,
     TResult Function()? togglePushNotification,
     required TResult orElse(),
@@ -267,6 +395,7 @@ class _$_TogglePushNotification implements _TogglePushNotification {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_LoadSettings value) loadSettings,
     required TResult Function(_TogglePushNotification value)
         togglePushNotification,
@@ -277,6 +406,7 @@ class _$_TogglePushNotification implements _TogglePushNotification {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_LoadSettings value)? loadSettings,
     TResult Function(_TogglePushNotification value)? togglePushNotification,
   }) {
@@ -286,6 +416,7 @@ class _$_TogglePushNotification implements _TogglePushNotification {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_LoadSettings value)? loadSettings,
     TResult Function(_TogglePushNotification value)? togglePushNotification,
     required TResult orElse(),
@@ -306,11 +437,17 @@ class _$NotificationStateTearOff {
   const _$NotificationStateTearOff();
 
   _NotificationState call(
-      {required bool isPushNotificationActive,
+      {required Option<StreamSubscription> notificationSubscription,
+      required bool isLoading,
+      required bool isInitialized,
+      required bool isPushNotificationActive,
       required bool isNewMessageAlertActive,
       required bool isLikeNotificationActive,
       required bool isChatTimerNotificationActive}) {
     return _NotificationState(
+      notificationSubscription: notificationSubscription,
+      isLoading: isLoading,
+      isInitialized: isInitialized,
       isPushNotificationActive: isPushNotificationActive,
       isNewMessageAlertActive: isNewMessageAlertActive,
       isLikeNotificationActive: isLikeNotificationActive,
@@ -324,6 +461,10 @@ const $NotificationState = _$NotificationStateTearOff();
 
 /// @nodoc
 mixin _$NotificationState {
+  Option<StreamSubscription> get notificationSubscription =>
+      throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isInitialized => throw _privateConstructorUsedError;
   bool get isPushNotificationActive => throw _privateConstructorUsedError;
   bool get isNewMessageAlertActive => throw _privateConstructorUsedError;
   bool get isLikeNotificationActive => throw _privateConstructorUsedError;
@@ -340,7 +481,10 @@ abstract class $NotificationStateCopyWith<$Res> {
           NotificationState value, $Res Function(NotificationState) then) =
       _$NotificationStateCopyWithImpl<$Res>;
   $Res call(
-      {bool isPushNotificationActive,
+      {Option<StreamSubscription> notificationSubscription,
+      bool isLoading,
+      bool isInitialized,
+      bool isPushNotificationActive,
       bool isNewMessageAlertActive,
       bool isLikeNotificationActive,
       bool isChatTimerNotificationActive});
@@ -357,12 +501,27 @@ class _$NotificationStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? notificationSubscription = freezed,
+    Object? isLoading = freezed,
+    Object? isInitialized = freezed,
     Object? isPushNotificationActive = freezed,
     Object? isNewMessageAlertActive = freezed,
     Object? isLikeNotificationActive = freezed,
     Object? isChatTimerNotificationActive = freezed,
   }) {
     return _then(_value.copyWith(
+      notificationSubscription: notificationSubscription == freezed
+          ? _value.notificationSubscription
+          : notificationSubscription // ignore: cast_nullable_to_non_nullable
+              as Option<StreamSubscription>,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isInitialized: isInitialized == freezed
+          ? _value.isInitialized
+          : isInitialized // ignore: cast_nullable_to_non_nullable
+              as bool,
       isPushNotificationActive: isPushNotificationActive == freezed
           ? _value.isPushNotificationActive
           : isPushNotificationActive // ignore: cast_nullable_to_non_nullable
@@ -391,7 +550,10 @@ abstract class _$NotificationStateCopyWith<$Res>
       __$NotificationStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool isPushNotificationActive,
+      {Option<StreamSubscription> notificationSubscription,
+      bool isLoading,
+      bool isInitialized,
+      bool isPushNotificationActive,
       bool isNewMessageAlertActive,
       bool isLikeNotificationActive,
       bool isChatTimerNotificationActive});
@@ -410,12 +572,27 @@ class __$NotificationStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? notificationSubscription = freezed,
+    Object? isLoading = freezed,
+    Object? isInitialized = freezed,
     Object? isPushNotificationActive = freezed,
     Object? isNewMessageAlertActive = freezed,
     Object? isLikeNotificationActive = freezed,
     Object? isChatTimerNotificationActive = freezed,
   }) {
     return _then(_NotificationState(
+      notificationSubscription: notificationSubscription == freezed
+          ? _value.notificationSubscription
+          : notificationSubscription // ignore: cast_nullable_to_non_nullable
+              as Option<StreamSubscription>,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isInitialized: isInitialized == freezed
+          ? _value.isInitialized
+          : isInitialized // ignore: cast_nullable_to_non_nullable
+              as bool,
       isPushNotificationActive: isPushNotificationActive == freezed
           ? _value.isPushNotificationActive
           : isPushNotificationActive // ignore: cast_nullable_to_non_nullable
@@ -440,11 +617,20 @@ class __$NotificationStateCopyWithImpl<$Res>
 
 class _$_NotificationState implements _NotificationState {
   const _$_NotificationState(
-      {required this.isPushNotificationActive,
+      {required this.notificationSubscription,
+      required this.isLoading,
+      required this.isInitialized,
+      required this.isPushNotificationActive,
       required this.isNewMessageAlertActive,
       required this.isLikeNotificationActive,
       required this.isChatTimerNotificationActive});
 
+  @override
+  final Option<StreamSubscription> notificationSubscription;
+  @override
+  final bool isLoading;
+  @override
+  final bool isInitialized;
   @override
   final bool isPushNotificationActive;
   @override
@@ -456,7 +642,7 @@ class _$_NotificationState implements _NotificationState {
 
   @override
   String toString() {
-    return 'NotificationState(isPushNotificationActive: $isPushNotificationActive, isNewMessageAlertActive: $isNewMessageAlertActive, isLikeNotificationActive: $isLikeNotificationActive, isChatTimerNotificationActive: $isChatTimerNotificationActive)';
+    return 'NotificationState(notificationSubscription: $notificationSubscription, isLoading: $isLoading, isInitialized: $isInitialized, isPushNotificationActive: $isPushNotificationActive, isNewMessageAlertActive: $isNewMessageAlertActive, isLikeNotificationActive: $isLikeNotificationActive, isChatTimerNotificationActive: $isChatTimerNotificationActive)';
   }
 
   @override
@@ -464,6 +650,13 @@ class _$_NotificationState implements _NotificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _NotificationState &&
+            (identical(
+                    other.notificationSubscription, notificationSubscription) ||
+                other.notificationSubscription == notificationSubscription) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.isInitialized, isInitialized) ||
+                other.isInitialized == isInitialized) &&
             (identical(
                     other.isPushNotificationActive, isPushNotificationActive) ||
                 other.isPushNotificationActive == isPushNotificationActive) &&
@@ -482,6 +675,9 @@ class _$_NotificationState implements _NotificationState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      notificationSubscription,
+      isLoading,
+      isInitialized,
       isPushNotificationActive,
       isNewMessageAlertActive,
       isLikeNotificationActive,
@@ -495,11 +691,20 @@ class _$_NotificationState implements _NotificationState {
 
 abstract class _NotificationState implements NotificationState {
   const factory _NotificationState(
-      {required bool isPushNotificationActive,
+      {required Option<StreamSubscription> notificationSubscription,
+      required bool isLoading,
+      required bool isInitialized,
+      required bool isPushNotificationActive,
       required bool isNewMessageAlertActive,
       required bool isLikeNotificationActive,
       required bool isChatTimerNotificationActive}) = _$_NotificationState;
 
+  @override
+  Option<StreamSubscription> get notificationSubscription;
+  @override
+  bool get isLoading;
+  @override
+  bool get isInitialized;
   @override
   bool get isPushNotificationActive;
   @override

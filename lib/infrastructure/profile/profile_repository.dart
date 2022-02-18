@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crave_app/domain/core/entity/coordinate.dart';
 import 'package:crave_app/domain/core/interfaces/i_location_service.dart';
 import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/i_profile_repository.dart';
@@ -68,47 +69,47 @@ class ProfileRepository implements IProfileRepository {
         return left(const ProfileFailure.unauthenticated());
       }
 
-      final location = await _locationService.getCurrentLocation();
-      final geopoint = _geoflutterfire.point(
-          latitude: location.latitude, longitude: location.longitude);
-      final updateProfile = profile.copyWith(
-        city: location.city,
-        state: location.state,
-        address: location.address,
-        location: null,
-      );
-      final post = Post(
-        uid: updateProfile.uid,
-        isPublished: updateProfile.isPublished,
-        genderId: updateProfile.genderId!,
-        photos: updateProfile.photos!,
-        bio: updateProfile.bio!,
-        city: location.city,
-        state: location.state,
-        address: location.address,
-        location: null,
-        likedBy: [],
-        dismissedBy: {},
-      );
-
-      await currentUser.updatePhotoURL(updateProfile.profilePicture);
-
-      await _firestore.collection('posts').doc(profile.uid).set(post.toJson());
-      await _firestore
-          .collection('posts')
-          .doc(profile.uid)
-          .update({'location': geopoint.data});
-
-      await _firestore
-          .collection('users')
-          .doc(profile.uid)
-          .update(updateProfile.toJson());
-      await _firestore
-          .collection('users')
-          .doc(profile.uid)
-          .update({'location': geopoint.data});
-
-      return right(unit);
+      return await _firestore
+          .runTransaction<Either<ProfileFailure, Unit>>((transaction) async {
+        try {
+          final location = await _locationService.getCurrentLocation();
+          final geopoint = _geoflutterfire.point(
+              latitude: location.latitude, longitude: location.longitude);
+          final updateProfile = profile.copyWith(
+            city: location.city,
+            state: location.state,
+            address: location.address,
+            location: null,
+          );
+          final post = Post(
+            uid: updateProfile.uid,
+            isPublished: updateProfile.isPublished,
+            genderId: updateProfile.genderId!,
+            photos: updateProfile.photos!,
+            bio: updateProfile.bio!,
+            city: location.city,
+            state: location.state,
+            address: location.address,
+            likedBy: [],
+            dismissedBy: {},
+            location: null,
+          );
+          final postRef = _firestore.collection('posts').doc(profile.uid);
+          final userRef = _firestore.collection('users').doc(profile.uid);
+          transaction.set(postRef, post.toJson());
+          transaction.update(postRef, {'location': geopoint.data});
+          transaction.update(userRef, updateProfile.toJson());
+          transaction.update(userRef, {'location': geopoint.data});
+          currentUser.updatePhotoURL(updateProfile.profilePicture);
+          return right(unit);
+        } catch (e) {
+          logger.e(e);
+          return left<ProfileFailure, Unit>(const ProfileFailure.unexpected());
+        }
+      }).catchError((e) {
+        logger.e(e);
+        return left<ProfileFailure, Unit>(const ProfileFailure.unexpected());
+      });
     } on FirebaseException catch (e) {
       return left(ProfileFailure.serverError(e.message ?? 'An error occurred'));
     } catch (e, stacktrace) {
@@ -179,21 +180,48 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<ProfileFailure, String>> deletePhoto(String path) async {
+  Future<Either<ProfileFailure, String>> deletePhoto(
+      String path, bool islive) async {
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser == null) {
         return left(const ProfileFailure.unauthenticated());
       }
-      final ref = _firebaseStorage.refFromURL(path);
-      await ref.delete();
-      await _firestore.collection('posts').doc(currentUser.uid).update({
-        'photos': FieldValue.arrayRemove([path])
-      });
+      if (!islive) {
+        final ref = _firebaseStorage.refFromURL(path);
+        await ref.delete();
+        await _firestore.collection('posts').doc(currentUser.uid).update({
+          'photos': FieldValue.arrayRemove([path])
+        });
+      }
       return right(path);
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
       return left(ProfileFailure.serverError(e.message ?? 'An error occurred'));
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(const ProfileFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<ProfileFailure, Coordinate>> updateLocation(
+    Coordinate coordinate,
+  ) async {
+    try {
+      final currentUser = _firebaseAuth.currentUser;
+      if (currentUser == null) {
+        return left(const ProfileFailure.unauthenticated());
+      }
+      final geopoint = _geoflutterfire.point(
+          latitude: coordinate.latitude, longitude: coordinate.longitude);
+
+      await _firestore
+          .collection('users')
+          .doc(currentUser.uid)
+          .update({'location': geopoint.data});
+
+      return right(coordinate);
     } catch (e, stacktrace) {
       logger.d(stacktrace);
       return left(const ProfileFailure.unexpected());

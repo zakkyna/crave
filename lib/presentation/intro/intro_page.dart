@@ -5,6 +5,7 @@ import 'package:crave_app/domain/intro/entity/intro.dart';
 import 'package:crave_app/presentation/intro/intro_widget.dart';
 import 'package:crave_app/presentation/routers/routers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -35,20 +36,19 @@ class IntroPage extends HookWidget {
       Intro(
         asset: 'assets/images/intro1.svg',
         title: 'Start the game',
-        description:
-            'Upload your photo and get ready for your night adventure.',
+        description: 'Make a post and start your adventure. 😉',
       ),
       Intro(
         asset: 'assets/images/intro2.svg',
         title: 'Anonymously playing',
         description:
-            'Hurry up. You’ll have an hour to look a partner and one more hour to arrange a meeting.',
+            'You can add a photo if you want, but you don\'t have to. It\'ll be your secret 🤫',
       ),
       Intro(
         asset: 'assets/images/intro3.svg',
         title: 'Get ready to enjoy',
         description:
-            'Meet and enjoy yourselves with pleasure. Without continuing.',
+            'Shorten this to You can meet someone from literally anywhere 🎭',
       ),
     ];
 

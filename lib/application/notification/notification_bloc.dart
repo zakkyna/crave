@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,8 +13,25 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   NotificationBloc() : super(NotificationState.initial()) {
     on<NotificationEvent>((event, emit) async {
       await event.map(
-        loadSettings: (_eveny) async {},
-        togglePushNotification: (_eveny) async {},
+        init: (_event) async {
+          if (state.isInitialized) {
+            return;
+          }
+
+          emit(
+            state.copyWith(
+              isInitialized: true,
+            ),
+          );
+        },
+        loadSettings: (_event) async {
+          emit(
+            state.copyWith(
+              isLoading: true,
+            ),
+          );
+        },
+        togglePushNotification: (_event) async {},
       );
     });
   }

@@ -33,10 +33,17 @@ class ChatRoomController extends GetxController {
 
   sendMessage(Message message) {
     final content = SendChat(message: message);
+    final userId = currentProfile.value?.uid;
+    final opponentId =
+        roomModel.memberIds.firstWhereOrNull((element) => element != userId);
+    if (userId == null || opponentId == null) {
+      return;
+    }
     Get.context!.read<ChatroomBloc>().add(
           ChatroomEvent.sendMessage(
             content: content,
             roomId: roomModel.id,
+            opponentId: opponentId,
           ),
         );
   }

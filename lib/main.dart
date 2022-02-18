@@ -16,6 +16,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
   print("Handling a background message: ${message.messageId}");
+  final notification = message.notification;
+  return;
 }
 
 void main() async {
@@ -26,12 +28,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await configureInjection(Environment.dev);
-  // BlocOverrides.runZoned(
-  //   () {
-  //     runApp(const AppWidget());
-  //   },
-  //   blocObserver: getIt<SimpleBlocObserver>(),
-  // );
   Bloc.observer = getIt<SimpleBlocObserver>();
   runApp(getIt<AppWidget>());
 }

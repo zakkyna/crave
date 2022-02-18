@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
   final BorderRadius borderRadius;
   final Widget? child;
   final TextStyle? fontStyle;
+  final InteractiveInkFeatureFactory? splashFactory;
 
   const CustomButton({
     Key? key,
@@ -33,6 +34,7 @@ class CustomButton extends StatelessWidget {
       Radius.circular(10),
     ),
     this.fontStyle,
+    this.splashFactory,
   }) : super(key: key);
 
   @override
@@ -55,6 +57,7 @@ class CustomButton extends StatelessWidget {
               RoundedRectangleBorder(
             borderRadius: borderRadius,
           )),
+          splashFactory: splashFactory,
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           shadowColor: MaterialStateProperty.all(Colors.transparent),
           padding: MaterialStateProperty.all(padding),

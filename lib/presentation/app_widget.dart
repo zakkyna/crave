@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:crave_app/application/app/app_bloc.dart';
 import 'package:crave_app/application/auth/auth_bloc.dart';
 import 'package:crave_app/application/auth/login/login_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:crave_app/application/notification/notification_bloc.dart';
 import 'package:crave_app/application/post/post_bloc.dart';
 import 'package:crave_app/application/profile/profile_bloc.dart';
 import 'package:crave_app/application/profile/update_profile/update_profile_bloc.dart';
+import 'package:crave_app/application/subscription/purchase/purchase_bloc.dart';
 import 'package:crave_app/application/subscription/subscription_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/injection.dart';
@@ -26,35 +26,14 @@ import 'package:logger/logger.dart';
 @lazySingleton
 class AppWidget extends StatelessWidget {
   final FirebaseAnalytics _analytics;
-  final AwesomeNotifications _awesomeNotifications;
   final Logger logger;
   // ignore: use_key_in_widget_constructors
-  const AppWidget(this._analytics, this._awesomeNotifications, this.logger)
-      : super();
+  const AppWidget(this._analytics, this.logger) : super();
 
   @override
   Widget build(BuildContext context) {
     final observer = FirebaseAnalyticsObserver(analytics: _analytics);
-    _awesomeNotifications.initialize(
-      // set the icon to null if you want to use the default app icon
-      'resource://drawable/res_app_icon',
-      [
-        NotificationChannel(
-            channelGroupKey: 'basic_channel_group',
-            channelKey: 'basic_channel',
-            channelName: 'Basic notifications',
-            channelDescription: 'Notification channel for basic tests',
-            defaultColor: const Color(0xFF9D50DD),
-            ledColor: Colors.white)
-      ],
-      // Channel groups are only visual and are not required
-      channelGroups: [
-        NotificationChannelGroup(
-            channelGroupkey: 'basic_channel_group',
-            channelGroupName: 'Basic group')
-      ],
-      debug: false,
-    );
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppBloc>(
@@ -74,7 +53,8 @@ class AppWidget extends StatelessWidget {
           create: (_) => getIt<RegisterBloc>(),
         ),
         BlocProvider<NotificationBloc>(
-          create: (_) => getIt<NotificationBloc>(),
+          create: (_) =>
+              getIt<NotificationBloc>()..add(const NotificationEvent.init()),
         ),
         BlocProvider<ProfileBloc>(
           create: (_) => getIt<ProfileBloc>(),
@@ -90,6 +70,9 @@ class AppWidget extends StatelessWidget {
         ),
         BlocProvider<ChatroomBloc>(
           create: (_) => getIt<ChatroomBloc>(),
+        ),
+        BlocProvider<PurchaseBloc>(
+          create: (_) => getIt<PurchaseBloc>(),
         ),
       ],
       child: BlocBuilder<AppBloc, AppState>(

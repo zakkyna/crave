@@ -30,6 +30,7 @@ class CustomTextField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final bool expands;
   final void Function()? onTap;
+  final TextCapitalization textCapitalization;
   const CustomTextField({
     Key? key,
     this.border = true,
@@ -59,12 +60,14 @@ class CustomTextField extends StatelessWidget {
         const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
     this.expands = false,
     this.onTap,
+    this.textCapitalization = TextCapitalization.none,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onTap: onTap,
+      textCapitalization: textCapitalization,
       expands: expands,
       focusNode: focusNode,
       maxLength: maxLength,

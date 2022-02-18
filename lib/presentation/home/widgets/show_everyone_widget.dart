@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crave_app/application/post/post_bloc.dart';
+import 'package:crave_app/domain/core/entity/coordinate.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/profile.dart';
@@ -15,18 +16,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ShowEveryOneWidget extends StatelessWidget {
   final Post post;
   final Profile currentProfile;
+  final Coordinate coordinate;
   const ShowEveryOneWidget({
     Key? key,
     required this.post,
     required this.currentProfile,
+    required this.coordinate,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final _bloc = context.read<PostBloc>();
     Future<bool> onLikeButtonTapped(bool isLiked) async {
-      _bloc.add(PostEvent.likePost(post.uid, !isLiked));
-      return !isLiked;
+      _bloc.add(PostEvent.likePost(post.uid, isLiked));
+      return isLiked;
     }
 
     final pageController = PageController();
@@ -85,21 +88,23 @@ class ShowEveryOneWidget extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                   'assets/images/location_icon.svg'),
-                              addHorizontalSpace(5),
-                              Text(
-                                '${post.distanceInMiles(currentProfile.location!.geopoint)} ${post.city ?? ''}, ${post.state ?? ''}',
-                                style: Styles.sfProDisplay.copyWith(
-                                  fontSize: 14.sp,
-                                  height: 1.4,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                  shadows: <Shadow>[
-                                    const Shadow(
-                                      offset: Offset(0, 2),
-                                      blurRadius: 3.0,
-                                      color: Colors.black,
-                                    ),
-                                  ],
+                              AddHorizontalSpace(5),
+                              Expanded(
+                                child: Text(
+                                  '${post.distanceInMiles(coordinate.toGeopoint())} ${post.city ?? ''}, ${post.state ?? ''}',
+                                  style: Styles.sfProDisplay.copyWith(
+                                    fontSize: 14.sp,
+                                    height: 1.4,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    shadows: <Shadow>[
+                                      const Shadow(
+                                        offset: Offset(0, 2),
+                                        blurRadius: 3.0,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -172,7 +177,7 @@ class ShowEveryOneWidget extends StatelessWidget {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                addHorizontalSpace(1.w),
+                                AddHorizontalSpace(1.w),
                                 Icon(
                                   Icons.favorite,
                                   color: isLiked

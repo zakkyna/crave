@@ -7,6 +7,7 @@ extension FirebaseUserDomainX on firebase.User {
       uid: uid,
       isPublished: false,
       isNewUser: true,
+      phoneNumber: phoneNumber ?? '',
     );
   }
 }

@@ -12,7 +12,7 @@ String subscriptionToJson(Subscription data) => json.encode(data.toJson());
 @freezed
 class Subscription with _$Subscription {
   const factory Subscription({
-    required int id,
+    required String id,
     required double price,
     required String title,
     required String description,

@@ -98,7 +98,7 @@ class RoomItemWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              addHorizontalSpace(15),
+              AddHorizontalSpace(15),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +110,7 @@ class RoomItemWidget extends StatelessWidget {
                     //     fontWeight: FontWeight.w600,
                     //   ),
                     // ),
-                    // addVerticalSpace(5),
+                    // AddVerticalSpace(5),
                     if (!isExpired)
                       (roomModel.lastChat == null)
                           ? Text(

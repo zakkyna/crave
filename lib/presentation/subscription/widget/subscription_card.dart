@@ -5,9 +5,11 @@ import 'package:flutter_svg/svg.dart';
 
 class SubscriptionCard extends StatelessWidget {
   final Subscription subscription;
+  final void Function()? onTap;
   const SubscriptionCard({
     Key? key,
     required this.subscription,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class SubscriptionCard extends StatelessWidget {
       color: Colors.transparent,
       child: Ink(
         child: InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: ClipRect(
             child: Align(
               alignment: Alignment.topCenter,

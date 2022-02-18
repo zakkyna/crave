@@ -4,6 +4,7 @@ import 'package:crave_app/application/post/post_bloc.dart';
 import 'package:crave_app/application/profile/profile_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/post/post.dart';
+import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:crave_app/presentation/home/widgets/show_everyone_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,32 +14,40 @@ import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShowEveryOnePage extends GetView<HomeController> {
-  const ShowEveryOnePage({
+  final Profile currentProfile;
+  const ShowEveryOnePage(
+    this.currentProfile, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final currentProfile = context
-        .read<ProfileBloc>()
-        .state
-        .currentProfileOption
-        .match((t) => t, () => null);
+    final _bloc = context.read<PostBloc>();
+
+    _bloc.add(PostEvent.getAllPostStream(radius: controller.radius.value));
 
     return BlocListener<PostBloc, PostState>(
-      bloc: context.read<PostBloc>()
-        ..add(PostEvent.getAllPostStream(radius: controller.radius.value)),
       listener: (context, state) {
         state.maybeMap(
           orElse: () {},
           getAllPostStreamSuccess: (value) {
             controller.postStream.value = value.postStream;
+            controller.coordinate.value = value.postStream.coordinate;
+            if (controller.coordinate.value == null ||
+                controller.coordinate.value?.latitude !=
+                    value.postStream.coordinate.latitude ||
+                controller.coordinate.value?.longitude !=
+                    value.postStream.coordinate.longitude) {
+              context.read<ProfileBloc>().add(
+                  ProfileEvent.updateLocation(value.postStream.coordinate));
+            }
           },
         );
       },
       child: RefreshIndicator(
         child: Obx(
-          () => controller.postStream.value == null
+          () => controller.postStream.value == null ||
+                  controller.coordinate.value == null
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
@@ -53,11 +62,6 @@ class ShowEveryOnePage extends GetView<HomeController> {
                     if (snapshot.hasError) {
                       return Center(
                         child: Text('Error: ${snapshot.error}'),
-                      );
-                    }
-                    if (currentProfile == null) {
-                      return const Center(
-                        child: Text('An error occured'),
                       );
                     }
 
@@ -89,6 +93,7 @@ class ShowEveryOnePage extends GetView<HomeController> {
                             return ShowEveryOneWidget(
                               post: post,
                               currentProfile: currentProfile,
+                              coordinate: controller.coordinate.value!,
                             );
                           } catch (_) {
                             return const Center(
@@ -114,22 +119,27 @@ class ShowEveryOnePage extends GetView<HomeController> {
                               fit: BoxFit.fill,
                             ),
                           ),
-                          SizedBox(
+                          Container(
                             height: 412.h,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: Dimens.defaultMargin,
+                            ),
                             width: double.infinity,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SvgPicture.asset('assets/icon/empty_icon.svg'),
-                                addVerticalSpace(10.h),
+                                AddVerticalSpace(10.h),
                                 Text(
-                                  'No user found at the moment'.toUpperCase(),
+                                  'YOU\'VE ALREADY LIKED EVERYONE NEARBY, WAIT FOR MATCH'
+                                      .toUpperCase(),
                                   style: Styles.kefa18Regular.copyWith(
                                     color: AppColors.mainColor.withOpacity(0.6),
                                   ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                // addVerticalSpace(5),
+                                // AddVerticalSpace(5),
                                 // Text(
                                 //   'Keep sending Likes to Match',
                                 //   style: Styles.kefa14Regular.copyWith(
@@ -146,8 +156,7 @@ class ShowEveryOnePage extends GetView<HomeController> {
                 ),
         ),
         onRefresh: () async {
-          context
-              .read<PostBloc>()
+          _bloc
               .add(PostEvent.getAllPostStream(radius: controller.radius.value));
         },
       ),

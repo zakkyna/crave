@@ -17,9 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PostStreamTearOff {
   const _$PostStreamTearOff();
 
-  _PostStream call({required Stream<List<DocumentSnapshot<Object?>>> stream}) {
+  _PostStream call(
+      {required Stream<List<DocumentSnapshot<Object?>>> stream,
+      required Coordinate coordinate}) {
     return _PostStream(
       stream: stream,
+      coordinate: coordinate,
     );
   }
 }
@@ -31,6 +34,7 @@ const $PostStream = _$PostStreamTearOff();
 mixin _$PostStream {
   Stream<List<DocumentSnapshot<Object?>>> get stream =>
       throw _privateConstructorUsedError;
+  Coordinate get coordinate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PostStreamCopyWith<PostStream> get copyWith =>
@@ -42,7 +46,10 @@ abstract class $PostStreamCopyWith<$Res> {
   factory $PostStreamCopyWith(
           PostStream value, $Res Function(PostStream) then) =
       _$PostStreamCopyWithImpl<$Res>;
-  $Res call({Stream<List<DocumentSnapshot<Object?>>> stream});
+  $Res call(
+      {Stream<List<DocumentSnapshot<Object?>>> stream, Coordinate coordinate});
+
+  $CoordinateCopyWith<$Res> get coordinate;
 }
 
 /// @nodoc
@@ -56,13 +63,25 @@ class _$PostStreamCopyWithImpl<$Res> implements $PostStreamCopyWith<$Res> {
   @override
   $Res call({
     Object? stream = freezed,
+    Object? coordinate = freezed,
   }) {
     return _then(_value.copyWith(
       stream: stream == freezed
           ? _value.stream
           : stream // ignore: cast_nullable_to_non_nullable
               as Stream<List<DocumentSnapshot<Object?>>>,
+      coordinate: coordinate == freezed
+          ? _value.coordinate
+          : coordinate // ignore: cast_nullable_to_non_nullable
+              as Coordinate,
     ));
+  }
+
+  @override
+  $CoordinateCopyWith<$Res> get coordinate {
+    return $CoordinateCopyWith<$Res>(_value.coordinate, (value) {
+      return _then(_value.copyWith(coordinate: value));
+    });
   }
 }
 
@@ -72,7 +91,11 @@ abstract class _$PostStreamCopyWith<$Res> implements $PostStreamCopyWith<$Res> {
           _PostStream value, $Res Function(_PostStream) then) =
       __$PostStreamCopyWithImpl<$Res>;
   @override
-  $Res call({Stream<List<DocumentSnapshot<Object?>>> stream});
+  $Res call(
+      {Stream<List<DocumentSnapshot<Object?>>> stream, Coordinate coordinate});
+
+  @override
+  $CoordinateCopyWith<$Res> get coordinate;
 }
 
 /// @nodoc
@@ -88,12 +111,17 @@ class __$PostStreamCopyWithImpl<$Res> extends _$PostStreamCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stream = freezed,
+    Object? coordinate = freezed,
   }) {
     return _then(_PostStream(
       stream: stream == freezed
           ? _value.stream
           : stream // ignore: cast_nullable_to_non_nullable
               as Stream<List<DocumentSnapshot<Object?>>>,
+      coordinate: coordinate == freezed
+          ? _value.coordinate
+          : coordinate // ignore: cast_nullable_to_non_nullable
+              as Coordinate,
     ));
   }
 }
@@ -101,14 +129,16 @@ class __$PostStreamCopyWithImpl<$Res> extends _$PostStreamCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PostStream implements _PostStream {
-  const _$_PostStream({required this.stream});
+  const _$_PostStream({required this.stream, required this.coordinate});
 
   @override
   final Stream<List<DocumentSnapshot<Object?>>> stream;
+  @override
+  final Coordinate coordinate;
 
   @override
   String toString() {
-    return 'PostStream(stream: $stream)';
+    return 'PostStream(stream: $stream, coordinate: $coordinate)';
   }
 
   @override
@@ -116,11 +146,13 @@ class _$_PostStream implements _PostStream {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PostStream &&
-            (identical(other.stream, stream) || other.stream == stream));
+            (identical(other.stream, stream) || other.stream == stream) &&
+            (identical(other.coordinate, coordinate) ||
+                other.coordinate == coordinate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stream);
+  int get hashCode => Object.hash(runtimeType, stream, coordinate);
 
   @JsonKey(ignore: true)
   @override
@@ -130,11 +162,13 @@ class _$_PostStream implements _PostStream {
 
 abstract class _PostStream implements PostStream {
   const factory _PostStream(
-          {required Stream<List<DocumentSnapshot<Object?>>> stream}) =
-      _$_PostStream;
+      {required Stream<List<DocumentSnapshot<Object?>>> stream,
+      required Coordinate coordinate}) = _$_PostStream;
 
   @override
   Stream<List<DocumentSnapshot<Object?>>> get stream;
+  @override
+  Coordinate get coordinate;
   @override
   @JsonKey(ignore: true)
   _$PostStreamCopyWith<_PostStream> get copyWith =>

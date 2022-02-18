@@ -16,6 +16,7 @@ abstract class IChatRepository {
   Future<Either<ChatFailure, SendChat>> sendMessage({
     required SendChat content,
     required String roomId,
+    required String opponentId,
   });
   Future<Either<ChatFailure, bool>> readMessage({
     required String roomId,

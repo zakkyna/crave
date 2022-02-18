@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  addVerticalSpace(10),
+                  AddVerticalSpace(10),
                   Stack(
                     children: [
                       Center(
@@ -49,7 +49,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  addVerticalSpace(30.h),
+                  AddVerticalSpace(30.h),
                   SettingItemWidget(
                     title: 'SELECT GENDER',
                     onTap: () {},

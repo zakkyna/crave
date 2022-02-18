@@ -13,6 +13,9 @@ class Profile with _$Profile {
     required String uid,
     required bool isPublished,
     required bool isNewUser,
+    // ignore: invalid_annotation_target
+    @JsonKey(includeIfNull: true, defaultValue: '')
+        required String? phoneNumber,
     String? bio,
     String? city,
     String? state,

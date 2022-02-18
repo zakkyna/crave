@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -12,11 +11,13 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:crave_app/infrastructure/core/network_service.dart';
@@ -66,7 +67,11 @@ abstract class RegisterModule {
   FirebaseAnalytics get analytics => FirebaseAnalytics.instance;
 
   @lazySingleton
-  AwesomeNotifications get awesomeNotifications => AwesomeNotifications();
+  FlutterLocalNotificationsPlugin get notifications =>
+      FlutterLocalNotificationsPlugin();
+
+  @lazySingleton
+  InAppPurchase get inappPurchase => InAppPurchase.instance;
 
   @preResolve
   @lazySingleton

@@ -36,12 +36,20 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           final granted = await Permission.location.request().isGranted;
           if (granted) {
             emit(state.copyWith(locationPermissionAllowed: granted));
+          } else {
+            if (await Permission.location.isPermanentlyDenied) {
+              await openAppSettings();
+            }
           }
         },
         setNotificationPermission: (_event) async {
           final granted = await Permission.notification.request().isGranted;
           if (granted) {
             emit(state.copyWith(notificationPermissionAllowed: granted));
+          } else {
+            if (await Permission.notification.isPermanentlyDenied) {
+              await openAppSettings();
+            }
           }
         },
         registerSubmitted: (_event) async {

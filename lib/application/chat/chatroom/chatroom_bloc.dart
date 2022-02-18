@@ -31,7 +31,10 @@ class ChatroomBloc extends Bloc<ChatroomEvent, ChatroomState> {
           sendMessage: (_event) async {
             emit(const ChatroomState.sendingChat());
             final failureOrSuccess = await _chatRepository.sendMessage(
-                content: _event.content, roomId: _event.roomId);
+              content: _event.content,
+              roomId: _event.roomId,
+              opponentId: _event.opponentId,
+            );
             failureOrSuccess.fold(
               (failure) => emit(ChatroomState.failure(failure)),
               (chatResponse) =>

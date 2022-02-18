@@ -6,6 +6,7 @@ class ChatroomEvent with _$ChatroomEvent {
   const factory ChatroomEvent.sendMessage({
     required SendChat content,
     required String roomId,
+    required String opponentId,
   }) = _SendMessage;
 
   const factory ChatroomEvent.readMessage({

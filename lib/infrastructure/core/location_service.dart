@@ -113,7 +113,7 @@ class LocationService implements ILocationService {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     final position = await geolocator.getCurrentPosition().timeout(
-          const Duration(seconds: 10),
+          const Duration(seconds: 5),
           onTimeout: () async => await geolocator.getCurrentPosition(
             locationSettings: const LocationSettings(
               timeLimit: Duration(seconds: 300),

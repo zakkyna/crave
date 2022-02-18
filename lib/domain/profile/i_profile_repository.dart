@@ -1,12 +1,16 @@
+import 'package:crave_app/domain/core/entity/coordinate.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/domain/profile/profile_failure.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class IProfileRepository {
   Future<Either<ProfileFailure, Unit>> updateProfile(Profile profile);
+  Future<Either<ProfileFailure, Coordinate>> updateLocation(
+    Coordinate coordinate,
+  );
   Future<Either<ProfileFailure, String>> pickPhotoViaCamera();
   Future<Either<ProfileFailure, String>> pickPhotoViaGallery();
   Future<Either<ProfileFailure, String>> uploadPhoto(String path);
-  Future<Either<ProfileFailure, String>> deletePhoto(String url);
+  Future<Either<ProfileFailure, String>> deletePhoto(String url, bool isLive);
   Future<Either<ProfileFailure, Profile>> getCurrentProfile();
 }

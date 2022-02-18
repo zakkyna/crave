@@ -136,6 +136,7 @@ class ChatRepository implements IChatRepository {
   Future<Either<ChatFailure, SendChat>> sendMessage({
     required SendChat content,
     required String roomId,
+    required String opponentId,
   }) async {
     try {
       final user = _firebaseAuth.currentUser;
@@ -151,6 +152,15 @@ class ChatRepository implements IChatRepository {
           .doc(roomId)
           .collection('chats')
           .add(chat);
+      final callJson = {
+        'roomId': roomId,
+        'text': chat['text'] ?? '',
+        'uid': opponentId,
+      };
+      logger.d(callJson);
+      await _functions.httpsCallable('sendNotificationMessage').call(
+            callJson,
+          );
       // await _firestore.collection('rooms').doc(roomId).update(
       //   {
       //     'last_chat': chat,

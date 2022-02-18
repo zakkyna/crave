@@ -20,6 +20,12 @@ class _$ProfileEventTearOff {
   _GetCurrentProfile getCurrentProfile() {
     return const _GetCurrentProfile();
   }
+
+  _UpdateLocation updateLocation(Coordinate coordinate) {
+    return _UpdateLocation(
+      coordinate,
+    );
+  }
 }
 
 /// @nodoc
@@ -30,32 +36,38 @@ mixin _$ProfileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentProfile,
+    required TResult Function(Coordinate coordinate) updateLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getCurrentProfile,
+    TResult Function(Coordinate coordinate)? updateLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentProfile,
+    TResult Function(Coordinate coordinate)? updateLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentProfile value) getCurrentProfile,
+    required TResult Function(_UpdateLocation value) updateLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetCurrentProfile value)? getCurrentProfile,
+    TResult Function(_UpdateLocation value)? updateLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentProfile value)? getCurrentProfile,
+    TResult Function(_UpdateLocation value)? updateLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +131,7 @@ class _$_GetCurrentProfile implements _GetCurrentProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentProfile,
+    required TResult Function(Coordinate coordinate) updateLocation,
   }) {
     return getCurrentProfile();
   }
@@ -127,6 +140,7 @@ class _$_GetCurrentProfile implements _GetCurrentProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getCurrentProfile,
+    TResult Function(Coordinate coordinate)? updateLocation,
   }) {
     return getCurrentProfile?.call();
   }
@@ -135,6 +149,7 @@ class _$_GetCurrentProfile implements _GetCurrentProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentProfile,
+    TResult Function(Coordinate coordinate)? updateLocation,
     required TResult orElse(),
   }) {
     if (getCurrentProfile != null) {
@@ -147,6 +162,7 @@ class _$_GetCurrentProfile implements _GetCurrentProfile {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentProfile value) getCurrentProfile,
+    required TResult Function(_UpdateLocation value) updateLocation,
   }) {
     return getCurrentProfile(this);
   }
@@ -155,6 +171,7 @@ class _$_GetCurrentProfile implements _GetCurrentProfile {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetCurrentProfile value)? getCurrentProfile,
+    TResult Function(_UpdateLocation value)? updateLocation,
   }) {
     return getCurrentProfile?.call(this);
   }
@@ -163,6 +180,7 @@ class _$_GetCurrentProfile implements _GetCurrentProfile {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentProfile value)? getCurrentProfile,
+    TResult Function(_UpdateLocation value)? updateLocation,
     required TResult orElse(),
   }) {
     if (getCurrentProfile != null) {
@@ -177,6 +195,149 @@ abstract class _GetCurrentProfile implements ProfileEvent {
 }
 
 /// @nodoc
+abstract class _$UpdateLocationCopyWith<$Res> {
+  factory _$UpdateLocationCopyWith(
+          _UpdateLocation value, $Res Function(_UpdateLocation) then) =
+      __$UpdateLocationCopyWithImpl<$Res>;
+  $Res call({Coordinate coordinate});
+
+  $CoordinateCopyWith<$Res> get coordinate;
+}
+
+/// @nodoc
+class __$UpdateLocationCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res>
+    implements _$UpdateLocationCopyWith<$Res> {
+  __$UpdateLocationCopyWithImpl(
+      _UpdateLocation _value, $Res Function(_UpdateLocation) _then)
+      : super(_value, (v) => _then(v as _UpdateLocation));
+
+  @override
+  _UpdateLocation get _value => super._value as _UpdateLocation;
+
+  @override
+  $Res call({
+    Object? coordinate = freezed,
+  }) {
+    return _then(_UpdateLocation(
+      coordinate == freezed
+          ? _value.coordinate
+          : coordinate // ignore: cast_nullable_to_non_nullable
+              as Coordinate,
+    ));
+  }
+
+  @override
+  $CoordinateCopyWith<$Res> get coordinate {
+    return $CoordinateCopyWith<$Res>(_value.coordinate, (value) {
+      return _then(_value.copyWith(coordinate: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateLocation implements _UpdateLocation {
+  const _$_UpdateLocation(this.coordinate);
+
+  @override
+  final Coordinate coordinate;
+
+  @override
+  String toString() {
+    return 'ProfileEvent.updateLocation(coordinate: $coordinate)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UpdateLocation &&
+            (identical(other.coordinate, coordinate) ||
+                other.coordinate == coordinate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, coordinate);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateLocationCopyWith<_UpdateLocation> get copyWith =>
+      __$UpdateLocationCopyWithImpl<_UpdateLocation>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCurrentProfile,
+    required TResult Function(Coordinate coordinate) updateLocation,
+  }) {
+    return updateLocation(coordinate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getCurrentProfile,
+    TResult Function(Coordinate coordinate)? updateLocation,
+  }) {
+    return updateLocation?.call(coordinate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCurrentProfile,
+    TResult Function(Coordinate coordinate)? updateLocation,
+    required TResult orElse(),
+  }) {
+    if (updateLocation != null) {
+      return updateLocation(coordinate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCurrentProfile value) getCurrentProfile,
+    required TResult Function(_UpdateLocation value) updateLocation,
+  }) {
+    return updateLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetCurrentProfile value)? getCurrentProfile,
+    TResult Function(_UpdateLocation value)? updateLocation,
+  }) {
+    return updateLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCurrentProfile value)? getCurrentProfile,
+    TResult Function(_UpdateLocation value)? updateLocation,
+    required TResult orElse(),
+  }) {
+    if (updateLocation != null) {
+      return updateLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateLocation implements ProfileEvent {
+  const factory _UpdateLocation(Coordinate coordinate) = _$_UpdateLocation;
+
+  Coordinate get coordinate;
+  @JsonKey(ignore: true)
+  _$UpdateLocationCopyWith<_UpdateLocation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 class _$ProfileStateTearOff {
   const _$ProfileStateTearOff();
 
@@ -184,12 +345,14 @@ class _$ProfileStateTearOff {
       {required bool isLoading,
       required Option<Profile> currentProfileOption,
       required bool isCompleted,
-      required Option<ProfileFailure> failureOption}) {
+      required Option<ProfileFailure> failureOption,
+      required Option<Coordinate> coordinateOption}) {
     return _ProfileState(
       isLoading: isLoading,
       currentProfileOption: currentProfileOption,
       isCompleted: isCompleted,
       failureOption: failureOption,
+      coordinateOption: coordinateOption,
     );
   }
 }
@@ -205,6 +368,7 @@ mixin _$ProfileState {
   bool get isCompleted => throw _privateConstructorUsedError;
   Option<ProfileFailure> get failureOption =>
       throw _privateConstructorUsedError;
+  Option<Coordinate> get coordinateOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -220,7 +384,8 @@ abstract class $ProfileStateCopyWith<$Res> {
       {bool isLoading,
       Option<Profile> currentProfileOption,
       bool isCompleted,
-      Option<ProfileFailure> failureOption});
+      Option<ProfileFailure> failureOption,
+      Option<Coordinate> coordinateOption});
 }
 
 /// @nodoc
@@ -237,6 +402,7 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
     Object? currentProfileOption = freezed,
     Object? isCompleted = freezed,
     Object? failureOption = freezed,
+    Object? coordinateOption = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
@@ -255,6 +421,10 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
           ? _value.failureOption
           : failureOption // ignore: cast_nullable_to_non_nullable
               as Option<ProfileFailure>,
+      coordinateOption: coordinateOption == freezed
+          ? _value.coordinateOption
+          : coordinateOption // ignore: cast_nullable_to_non_nullable
+              as Option<Coordinate>,
     ));
   }
 }
@@ -270,7 +440,8 @@ abstract class _$ProfileStateCopyWith<$Res>
       {bool isLoading,
       Option<Profile> currentProfileOption,
       bool isCompleted,
-      Option<ProfileFailure> failureOption});
+      Option<ProfileFailure> failureOption,
+      Option<Coordinate> coordinateOption});
 }
 
 /// @nodoc
@@ -289,6 +460,7 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     Object? currentProfileOption = freezed,
     Object? isCompleted = freezed,
     Object? failureOption = freezed,
+    Object? coordinateOption = freezed,
   }) {
     return _then(_ProfileState(
       isLoading: isLoading == freezed
@@ -307,6 +479,10 @@ class __$ProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
           ? _value.failureOption
           : failureOption // ignore: cast_nullable_to_non_nullable
               as Option<ProfileFailure>,
+      coordinateOption: coordinateOption == freezed
+          ? _value.coordinateOption
+          : coordinateOption // ignore: cast_nullable_to_non_nullable
+              as Option<Coordinate>,
     ));
   }
 }
@@ -318,7 +494,8 @@ class _$_ProfileState implements _ProfileState {
       {required this.isLoading,
       required this.currentProfileOption,
       required this.isCompleted,
-      required this.failureOption});
+      required this.failureOption,
+      required this.coordinateOption});
 
   @override
   final bool isLoading;
@@ -328,10 +505,12 @@ class _$_ProfileState implements _ProfileState {
   final bool isCompleted;
   @override
   final Option<ProfileFailure> failureOption;
+  @override
+  final Option<Coordinate> coordinateOption;
 
   @override
   String toString() {
-    return 'ProfileState(isLoading: $isLoading, currentProfileOption: $currentProfileOption, isCompleted: $isCompleted, failureOption: $failureOption)';
+    return 'ProfileState(isLoading: $isLoading, currentProfileOption: $currentProfileOption, isCompleted: $isCompleted, failureOption: $failureOption, coordinateOption: $coordinateOption)';
   }
 
   @override
@@ -346,12 +525,14 @@ class _$_ProfileState implements _ProfileState {
             (identical(other.isCompleted, isCompleted) ||
                 other.isCompleted == isCompleted) &&
             (identical(other.failureOption, failureOption) ||
-                other.failureOption == failureOption));
+                other.failureOption == failureOption) &&
+            (identical(other.coordinateOption, coordinateOption) ||
+                other.coordinateOption == coordinateOption));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, currentProfileOption, isCompleted, failureOption);
+  int get hashCode => Object.hash(runtimeType, isLoading, currentProfileOption,
+      isCompleted, failureOption, coordinateOption);
 
   @JsonKey(ignore: true)
   @override
@@ -364,7 +545,8 @@ abstract class _ProfileState implements ProfileState {
       {required bool isLoading,
       required Option<Profile> currentProfileOption,
       required bool isCompleted,
-      required Option<ProfileFailure> failureOption}) = _$_ProfileState;
+      required Option<ProfileFailure> failureOption,
+      required Option<Coordinate> coordinateOption}) = _$_ProfileState;
 
   @override
   bool get isLoading;
@@ -374,6 +556,8 @@ abstract class _ProfileState implements ProfileState {
   bool get isCompleted;
   @override
   Option<ProfileFailure> get failureOption;
+  @override
+  Option<Coordinate> get coordinateOption;
   @override
   @JsonKey(ignore: true)
   _$ProfileStateCopyWith<_ProfileState> get copyWith =>

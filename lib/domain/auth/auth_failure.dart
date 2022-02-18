@@ -4,7 +4,7 @@ part 'auth_failure.freezed.dart';
 @freezed
 class AuthFailure with _$AuthFailure {
   const factory AuthFailure.cancelledByUser() = CancelledByUser;
-  const factory AuthFailure.serverError() = ServerError;
+  const factory AuthFailure.serverError(String message) = ServerError;
   const factory AuthFailure.noInternet() = NoInternet;
   const factory AuthFailure.unexpected() = Unexpected;
   const factory AuthFailure.emailAlreadyInUse() = EmailAlreadyInUse;

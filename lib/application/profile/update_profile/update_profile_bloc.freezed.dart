@@ -49,9 +49,10 @@ class _$UpdateProfileEventTearOff {
     );
   }
 
-  _DeletePhoto deletePhoto(String url) {
+  _DeletePhoto deletePhoto(String url, bool isLive) {
     return _DeletePhoto(
       url,
+      isLive,
     );
   }
 
@@ -63,6 +64,10 @@ class _$UpdateProfileEventTearOff {
 
   _PostPressed postPressed() {
     return const _PostPressed();
+  }
+
+  _HidePostPressed hidePostPressed() {
+    return const _HidePostPressed();
   }
 
   _Reset reset() {
@@ -83,9 +88,10 @@ mixin _$UpdateProfileEvent {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) =>
       throw _privateConstructorUsedError;
@@ -97,9 +103,10 @@ mixin _$UpdateProfileEvent {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) =>
       throw _privateConstructorUsedError;
@@ -111,9 +118,10 @@ mixin _$UpdateProfileEvent {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) =>
@@ -129,6 +137,7 @@ mixin _$UpdateProfileEvent {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) =>
       throw _privateConstructorUsedError;
@@ -143,6 +152,7 @@ mixin _$UpdateProfileEvent {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) =>
       throw _privateConstructorUsedError;
@@ -157,6 +167,7 @@ mixin _$UpdateProfileEvent {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) =>
@@ -256,9 +267,10 @@ class _$_Init implements _Init {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return init(profile);
@@ -273,9 +285,10 @@ class _$_Init implements _Init {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return init?.call(profile);
@@ -290,9 +303,10 @@ class _$_Init implements _Init {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -314,6 +328,7 @@ class _$_Init implements _Init {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return init(this);
@@ -331,6 +346,7 @@ class _$_Init implements _Init {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return init?.call(this);
@@ -348,6 +364,7 @@ class _$_Init implements _Init {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -436,9 +453,10 @@ class _$_BioChanged implements _BioChanged {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return bioChanged(bioStr);
@@ -453,9 +471,10 @@ class _$_BioChanged implements _BioChanged {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return bioChanged?.call(bioStr);
@@ -470,9 +489,10 @@ class _$_BioChanged implements _BioChanged {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -494,6 +514,7 @@ class _$_BioChanged implements _BioChanged {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return bioChanged(this);
@@ -511,6 +532,7 @@ class _$_BioChanged implements _BioChanged {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return bioChanged?.call(this);
@@ -528,6 +550,7 @@ class _$_BioChanged implements _BioChanged {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -594,9 +617,10 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return addPhotoViaCamera();
@@ -611,9 +635,10 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return addPhotoViaCamera?.call();
@@ -628,9 +653,10 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -652,6 +678,7 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return addPhotoViaCamera(this);
@@ -669,6 +696,7 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return addPhotoViaCamera?.call(this);
@@ -686,6 +714,7 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -747,9 +776,10 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return addPhotoViaGallery();
@@ -764,9 +794,10 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return addPhotoViaGallery?.call();
@@ -781,9 +812,10 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -805,6 +837,7 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return addPhotoViaGallery(this);
@@ -822,6 +855,7 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return addPhotoViaGallery?.call(this);
@@ -839,6 +873,7 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -923,9 +958,10 @@ class _$_UploadPhoto implements _UploadPhoto {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return uploadPhoto(path);
@@ -940,9 +976,10 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return uploadPhoto?.call(path);
@@ -957,9 +994,10 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -981,6 +1019,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return uploadPhoto(this);
@@ -998,6 +1037,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return uploadPhoto?.call(this);
@@ -1015,6 +1055,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -1104,9 +1145,10 @@ class _$_SuccessUpload implements _SuccessUpload {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return successUpload(path);
@@ -1121,9 +1163,10 @@ class _$_SuccessUpload implements _SuccessUpload {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return successUpload?.call(path);
@@ -1138,9 +1181,10 @@ class _$_SuccessUpload implements _SuccessUpload {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -1162,6 +1206,7 @@ class _$_SuccessUpload implements _SuccessUpload {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return successUpload(this);
@@ -1179,6 +1224,7 @@ class _$_SuccessUpload implements _SuccessUpload {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return successUpload?.call(this);
@@ -1196,6 +1242,7 @@ class _$_SuccessUpload implements _SuccessUpload {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -1220,7 +1267,7 @@ abstract class _$DeletePhotoCopyWith<$Res> {
   factory _$DeletePhotoCopyWith(
           _DeletePhoto value, $Res Function(_DeletePhoto) then) =
       __$DeletePhotoCopyWithImpl<$Res>;
-  $Res call({String url});
+  $Res call({String url, bool isLive});
 }
 
 /// @nodoc
@@ -1237,12 +1284,17 @@ class __$DeletePhotoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = freezed,
+    Object? isLive = freezed,
   }) {
     return _then(_DeletePhoto(
       url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      isLive == freezed
+          ? _value.isLive
+          : isLive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1250,14 +1302,16 @@ class __$DeletePhotoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DeletePhoto implements _DeletePhoto {
-  const _$_DeletePhoto(this.url);
+  const _$_DeletePhoto(this.url, this.isLive);
 
   @override
   final String url;
+  @override
+  final bool isLive;
 
   @override
   String toString() {
-    return 'UpdateProfileEvent.deletePhoto(url: $url)';
+    return 'UpdateProfileEvent.deletePhoto(url: $url, isLive: $isLive)';
   }
 
   @override
@@ -1265,11 +1319,12 @@ class _$_DeletePhoto implements _DeletePhoto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DeletePhoto &&
-            (identical(other.url, url) || other.url == url));
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.isLive, isLive) || other.isLive == isLive));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url);
+  int get hashCode => Object.hash(runtimeType, url, isLive);
 
   @JsonKey(ignore: true)
   @override
@@ -1285,12 +1340,13 @@ class _$_DeletePhoto implements _DeletePhoto {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
-    return deletePhoto(url);
+    return deletePhoto(url, isLive);
   }
 
   @override
@@ -1302,12 +1358,13 @@ class _$_DeletePhoto implements _DeletePhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
-    return deletePhoto?.call(url);
+    return deletePhoto?.call(url, isLive);
   }
 
   @override
@@ -1319,14 +1376,15 @@ class _$_DeletePhoto implements _DeletePhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (deletePhoto != null) {
-      return deletePhoto(url);
+      return deletePhoto(url, isLive);
     }
     return orElse();
   }
@@ -1343,6 +1401,7 @@ class _$_DeletePhoto implements _DeletePhoto {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return deletePhoto(this);
@@ -1360,6 +1419,7 @@ class _$_DeletePhoto implements _DeletePhoto {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return deletePhoto?.call(this);
@@ -1377,6 +1437,7 @@ class _$_DeletePhoto implements _DeletePhoto {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -1388,9 +1449,10 @@ class _$_DeletePhoto implements _DeletePhoto {
 }
 
 abstract class _DeletePhoto implements UpdateProfileEvent {
-  const factory _DeletePhoto(String url) = _$_DeletePhoto;
+  const factory _DeletePhoto(String url, bool isLive) = _$_DeletePhoto;
 
   String get url;
+  bool get isLive;
   @JsonKey(ignore: true)
   _$DeletePhotoCopyWith<_DeletePhoto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1466,9 +1528,10 @@ class _$_SuccessDelete implements _SuccessDelete {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return successDelete(url);
@@ -1483,9 +1546,10 @@ class _$_SuccessDelete implements _SuccessDelete {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return successDelete?.call(url);
@@ -1500,9 +1564,10 @@ class _$_SuccessDelete implements _SuccessDelete {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -1524,6 +1589,7 @@ class _$_SuccessDelete implements _SuccessDelete {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return successDelete(this);
@@ -1541,6 +1607,7 @@ class _$_SuccessDelete implements _SuccessDelete {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return successDelete?.call(this);
@@ -1558,6 +1625,7 @@ class _$_SuccessDelete implements _SuccessDelete {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -1624,9 +1692,10 @@ class _$_PostPressed implements _PostPressed {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return postPressed();
@@ -1641,9 +1710,10 @@ class _$_PostPressed implements _PostPressed {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return postPressed?.call();
@@ -1658,9 +1728,10 @@ class _$_PostPressed implements _PostPressed {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -1682,6 +1753,7 @@ class _$_PostPressed implements _PostPressed {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return postPressed(this);
@@ -1699,6 +1771,7 @@ class _$_PostPressed implements _PostPressed {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return postPressed?.call(this);
@@ -1716,6 +1789,7 @@ class _$_PostPressed implements _PostPressed {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {
@@ -1728,6 +1802,165 @@ class _$_PostPressed implements _PostPressed {
 
 abstract class _PostPressed implements UpdateProfileEvent {
   const factory _PostPressed() = _$_PostPressed;
+}
+
+/// @nodoc
+abstract class _$HidePostPressedCopyWith<$Res> {
+  factory _$HidePostPressedCopyWith(
+          _HidePostPressed value, $Res Function(_HidePostPressed) then) =
+      __$HidePostPressedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$HidePostPressedCopyWithImpl<$Res>
+    extends _$UpdateProfileEventCopyWithImpl<$Res>
+    implements _$HidePostPressedCopyWith<$Res> {
+  __$HidePostPressedCopyWithImpl(
+      _HidePostPressed _value, $Res Function(_HidePostPressed) _then)
+      : super(_value, (v) => _then(v as _HidePostPressed));
+
+  @override
+  _HidePostPressed get _value => super._value as _HidePostPressed;
+}
+
+/// @nodoc
+
+class _$_HidePostPressed implements _HidePostPressed {
+  const _$_HidePostPressed();
+
+  @override
+  String toString() {
+    return 'UpdateProfileEvent.hidePostPressed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _HidePostPressed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Profile profile) init,
+    required TResult Function(String bioStr) bioChanged,
+    required TResult Function() addPhotoViaCamera,
+    required TResult Function() addPhotoViaGallery,
+    required TResult Function(String path) uploadPhoto,
+    required TResult Function(String path) successUpload,
+    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) successDelete,
+    required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
+    required TResult Function() reset,
+  }) {
+    return hidePostPressed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Profile profile)? init,
+    TResult Function(String bioStr)? bioChanged,
+    TResult Function()? addPhotoViaCamera,
+    TResult Function()? addPhotoViaGallery,
+    TResult Function(String path)? uploadPhoto,
+    TResult Function(String path)? successUpload,
+    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? successDelete,
+    TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
+    TResult Function()? reset,
+  }) {
+    return hidePostPressed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Profile profile)? init,
+    TResult Function(String bioStr)? bioChanged,
+    TResult Function()? addPhotoViaCamera,
+    TResult Function()? addPhotoViaGallery,
+    TResult Function(String path)? uploadPhoto,
+    TResult Function(String path)? successUpload,
+    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? successDelete,
+    TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
+    TResult Function()? reset,
+    required TResult orElse(),
+  }) {
+    if (hidePostPressed != null) {
+      return hidePostPressed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_BioChanged value) bioChanged,
+    required TResult Function(_AddPhotoViaCamera value) addPhotoViaCamera,
+    required TResult Function(_AddPhotoViaGallery value) addPhotoViaGallery,
+    required TResult Function(_UploadPhoto value) uploadPhoto,
+    required TResult Function(_SuccessUpload value) successUpload,
+    required TResult Function(_DeletePhoto value) deletePhoto,
+    required TResult Function(_SuccessDelete value) successDelete,
+    required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
+    required TResult Function(_Reset value) reset,
+  }) {
+    return hidePostPressed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_BioChanged value)? bioChanged,
+    TResult Function(_AddPhotoViaCamera value)? addPhotoViaCamera,
+    TResult Function(_AddPhotoViaGallery value)? addPhotoViaGallery,
+    TResult Function(_UploadPhoto value)? uploadPhoto,
+    TResult Function(_SuccessUpload value)? successUpload,
+    TResult Function(_DeletePhoto value)? deletePhoto,
+    TResult Function(_SuccessDelete value)? successDelete,
+    TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
+    TResult Function(_Reset value)? reset,
+  }) {
+    return hidePostPressed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_BioChanged value)? bioChanged,
+    TResult Function(_AddPhotoViaCamera value)? addPhotoViaCamera,
+    TResult Function(_AddPhotoViaGallery value)? addPhotoViaGallery,
+    TResult Function(_UploadPhoto value)? uploadPhoto,
+    TResult Function(_SuccessUpload value)? successUpload,
+    TResult Function(_DeletePhoto value)? deletePhoto,
+    TResult Function(_SuccessDelete value)? successDelete,
+    TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
+    TResult Function(_Reset value)? reset,
+    required TResult orElse(),
+  }) {
+    if (hidePostPressed != null) {
+      return hidePostPressed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _HidePostPressed implements UpdateProfileEvent {
+  const factory _HidePostPressed() = _$_HidePostPressed;
 }
 
 /// @nodoc
@@ -1774,9 +2007,10 @@ class _$_Reset implements _Reset {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url) deletePhoto,
+    required TResult Function(String url, bool isLive) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
+    required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
     return reset();
@@ -1791,9 +2025,10 @@ class _$_Reset implements _Reset {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
     return reset?.call();
@@ -1808,9 +2043,10 @@ class _$_Reset implements _Reset {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url)? deletePhoto,
+    TResult Function(String url, bool isLive)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
+    TResult Function()? hidePostPressed,
     TResult Function()? reset,
     required TResult orElse(),
   }) {
@@ -1832,6 +2068,7 @@ class _$_Reset implements _Reset {
     required TResult Function(_DeletePhoto value) deletePhoto,
     required TResult Function(_SuccessDelete value) successDelete,
     required TResult Function(_PostPressed value) postPressed,
+    required TResult Function(_HidePostPressed value) hidePostPressed,
     required TResult Function(_Reset value) reset,
   }) {
     return reset(this);
@@ -1849,6 +2086,7 @@ class _$_Reset implements _Reset {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
   }) {
     return reset?.call(this);
@@ -1866,6 +2104,7 @@ class _$_Reset implements _Reset {
     TResult Function(_DeletePhoto value)? deletePhoto,
     TResult Function(_SuccessDelete value)? successDelete,
     TResult Function(_PostPressed value)? postPressed,
+    TResult Function(_HidePostPressed value)? hidePostPressed,
     TResult Function(_Reset value)? reset,
     required TResult orElse(),
   }) {

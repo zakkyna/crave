@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crave_app/domain/auth/auth_failure.dart';
 import 'package:crave_app/domain/auth/i_auth_facade.dart';
 import 'package:crave_app/domain/profile/profile.dart';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:crave_app/domain/auth/value_objects.dart';
@@ -43,31 +46,45 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Profile>> signInWithApple() async {
+    String generateNonce([int length = 32]) {
+      const charset =
+          '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+      final random = Random.secure();
+      return List.generate(
+          length, (_) => charset[random.nextInt(charset.length)]).join();
+    }
+
+    /// Returns the sha256 hash of [input] in hex notation.
+    String sha256ofString(String input) {
+      final bytes = utf8.encode(input);
+      final digest = sha256.convert(bytes);
+      return digest.toString();
+    }
+
     try {
+      final rawNonce = generateNonce();
+      final nonce = sha256ofString(rawNonce);
+
+      // Request credential for the currently signed in Apple account.
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
+          // AppleIDAuthorizationScopes.fullName,
         ],
+        nonce: nonce,
       );
 
+      // Create an `OAuthCredential` from the credential returned by Apple.
       final oauthCredential = OAuthProvider("apple.com").credential(
         idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
       );
 
       final _auth = await _firebaseAuth.signInWithCredential(oauthCredential);
 
       final currentUser = _auth.user;
       if (currentUser == null) {
-        return left(const AuthFailure.serverError());
-      }
-      final userSnapshot =
-          await _firestore.collection('users').doc(currentUser.uid).get();
-
-      final isNewUser = userSnapshot.data() == null;
-      if (!isNewUser) {
-        final user = Profile.fromJson(userSnapshot.data()!);
-        return right(user);
+        return left(const AuthFailure.unexpected());
       }
       return right(currentUser.toProfile());
     } on FirebaseAuthException catch (e, stacktrace) {
@@ -79,7 +96,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         case 'invalid-credential':
           return left(const AuthFailure.expiredCredential());
         default:
-          return left(const AuthFailure.serverError());
+          return left(AuthFailure.serverError(e.message ?? 'An error occured'));
       }
     } catch (e) {
       return left(const AuthFailure.unexpected());
@@ -106,7 +123,7 @@ class FirebaseAuthFacade implements IAuthFacade {
       );
       final currentUser = _auth.user;
       if (currentUser == null) {
-        return left(const AuthFailure.serverError());
+        return left(const AuthFailure.unexpected());
       }
       final userSnapshot =
           await _firestore.collection('users').doc(currentUser.uid).get();
@@ -126,7 +143,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         case 'invalid-credential':
           return left(const AuthFailure.expiredCredential());
         default:
-          return left(const AuthFailure.serverError());
+          return left(AuthFailure.serverError(e.message ?? 'An error occured'));
       }
     } catch (e) {
       return left(const AuthFailure.unexpected());
@@ -145,7 +162,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         verificationCompleted: (AuthCredential credential) {},
         verificationFailed: (exception) {
           _logger.e(exception);
-          // _completer.complete(left(const AuthFailure.serverError()));
+          // _completer.complete(left(AuthFailure.serverError(e.message??'An error occured')));
         },
         codeSent: (String verificationId, int? forceResendingToken) {
           _completer.complete(right(verificationId));
@@ -164,7 +181,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         case 'invalid-credential':
           return left(const AuthFailure.expiredCredential());
         default:
-          return left(const AuthFailure.serverError());
+          return left(AuthFailure.serverError(e.message ?? 'An error occured'));
       }
     } catch (e) {
       return left(const AuthFailure.unexpected());
@@ -181,6 +198,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         isPublished: false,
         isNewUser: false,
         genderId: genderId,
+        phoneNumber: currentUser.phoneNumber ?? '',
       );
 
       await _firestore
@@ -191,7 +209,7 @@ class FirebaseAuthFacade implements IAuthFacade {
     } on FirebaseAuthException catch (e, stacktrace) {
       _logger.d(stacktrace);
       _logger.d(e.message);
-      return left(const AuthFailure.serverError());
+      return left(AuthFailure.serverError(e.message ?? 'An error occured'));
     } catch (e) {
       return left(const AuthFailure.unexpected());
     }

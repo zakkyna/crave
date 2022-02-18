@@ -21,8 +21,10 @@ class _$AuthFailureTearOff {
     return const CancelledByUser();
   }
 
-  ServerError serverError() {
-    return const ServerError();
+  ServerError serverError(String message) {
+    return ServerError(
+      message,
+    );
   }
 
   NoInternet noInternet() {
@@ -58,7 +60,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -70,7 +72,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -82,7 +84,7 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -192,7 +194,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -207,7 +209,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -222,7 +224,7 @@ class _$CancelledByUser implements CancelledByUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -299,6 +301,7 @@ abstract class $ServerErrorCopyWith<$Res> {
   factory $ServerErrorCopyWith(
           ServerError value, $Res Function(ServerError) then) =
       _$ServerErrorCopyWithImpl<$Res>;
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -310,32 +313,54 @@ class _$ServerErrorCopyWithImpl<$Res> extends _$AuthFailureCopyWithImpl<$Res>
 
   @override
   ServerError get _value => super._value as ServerError;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(ServerError(
+      message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ServerError implements ServerError {
-  const _$ServerError();
+  const _$ServerError(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'AuthFailure.serverError()';
+    return 'AuthFailure.serverError(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ServerError);
+        (other.runtimeType == runtimeType &&
+            other is ServerError &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  $ServerErrorCopyWith<ServerError> get copyWith =>
+      _$ServerErrorCopyWithImpl<ServerError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -343,14 +368,14 @@ class _$ServerError implements ServerError {
     required TResult Function() expiredCredential,
     required TResult Function() invalidEmailAndPasswordCombination,
   }) {
-    return serverError();
+    return serverError(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -358,14 +383,14 @@ class _$ServerError implements ServerError {
     TResult Function()? expiredCredential,
     TResult Function()? invalidEmailAndPasswordCombination,
   }) {
-    return serverError?.call();
+    return serverError?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -375,7 +400,7 @@ class _$ServerError implements ServerError {
     required TResult orElse(),
   }) {
     if (serverError != null) {
-      return serverError();
+      return serverError(message);
     }
     return orElse();
   }
@@ -434,7 +459,12 @@ class _$ServerError implements ServerError {
 }
 
 abstract class ServerError implements AuthFailure {
-  const factory ServerError() = _$ServerError;
+  const factory ServerError(String message) = _$ServerError;
+
+  String get message;
+  @JsonKey(ignore: true)
+  $ServerErrorCopyWith<ServerError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -477,7 +507,7 @@ class _$NoInternet implements NoInternet {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -492,7 +522,7 @@ class _$NoInternet implements NoInternet {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -507,7 +537,7 @@ class _$NoInternet implements NoInternet {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -619,7 +649,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -634,7 +664,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -649,7 +679,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -763,7 +793,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -778,7 +808,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -793,7 +823,7 @@ class _$EmailAlreadyInUse implements EmailAlreadyInUse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -906,7 +936,7 @@ class _$InvalidOtpCode implements InvalidOtpCode {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -921,7 +951,7 @@ class _$InvalidOtpCode implements InvalidOtpCode {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -936,7 +966,7 @@ class _$InvalidOtpCode implements InvalidOtpCode {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -1050,7 +1080,7 @@ class _$ExpiredCredential implements ExpiredCredential {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -1065,7 +1095,7 @@ class _$ExpiredCredential implements ExpiredCredential {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -1080,7 +1110,7 @@ class _$ExpiredCredential implements ExpiredCredential {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -1199,7 +1229,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
+    required TResult Function(String message) serverError,
     required TResult Function() noInternet,
     required TResult Function() unexpected,
     required TResult Function() emailAlreadyInUse,
@@ -1214,7 +1244,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,
@@ -1229,7 +1259,7 @@ class _$InvalidEmailAndPasswordCombination
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
+    TResult Function(String message)? serverError,
     TResult Function()? noInternet,
     TResult Function()? unexpected,
     TResult Function()? emailAlreadyInUse,

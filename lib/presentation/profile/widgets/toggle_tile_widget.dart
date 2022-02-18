@@ -6,17 +6,19 @@ class ToggleTileWidget extends StatelessWidget {
   final String title;
   final bool value;
   final void Function(bool)? onChanged;
+  final EdgeInsetsGeometry padding;
   const ToggleTileWidget({
     Key? key,
     required this.value,
     required this.title,
     this.onChanged,
+    this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.h),
+      contentPadding: padding,
       activeColor: AppColors.mainColor,
       onChanged: onChanged,
       value: value,

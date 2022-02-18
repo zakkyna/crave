@@ -19,7 +19,7 @@ class RoomsPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          addVerticalSpace(Get.mediaQuery.padding.top + 10),
+          AddVerticalSpace(Get.mediaQuery.padding.top + 10),
           Center(
             child: Padding(
               padding:
@@ -27,31 +27,31 @@ class RoomsPage extends StatelessWidget {
               child: SvgPicture.asset('assets/images/crave_logo.svg'),
             ),
           ),
-          addVerticalSpace(20.h),
+          AddVerticalSpace(20.h),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
             child: Center(
               child: Text(
-                "who’s it gonna be?".toUpperCase(),
+                "MATCHES",
                 style: Styles.kefa24Regular,
               ),
             ),
           ),
-          addVerticalSpace(10.h),
+          AddVerticalSpace(10.h),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: Dimens.defaultMargin),
             child: Center(
               child: Text(
-                'Find a chemistry with one of them',
+                'Send a Message to your Matches below',
                 style: Styles.kefa16Regular.copyWith(
                   color: Colors.grey,
                 ),
               ),
             ),
           ),
-          addVerticalSpace(20.h),
+          AddVerticalSpace(20.h),
           Expanded(
             child: BlocBuilder<RoomsBloc, RoomsState>(
               bloc: context.read<RoomsBloc>()
@@ -151,7 +151,7 @@ class RoomsPage extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(
                                           'assets/icon/empty_icon.svg'),
-                                      addVerticalSpace(10.h),
+                                      AddVerticalSpace(10.h),
                                       Text(
                                         'No Matches'.toUpperCase(),
                                         style: Styles.kefa18Regular.copyWith(
@@ -159,7 +159,7 @@ class RoomsPage extends StatelessWidget {
                                               .withOpacity(0.6),
                                         ),
                                       ),
-                                      addVerticalSpace(5),
+                                      AddVerticalSpace(5),
                                       Text(
                                         'Keep sending Likes to Match \nYou can send your matches \nMessages here.',
                                         style: Styles.kefa14Regular.copyWith(

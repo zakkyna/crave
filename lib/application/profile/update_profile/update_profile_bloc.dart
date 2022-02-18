@@ -17,133 +17,155 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
   UpdateProfileBloc(
     this._profileRepository,
   ) : super(UpdateProfileState.initial()) {
-    on<UpdateProfileEvent>((event, emit) async {
-      await event.map(
-        init: (_event) async {
-          emit(
-            state.copyWith(
-              profileOption: optionOf(_event.profile),
-              bio: Bio(_event.profile.bio ?? ''),
-              photos: _event.profile.photos ?? [],
-            ),
-          );
-        },
-        bioChanged: (_event) async {
-          emit(
-            state.copyWith(
-              bio: Bio(_event.bioStr),
+    on<UpdateProfileEvent>(
+      (event, emit) async {
+        await event.map(
+          init: (_event) async {
+            emit(
+              state.copyWith(
+                profileOption: optionOf(_event.profile),
+                bio: Bio(_event.profile.bio ?? ''),
+                photos: _event.profile.photos ?? [],
+              ),
+            );
+          },
+          bioChanged: (_event) async {
+            emit(
+              state.copyWith(
+                bio: Bio(_event.bioStr),
+                pickPhotoFailureOrSuccessOption: none(),
+                uploadPhotoFailureOrSuccessOption: none(),
+              ),
+            );
+          },
+          postPressed: (_event) async {
+            emit(state.copyWith(isLoading: true));
+            final currentProfile =
+                state.profileOption.match((t) => t, () => null)!;
+            final profile = currentProfile.copyWith(
+              bio: state.bio.getOrNull(),
+              photos: state.photos,
+              profilePicture: state.photos.first,
+              isPublished: true,
+            );
+            final failureOrSuccess =
+                await _profileRepository.updateProfile(profile);
+            emit(
+              state.copyWith(
+                updateProfileFailureOrSuccessOption: optionOf(failureOrSuccess),
+                isLoading: false,
+              ),
+            );
+          },
+          addPhotoViaCamera: (_event) async {
+            emit(state.copyWith(isLoading: true));
+
+            final uploadFailureOrSuccess =
+                await _profileRepository.pickPhotoViaCamera();
+
+            emit(
+              state.copyWith(
+                isLoading: false,
+                pickPhotoFailureOrSuccessOption: optionOf(
+                  uploadFailureOrSuccess,
+                ),
+              ),
+            );
+          },
+          addPhotoViaGallery: (_event) async {
+            emit(state.copyWith(isLoading: true));
+
+            final uploadFailureOrSuccess =
+                await _profileRepository.pickPhotoViaGallery();
+
+            emit(
+              state.copyWith(
+                isLoading: false,
+                pickPhotoFailureOrSuccessOption: optionOf(
+                  uploadFailureOrSuccess,
+                ),
+              ),
+            );
+          },
+          uploadPhoto: (_event) async {
+            emit(state.copyWith(
+              isLoading: true,
               pickPhotoFailureOrSuccessOption: none(),
-              uploadPhotoFailureOrSuccessOption: none(),
-            ),
-          );
-        },
-        postPressed: (_event) async {
-          emit(state.copyWith(isLoading: true));
-          final currentProfile =
-              state.profileOption.match((t) => t, () => null)!;
-          final profile = currentProfile.copyWith(
-            bio: state.bio.getOrNull(),
-            photos: state.photos,
-            profilePicture: state.photos.first,
-            isPublished: true,
-          );
-          final failureOrSuccess =
-              await _profileRepository.updateProfile(profile);
-          emit(
-            state.copyWith(
-              updateProfileFailureOrSuccessOption: optionOf(failureOrSuccess),
-              isLoading: false,
-            ),
-          );
-        },
-        addPhotoViaCamera: (_event) async {
-          emit(state.copyWith(isLoading: true));
+            ));
 
-          final uploadFailureOrSuccess =
-              await _profileRepository.pickPhotoViaCamera();
+            final uploadFailureOrSuccess = await _profileRepository.uploadPhoto(
+              _event.path,
+            );
 
-          emit(
-            state.copyWith(
-              isLoading: false,
-              pickPhotoFailureOrSuccessOption: optionOf(
-                uploadFailureOrSuccess,
+            emit(
+              state.copyWith(
+                isLoading: false,
+                uploadPhotoFailureOrSuccessOption: optionOf(
+                  uploadFailureOrSuccess,
+                ),
               ),
-            ),
-          );
-        },
-        addPhotoViaGallery: (_event) async {
-          emit(state.copyWith(isLoading: true));
-
-          final uploadFailureOrSuccess =
-              await _profileRepository.pickPhotoViaGallery();
-
-          emit(
-            state.copyWith(
-              isLoading: false,
-              pickPhotoFailureOrSuccessOption: optionOf(
-                uploadFailureOrSuccess,
+            );
+          },
+          successUpload: (_event) {
+            final photos = state.photos.append(_event.path).toList();
+            emit(
+              state.copyWith(
+                isLoading: false,
+                pickPhotoFailureOrSuccessOption: none(),
+                uploadPhotoFailureOrSuccessOption: none(),
+                photos: photos,
               ),
-            ),
-          );
-        },
-        uploadPhoto: (_event) async {
-          emit(state.copyWith(
-            isLoading: true,
-            pickPhotoFailureOrSuccessOption: none(),
-          ));
-
-          final uploadFailureOrSuccess = await _profileRepository.uploadPhoto(
-            _event.path,
-          );
-
-          emit(
-            state.copyWith(
-              isLoading: false,
-              uploadPhotoFailureOrSuccessOption: optionOf(
-                uploadFailureOrSuccess,
+            );
+          },
+          deletePhoto: (_event) async {
+            emit(state.copyWith(isLoading: true));
+            final deleteFailureOrSuccess = await _profileRepository.deletePhoto(
+              _event.url,
+              _event.isLive,
+            );
+            emit(
+              state.copyWith(
+                isLoading: false,
+                deletePhotoFailureOrSuccessOption: optionOf(
+                  deleteFailureOrSuccess,
+                ),
               ),
-            ),
-          );
-        },
-        successUpload: (_event) {
-          final photos = state.photos.append(_event.path).toList();
-          emit(
-            state.copyWith(
-              isLoading: false,
-              pickPhotoFailureOrSuccessOption: none(),
-              uploadPhotoFailureOrSuccessOption: none(),
-              photos: photos,
-            ),
-          );
-        },
-        deletePhoto: (_event) async {
-          emit(state.copyWith(isLoading: true));
-          final deleteFailureOrSuccess = await _profileRepository.deletePhoto(
-            _event.url,
-          );
-          emit(
-            state.copyWith(
-              isLoading: false,
-              deletePhotoFailureOrSuccessOption: optionOf(
-                deleteFailureOrSuccess,
+            );
+          },
+          successDelete: (_event) {
+            final photos = state.photos.delete(_event.url).toList();
+            emit(
+              state.copyWith(
+                isLoading: false,
+                deletePhotoFailureOrSuccessOption: none(),
+                photos: photos,
               ),
-            ),
-          );
-        },
-        successDelete: (_event) {
-          final photos = state.photos.delete(_event.url).toList();
-          emit(
-            state.copyWith(
-              isLoading: false,
-              deletePhotoFailureOrSuccessOption: none(),
-              photos: photos,
-            ),
-          );
-        },
-        reset: (_event) {
-          emit(UpdateProfileState.initial());
-        },
-      );
-    });
+            );
+          },
+          reset: (_event) {
+            emit(UpdateProfileState.initial());
+          },
+          hidePostPressed: (_event) async {
+            emit(state.copyWith(isLoading: true));
+            final currentProfile =
+                state.profileOption.match((t) => t, () => null)!;
+            final profile = currentProfile.copyWith(
+              bio: state.bio.getOrNull(),
+              photos: state.photos,
+              profilePicture: state.photos.first,
+              isPublished: false,
+            );
+            final failureOrSuccess =
+                await _profileRepository.updateProfile(profile);
+            emit(
+              state.copyWith(
+                updateProfileFailureOrSuccessOption: optionOf(failureOrSuccess),
+                isLoading: false,
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

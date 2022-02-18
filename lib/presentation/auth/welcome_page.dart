@@ -1,3 +1,4 @@
+import 'package:crave_app/application/auth/auth_bloc.dart';
 import 'package:crave_app/application/auth/login/login_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/presentation/core/widget/custom_button.dart';
@@ -17,7 +18,32 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<LoginBloc, LoginState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.signInAppleFailureOrSuccessOption.match(
+            (failureOrSuccess) => failureOrSuccess.match((failure) {
+              final message = failure.map(
+                noInternet: (_) => 'No internet',
+                unexpected: (_) => 'Unexpected error',
+                serverError: (e) => e.message,
+                cancelledByUser: (_) => 'Cancelled',
+                emailAlreadyInUse: (_) => 'Email already in use',
+                expiredCredential: (_) => 'Expired credential',
+                invalidOtpCode: (_) => 'Invalid OTP code',
+                invalidEmailAndPasswordCombination: (value) =>
+                    'Invalid email and password combination',
+              );
+              Get.snackbar(
+                'Sorry',
+                message,
+              );
+            }, (profile) {
+              context
+                  .read<AuthBloc>()
+                  .add(const AuthEvent.authCheckRequested());
+            }),
+            () {},
+          );
+        },
         builder: (context, state) => StackWithProgress(
           fit: StackFit.expand,
           isLoading: state.isSubmitting,
@@ -55,13 +81,13 @@ class WelcomePage extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
-                  addVerticalSpace(20),
+                  AddVerticalSpace(20),
                   Center(
                     child: SvgPicture.asset(
                       'assets/images/crave_logo_white.svg',
                     ),
                   ),
-                  addVerticalSpace(80),
+                  AddVerticalSpace(80),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Text(
@@ -96,7 +122,7 @@ class WelcomePage extends StatelessWidget {
                         children: [
                           SvgPicture.asset(
                               'assets/icon/sign_in_phone_icon.svg'),
-                          addHorizontalSpace(5),
+                          AddHorizontalSpace(5),
                           Text(
                             'Continue with Phone',
                             style: Styles.sfProDisplay.copyWith(
@@ -107,7 +133,7 @@ class WelcomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    addVerticalSpace(25.h),
+                    AddVerticalSpace(25.h),
                     CustomButton(
                       margin: const EdgeInsets.symmetric(
                           horizontal: Dimens.defaultMargin),
@@ -123,7 +149,7 @@ class WelcomePage extends StatelessWidget {
                         children: [
                           SvgPicture.asset(
                               'assets/icon/sign_in_apple_icon.svg'),
-                          addHorizontalSpace(5),
+                          AddHorizontalSpace(5),
                           Text(
                             'Continue with Apple',
                             style: Styles.sfProDisplay.copyWith(
@@ -134,7 +160,7 @@ class WelcomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    addVerticalSpace(15.h),
+                    AddVerticalSpace(15.h),
                   ],
                 ),
               ),

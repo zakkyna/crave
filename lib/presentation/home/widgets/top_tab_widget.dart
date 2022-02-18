@@ -22,6 +22,7 @@ class TopTabWidget extends StatelessWidget {
     return Expanded(
       child: CustomButton(
         height: 45.h,
+        splashFactory: NoSplash.splashFactory,
         onPressed: onPressed,
         color: selected ? AppColors.mainColor : AppColors.greyBackground,
         fontStyle: Styles.sfProDisplay.copyWith(

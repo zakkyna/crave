@@ -24,10 +24,13 @@ class _$ChatroomEventTearOff {
   }
 
   _SendMessage sendMessage(
-      {required SendChat content, required String roomId}) {
+      {required SendChat content,
+      required String roomId,
+      required String opponentId}) {
     return _SendMessage(
       content: content,
       roomId: roomId,
+      opponentId: opponentId,
     );
   }
 
@@ -46,21 +49,25 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
-    required TResult Function(SendChat content, String roomId) sendMessage,
+    required TResult Function(
+            SendChat content, String roomId, String opponentId)
+        sendMessage,
     required TResult Function(String roomId) readMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
     required TResult orElse(),
   }) =>
@@ -178,7 +185,9 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
-    required TResult Function(SendChat content, String roomId) sendMessage,
+    required TResult Function(
+            SendChat content, String roomId, String opponentId)
+        sendMessage,
     required TResult Function(String roomId) readMessage,
   }) {
     return getChat(chatRequest);
@@ -188,7 +197,8 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
   }) {
     return getChat?.call(chatRequest);
@@ -198,7 +208,8 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
     required TResult orElse(),
   }) {
@@ -257,7 +268,7 @@ abstract class _$SendMessageCopyWith<$Res> {
   factory _$SendMessageCopyWith(
           _SendMessage value, $Res Function(_SendMessage) then) =
       __$SendMessageCopyWithImpl<$Res>;
-  $Res call({SendChat content, String roomId});
+  $Res call({SendChat content, String roomId, String opponentId});
 
   $SendChatCopyWith<$Res> get content;
 }
@@ -276,6 +287,7 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatroomEventCopyWithImpl<$Res>
   $Res call({
     Object? content = freezed,
     Object? roomId = freezed,
+    Object? opponentId = freezed,
   }) {
     return _then(_SendMessage(
       content: content == freezed
@@ -285,6 +297,10 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatroomEventCopyWithImpl<$Res>
       roomId: roomId == freezed
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
+              as String,
+      opponentId: opponentId == freezed
+          ? _value.opponentId
+          : opponentId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -300,16 +316,19 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatroomEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SendMessage implements _SendMessage {
-  const _$_SendMessage({required this.content, required this.roomId});
+  const _$_SendMessage(
+      {required this.content, required this.roomId, required this.opponentId});
 
   @override
   final SendChat content;
   @override
   final String roomId;
+  @override
+  final String opponentId;
 
   @override
   String toString() {
-    return 'ChatroomEvent.sendMessage(content: $content, roomId: $roomId)';
+    return 'ChatroomEvent.sendMessage(content: $content, roomId: $roomId, opponentId: $opponentId)';
   }
 
   @override
@@ -318,11 +337,13 @@ class _$_SendMessage implements _SendMessage {
         (other.runtimeType == runtimeType &&
             other is _SendMessage &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.roomId, roomId) || other.roomId == roomId));
+            (identical(other.roomId, roomId) || other.roomId == roomId) &&
+            (identical(other.opponentId, opponentId) ||
+                other.opponentId == opponentId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, content, roomId);
+  int get hashCode => Object.hash(runtimeType, content, roomId, opponentId);
 
   @JsonKey(ignore: true)
   @override
@@ -333,32 +354,36 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
-    required TResult Function(SendChat content, String roomId) sendMessage,
+    required TResult Function(
+            SendChat content, String roomId, String opponentId)
+        sendMessage,
     required TResult Function(String roomId) readMessage,
   }) {
-    return sendMessage(content, roomId);
+    return sendMessage(content, roomId, opponentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
   }) {
-    return sendMessage?.call(content, roomId);
+    return sendMessage?.call(content, roomId, opponentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
-      return sendMessage(content, roomId);
+      return sendMessage(content, roomId, opponentId);
     }
     return orElse();
   }
@@ -400,10 +425,13 @@ class _$_SendMessage implements _SendMessage {
 
 abstract class _SendMessage implements ChatroomEvent {
   const factory _SendMessage(
-      {required SendChat content, required String roomId}) = _$_SendMessage;
+      {required SendChat content,
+      required String roomId,
+      required String opponentId}) = _$_SendMessage;
 
   SendChat get content;
   String get roomId;
+  String get opponentId;
   @JsonKey(ignore: true)
   _$SendMessageCopyWith<_SendMessage> get copyWith =>
       throw _privateConstructorUsedError;
@@ -473,7 +501,9 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
-    required TResult Function(SendChat content, String roomId) sendMessage,
+    required TResult Function(
+            SendChat content, String roomId, String opponentId)
+        sendMessage,
     required TResult Function(String roomId) readMessage,
   }) {
     return readMessage(roomId);
@@ -483,7 +513,8 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
   }) {
     return readMessage?.call(roomId);
@@ -493,7 +524,8 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
-    TResult Function(SendChat content, String roomId)? sendMessage,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
     TResult Function(String roomId)? readMessage,
     required TResult orElse(),
   }) {

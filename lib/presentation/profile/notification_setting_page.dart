@@ -18,7 +18,7 @@ class NotificationSettingPage extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  addVerticalSpace(10),
+                  AddVerticalSpace(10),
                   Stack(
                     children: [
                       Center(
@@ -45,7 +45,7 @@ class NotificationSettingPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  addVerticalSpace(30.h),
+                  AddVerticalSpace(30.h),
                   ToggleTileWidget(
                     onChanged: (value) {},
                     value: true,

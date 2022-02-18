@@ -35,7 +35,7 @@ class GenderWidget extends StatelessWidget {
       child: Column(
         children: [
           SvgPicture.asset(asset, width: 50.w, height: 50.h),
-          addVerticalSpace(18.h),
+          AddVerticalSpace(18.h),
           Text(
             title,
             style: Styles.kefa18Medium,

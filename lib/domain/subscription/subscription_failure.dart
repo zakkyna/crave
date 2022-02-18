@@ -7,5 +7,6 @@ class SubscriptionFailure with _$SubscriptionFailure {
   const factory SubscriptionFailure.noInternet() = _NoInternet;
   const factory SubscriptionFailure.serverError() = _ServerError;
   const factory SubscriptionFailure.unexpected() = _Unexpected;
+  const factory SubscriptionFailure.verificationFailed() = _VerificationFailed;
   const factory SubscriptionFailure.unauthenticated() = _Unauthenticated;
 }

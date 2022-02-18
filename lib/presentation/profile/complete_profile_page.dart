@@ -36,7 +36,7 @@ class CompleteProfilePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    addVerticalSpace(10.h),
+                    AddVerticalSpace(10.h),
                     TextButton(
                       onPressed: () {
                         Get.back();
@@ -81,7 +81,7 @@ class CompleteProfilePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    addVerticalSpace(30.h),
+                    AddVerticalSpace(30.h),
                   ],
                 ),
               ),
@@ -99,12 +99,12 @@ class CompleteProfilePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    addVerticalSpace(10.h),
+                    AddVerticalSpace(10.h),
                     TextButton(
                       onPressed: () {
                         Get.back();
                         _bloc.add(
-                          UpdateProfileEvent.deletePhoto(url),
+                          UpdateProfileEvent.deletePhoto(url, false),
                         );
                       },
                       child: Padding(
@@ -143,7 +143,7 @@ class CompleteProfilePage extends StatelessWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -164,7 +164,7 @@ class CompleteProfilePage extends StatelessWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -185,7 +185,7 @@ class CompleteProfilePage extends StatelessWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -206,7 +206,7 @@ class CompleteProfilePage extends StatelessWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -239,7 +239,7 @@ class CompleteProfilePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        addVerticalSpace(30.h),
+                        AddVerticalSpace(30.h),
                         Expanded(
                           child: CustomTextField(
                             controller: bioController,
@@ -257,7 +257,7 @@ class CompleteProfilePage extends StatelessWidget {
                                     .toUpperCase(),
                           ),
                         ),
-                        addVerticalSpace(20.h),
+                        AddVerticalSpace(20.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -317,7 +317,7 @@ class CompleteProfilePage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        addVerticalSpace(20.h),
+                        AddVerticalSpace(20.h),
                         CustomButton(
                           height: 56.h,
                           onPressed: state.photos.isNotEmpty &&
@@ -327,7 +327,7 @@ class CompleteProfilePage extends StatelessWidget {
                               : null,
                           label: 'POST',
                         ),
-                        addVerticalSpace(20.h)
+                        AddVerticalSpace(20.h)
                       ],
                     ),
                   ),

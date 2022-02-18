@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crave_app/application/landing/bottom_tab_controller.dart';
 import 'package:crave_app/application/profile/profile_bloc.dart';
 import 'package:crave_app/application/profile/update_profile/update_profile_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
@@ -41,7 +42,7 @@ class ProfilePage extends HookWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    addVerticalSpace(10.h),
+                    AddVerticalSpace(10.h),
                     TextButton(
                       onPressed: () {
                         Get.back();
@@ -86,7 +87,7 @@ class ProfilePage extends HookWidget {
                         ),
                       ),
                     ),
-                    addVerticalSpace(30.h),
+                    AddVerticalSpace(30.h),
                   ],
                 ),
               ),
@@ -104,12 +105,12 @@ class ProfilePage extends HookWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    addVerticalSpace(10.h),
+                    AddVerticalSpace(10.h),
                     TextButton(
                       onPressed: () {
                         Get.back();
                         _bloc.add(
-                          UpdateProfileEvent.deletePhoto(url),
+                          UpdateProfileEvent.deletePhoto(url, true),
                         );
                       },
                       child: Padding(
@@ -151,7 +152,7 @@ class ProfilePage extends HookWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -162,6 +163,7 @@ class ProfilePage extends HookWidget {
                 (path) {
                   _profileBloc.add(const ProfileEvent.getCurrentProfile());
                   _bloc.add(const UpdateProfileEvent.reset());
+                  Get.find<BottomTabController>().changeTabIndex(0);
                 },
               );
             }, () {});
@@ -173,7 +175,7 @@ class ProfilePage extends HookWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -194,7 +196,7 @@ class ProfilePage extends HookWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -215,7 +217,7 @@ class ProfilePage extends HookWidget {
                     unexpected: (_) => 'Unexpected error',
                     notFound: (_) => 'Data not found',
                     unauthenticated: (_) => 'Unauthenticated',
-                    serverError: (_) => 'Server error',
+                    serverError: (e) => e.message,
                     cancelledByUser: (_) => 'Cancelled',
                   );
                   Get.snackbar(
@@ -242,14 +244,29 @@ class ProfilePage extends HookWidget {
                         Stack(
                           fit: StackFit.loose,
                           children: [
-                            Center(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 10.h),
-                                child: Text(
-                                  'PROFILE',
-                                  style: Styles.kefa18SemiBold,
+                            Column(
+                              children: [
+                                AddVerticalSpace(10.h),
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: Dimens.defaultMargin),
+                                    child: SvgPicture.asset(
+                                      'assets/images/crave_logo.svg',
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                AddVerticalSpace(10.h),
+                                Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 10.h),
+                                    child: Text(
+                                      'PROFILE',
+                                      style: Styles.kefa18SemiBold,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -277,12 +294,13 @@ class ProfilePage extends HookWidget {
                             ),
                           ],
                         ),
-                        addVerticalSpace(30.h),
+                        AddVerticalSpace(30.h),
                         Expanded(
                           child: CustomTextField(
                             onTap: () {
                               isTyping.value = true;
                             },
+                            textCapitalization: TextCapitalization.characters,
                             controller: bioController,
                             fillColor: Colors.transparent,
                             border: false,
@@ -298,7 +316,7 @@ class ProfilePage extends HookWidget {
                                     .toUpperCase(),
                           ),
                         ),
-                        addVerticalSpace(20.h),
+                        AddVerticalSpace(20.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -332,25 +350,23 @@ class ProfilePage extends HookWidget {
                                           end: 6.w,
                                         ),
                                         badgeColor: Colors.black45,
-                                        badgeContent: const Icon(
-                                          Icons.close,
-                                          color: Colors.white,
-                                          size: 12,
-                                        ),
-                                        child: InkWell(
-                                          borderRadius:
-                                              BorderRadius.circular(12.w),
+                                        badgeContent: GestureDetector(
                                           onTap: () => _handleDeletePhoto(
                                               state.photos[index - 1]),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            child: CachedNetworkImage(
-                                              imageUrl: state.photos[index - 1],
-                                              fit: BoxFit.cover,
-                                              height: 160.h,
-                                              width: 100.w,
-                                            ),
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 18,
+                                          ),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          child: CachedNetworkImage(
+                                            imageUrl: state.photos[index - 1],
+                                            fit: BoxFit.cover,
+                                            height: 160.h,
+                                            width: 100.w,
                                           ),
                                         ),
                                       ),
@@ -358,24 +374,59 @@ class ProfilePage extends HookWidget {
                             ),
                           ],
                         ),
-                        addVerticalSpace(20.h),
-                        CustomButton(
-                          height: 56.h,
-                          onPressed: state.photos.isNotEmpty &&
-                                  state.bio.isValid()
-                              ? () {
-                                  isTyping.value = false;
-                                  _bloc.add(
-                                      const UpdateProfileEvent.postPressed());
-                                }
-                              : null,
-                          label: 'POST',
-                        ),
-                        addVerticalSpace(20.h)
+                        AddVerticalSpace(20.h),
+                        state.profileOption.match(
+                                (profile) => profile.isPublished, () => false)
+                            ? CustomButton(
+                                height: 56.h,
+                                onPressed: state.photos.isNotEmpty &&
+                                        state.bio.isValid()
+                                    ? () {
+                                        isTyping.value = false;
+                                        _bloc.add(const UpdateProfileEvent
+                                            .hidePostPressed());
+                                      }
+                                    : null,
+                                label: 'HIDE POST',
+                                color: Colors.white,
+                                borderColor: AppColors.mainColor,
+                                fontStyle: Styles.kefa16SemiBold.copyWith(
+                                  color: AppColors.mainColor,
+                                ),
+                              )
+                            : CustomButton(
+                                height: 56.h,
+                                onPressed: state.photos.isNotEmpty &&
+                                        state.bio.isValid()
+                                    ? () {
+                                        isTyping.value = false;
+                                        _bloc.add(const UpdateProfileEvent
+                                            .postPressed());
+                                      }
+                                    : null,
+                                label: 'POST',
+                                fontStyle: Styles.kefa16SemiBold.copyWith(
+                                  color: Colors.white,
+                                ),
+                              ),
+                        AddVerticalSpace(20.h)
                       ],
                     ),
                   ),
                 ),
+                if (state.photos.length < 3)
+                  Positioned(
+                    bottom: 100,
+                    right: 20,
+                    child: FloatingActionButton(
+                      onPressed: () => _handleAddPhoto(),
+                      child: SvgPicture.asset(
+                        'assets/icon/camera_add.svg',
+                        color: Colors.white,
+                      ),
+                      backgroundColor: AppColors.mainColor,
+                    ),
+                  )
               ],
             );
           },

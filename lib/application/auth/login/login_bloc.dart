@@ -76,10 +76,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           removeState: (_event) {
             emit(LoginState.initial());
           },
-          signInWithApplePressed: (_event) {
-            emit(state.copyWith(
-              isSubmitting: true,
-            ));
+          signInWithApplePressed: (_event) async {
+            emit(
+              state.copyWith(
+                isSubmitting: true,
+              ),
+            );
+            final failureOrSuccess = await _authFacade.signInWithApple();
+            emit(
+              state.copyWith(
+                isSubmitting: false,
+                signInAppleFailureOrSuccessOption: optionOf(failureOrSuccess),
+              ),
+            );
           },
         );
       },

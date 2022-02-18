@@ -7,6 +7,7 @@ class ProfileState with _$ProfileState {
     required Option<Profile> currentProfileOption,
     required bool isCompleted,
     required Option<ProfileFailure> failureOption,
+    required Option<Coordinate> coordinateOption,
   }) = _ProfileState;
 
   factory ProfileState.initial() => ProfileState(
@@ -14,5 +15,6 @@ class ProfileState with _$ProfileState {
         currentProfileOption: none(),
         failureOption: none(),
         isCompleted: false,
+        coordinateOption: none(),
       );
 }

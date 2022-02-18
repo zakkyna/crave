@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crave_app/domain/core/entity/coordinate.dart';
 import 'package:crave_app/domain/core/interfaces/i_location_service.dart';
 import 'package:crave_app/domain/post/i_post_repository.dart';
 import 'package:crave_app/domain/post/post.dart';
@@ -60,7 +61,7 @@ class PostRepository implements IPostRepository {
         return left(const PostFailure.unauthenticated());
       }
       final collectionRef = _firestore.collection('posts').doc(postId);
-      if (isLiked) {
+      if (!isLiked) {
         await collectionRef.update({
           'liked_by': FieldValue.arrayUnion([currentUser.uid]),
         });
@@ -98,16 +99,17 @@ class PostRepository implements IPostRepository {
       final collectionRef = _firestore.collection('posts');
       final query = _geoflutterfire
           .collection(collectionRef: collectionRef)
-          .within(center: center, radius: radius, field: 'location')
+          .within(center: center, radius: double.maxFinite, field: 'location')
           .asyncMap((element) => element.where((doc) {
                 final post = Post.fromJson(doc.data() as Map<String, dynamic>);
                 final isDismissed =
                     post.dismissedBy?.containsKey(currentUser.uid) ?? false;
                 return post.uid != currentUser.uid &&
                     !isDismissed &&
-                    post.photos.isNotEmpty;
+                    post.photos.isNotEmpty &&
+                    post.isPublished;
               }).toList());
-      final postStream = PostStream(stream: query);
+      final postStream = PostStream(stream: query, coordinate: coordinate);
       return right(postStream);
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
