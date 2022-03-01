@@ -12,4 +12,6 @@ class ChatroomState with _$ChatroomState {
       _SendChatSuccess;
   const factory ChatroomState.readMessageSuccess(bool response) =
       _ReadMessageSuccess;
+  const factory ChatroomState.viewProfileSuccess(Post post) =
+      _ViewProfileSuccess;
 }

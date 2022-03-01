@@ -6,6 +6,7 @@ import 'package:crave_app/application/profile/update_profile/update_profile_bloc
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/custom_button.dart';
+import 'package:crave_app/presentation/core/widget/custom_photo_view.dart';
 import 'package:crave_app/presentation/core/widget/custom_textfield.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:crave_app/presentation/core/widget/stack_with_progress.dart';
@@ -141,6 +142,7 @@ class ProfilePage extends HookWidget {
         focusInstance.primaryFocus?.unfocus();
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: BlocConsumer<UpdateProfileBloc, UpdateProfileState>(
           bloc: _bloc..add(UpdateProfileEvent.init(currentProfile)),
           listener: (context, state) {
@@ -232,202 +234,248 @@ class ProfilePage extends HookWidget {
             }, () {});
           },
           builder: (context, state) {
-            return StackWithProgress(
-              isLoading: state.isLoading,
-              children: [
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: Dimens.defaultMargin),
-                    child: Column(
-                      children: [
-                        Stack(
-                          fit: StackFit.loose,
+            return SingleChildScrollView(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height -
+                    kBottomNavigationBarHeight -
+                    MediaQuery.of(context).padding.top,
+                width: MediaQuery.of(context).size.width,
+                child: StackWithProgress(
+                  isLoading: state.isLoading,
+                  children: [
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: Dimens.defaultMargin),
+                        child: Column(
                           children: [
-                            Column(
+                            Stack(
+                              fit: StackFit.loose,
                               children: [
-                                AddVerticalSpace(10.h),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: Dimens.defaultMargin),
-                                    child: SvgPicture.asset(
-                                      'assets/images/crave_logo.svg',
+                                Column(
+                                  children: [
+                                    AddVerticalSpace(10.h),
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: Dimens.defaultMargin),
+                                        child: SvgPicture.asset(
+                                          'assets/images/crave_logo.svg',
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    AddVerticalSpace(10.h),
+                                    Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 10.h),
+                                        child: Text(
+                                          'PROFILE',
+                                          style: Styles.kefa18SemiBold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                AddVerticalSpace(10.h),
-                                Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 10.h),
-                                    child: Text(
-                                      'PROFILE',
-                                      style: Styles.kefa18SemiBold,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    isTyping.value
+                                        ? IconButton(
+                                            onPressed: () {
+                                              focusInstance.primaryFocus
+                                                  ?.unfocus();
+                                              isTyping.value = false;
+                                            },
+                                            icon: const Icon(
+                                              Icons.done,
+                                              color: AppColors.mainColor,
+                                            ),
+                                          )
+                                        : const SizedBox(),
+                                    IconButton(
+                                      onPressed: () =>
+                                          Get.toNamed(Routers.settings),
+                                      icon: SvgPicture.asset(
+                                        'assets/icon/setting_icon.svg',
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ],
                             ),
+                            AddVerticalSpace(30.h),
+                            Expanded(
+                              child: CustomTextField(
+                                onTap: () {
+                                  isTyping.value = true;
+                                },
+                                textCapitalization:
+                                    TextCapitalization.characters,
+                                controller: bioController,
+                                fillColor: Colors.transparent,
+                                border: false,
+                                expands: true,
+                                inputStyle: Styles.kefa20Regular,
+                                hintStyle: Styles.kefa20Regular.copyWith(
+                                  color: Colors.grey[400],
+                                  height: 1.6,
+                                ),
+                                hintMaxLines: 3,
+                                hintText:
+                                    'Write what you want to tell the others on Crave... '
+                                        .toUpperCase(),
+                              ),
+                            ),
+                            AddVerticalSpace(20.h),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                isTyping.value
-                                    ? IconButton(
-                                        onPressed: () {
-                                          focusInstance.primaryFocus?.unfocus();
-                                          isTyping.value = false;
-                                        },
-                                        icon: const Icon(
-                                          Icons.done,
-                                          color: AppColors.mainColor,
+                                ...List.generate(
+                                  3,
+                                  (index) => index + 1,
+                                ).map(
+                                  (index) => state.photos.length < index
+                                      ? state.isUploading &&
+                                              index == (state.photos.length + 1)
+                                          ? SizedBox(
+                                              height: 160.h,
+                                              width: 100.w,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Uploading...',
+                                                    style:
+                                                        Styles.kefa12SemiBold,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 12.w,
+                                                    height: 12.h,
+                                                    child:
+                                                        const CircularProgressIndicator(),
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                          : Ink.image(
+                                              height: 160.h,
+                                              width: 100.w,
+                                              fit: BoxFit.contain,
+                                              image: Svg(
+                                                'assets/images/add_photo_$index.svg',
+                                                size: Size(100.w, 160.h),
+                                              ),
+                                              padding: EdgeInsets.zero,
+                                              child: InkWell(
+                                                borderRadius:
+                                                    BorderRadius.circular(12.w),
+                                                onTap: () => _handleAddPhoto(),
+                                              ),
+                                            )
+                                      : Ink(
+                                          height: 160.h,
+                                          width: 100.w,
+                                          padding: EdgeInsets.zero,
+                                          child: Badge(
+                                            position: BadgePosition.topEnd(
+                                              top: 6.h,
+                                              end: 6.w,
+                                            ),
+                                            badgeColor: Colors.black45,
+                                            badgeContent: GestureDetector(
+                                              onTap: () => _handleDeletePhoto(
+                                                  state.photos[index - 1]),
+                                              child: const Icon(
+                                                Icons.close,
+                                                color: Colors.white,
+                                                size: 18,
+                                              ),
+                                            ),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Get.to(() => CustomPhotoViewSingle(
+                                                    image:
+                                                        CachedNetworkImageProvider(
+                                                            state.photos[
+                                                                index - 1])));
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      state.photos[index - 1],
+                                                  fit: BoxFit.cover,
+                                                  height: 160.h,
+                                                  width: 100.w,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      )
-                                    : const SizedBox(),
-                                IconButton(
-                                  onPressed: () =>
-                                      Get.toNamed(Routers.settings),
-                                  icon: SvgPicture.asset(
-                                    'assets/icon/setting_icon.svg',
-                                  ),
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                        AddVerticalSpace(30.h),
-                        Expanded(
-                          child: CustomTextField(
-                            onTap: () {
-                              isTyping.value = true;
-                            },
-                            textCapitalization: TextCapitalization.characters,
-                            controller: bioController,
-                            fillColor: Colors.transparent,
-                            border: false,
-                            expands: true,
-                            inputStyle: Styles.kefa16Regular,
-                            hintStyle: Styles.kefa16Regular.copyWith(
-                              color: Colors.grey[400],
-                              height: 1.6,
-                            ),
-                            hintMaxLines: 3,
-                            hintText:
-                                'Write what you want to tell the others on Crave... '
-                                    .toUpperCase(),
-                          ),
-                        ),
-                        AddVerticalSpace(20.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ...List.generate(
-                              3,
-                              (index) => index + 1,
-                            ).map(
-                              (index) => state.photos.length < index
-                                  ? Ink.image(
-                                      height: 160.h,
-                                      width: 100.w,
-                                      fit: BoxFit.contain,
-                                      image: Svg(
-                                        'assets/images/add_photo_$index.svg',
-                                        size: Size(100.w, 160.h),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      child: InkWell(
-                                        borderRadius:
-                                            BorderRadius.circular(12.w),
-                                        onTap: () => _handleAddPhoto(),
-                                      ),
-                                    )
-                                  : Ink(
-                                      height: 160.h,
-                                      width: 100.w,
-                                      padding: EdgeInsets.zero,
-                                      child: Badge(
-                                        position: BadgePosition.topEnd(
-                                          top: 6.h,
-                                          end: 6.w,
-                                        ),
-                                        badgeColor: Colors.black45,
-                                        badgeContent: GestureDetector(
-                                          onTap: () => _handleDeletePhoto(
-                                              state.photos[index - 1]),
-                                          child: const Icon(
-                                            Icons.close,
-                                            color: Colors.white,
-                                            size: 18,
-                                          ),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          child: CachedNetworkImage(
-                                            imageUrl: state.photos[index - 1],
-                                            fit: BoxFit.cover,
-                                            height: 160.h,
-                                            width: 100.w,
-                                          ),
-                                        ),
-                                      ),
+                            AddVerticalSpace(20.h),
+                            state.profileOption.match(
+                                    (profile) => profile.isPublished,
+                                    () => false)
+                                ? CustomButton(
+                                    height: 56.h,
+                                    onPressed: state.photos.isNotEmpty &&
+                                            state.bio.isValid() &&
+                                            !state.isUploading
+                                        ? () {
+                                            isTyping.value = false;
+                                            _bloc.add(const UpdateProfileEvent
+                                                .hidePostPressed());
+                                          }
+                                        : null,
+                                    label: 'HIDE POST',
+                                    color: Colors.white,
+                                    borderColor: AppColors.mainColor,
+                                    fontStyle: Styles.kefa16SemiBold.copyWith(
+                                      color: AppColors.mainColor,
                                     ),
-                            ),
+                                  )
+                                : CustomButton(
+                                    height: 56.h,
+                                    onPressed: state.photos.isNotEmpty &&
+                                            state.bio.isValid()
+                                        ? () {
+                                            isTyping.value = false;
+                                            _bloc.add(const UpdateProfileEvent
+                                                .postPressed());
+                                          }
+                                        : null,
+                                    label: 'POST',
+                                    fontStyle: Styles.kefa16SemiBold.copyWith(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                            AddVerticalSpace(20.h)
                           ],
                         ),
-                        AddVerticalSpace(20.h),
-                        state.profileOption.match(
-                                (profile) => profile.isPublished, () => false)
-                            ? CustomButton(
-                                height: 56.h,
-                                onPressed: state.photos.isNotEmpty &&
-                                        state.bio.isValid()
-                                    ? () {
-                                        isTyping.value = false;
-                                        _bloc.add(const UpdateProfileEvent
-                                            .hidePostPressed());
-                                      }
-                                    : null,
-                                label: 'HIDE POST',
-                                color: Colors.white,
-                                borderColor: AppColors.mainColor,
-                                fontStyle: Styles.kefa16SemiBold.copyWith(
-                                  color: AppColors.mainColor,
-                                ),
-                              )
-                            : CustomButton(
-                                height: 56.h,
-                                onPressed: state.photos.isNotEmpty &&
-                                        state.bio.isValid()
-                                    ? () {
-                                        isTyping.value = false;
-                                        _bloc.add(const UpdateProfileEvent
-                                            .postPressed());
-                                      }
-                                    : null,
-                                label: 'POST',
-                                fontStyle: Styles.kefa16SemiBold.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                        AddVerticalSpace(20.h)
-                      ],
-                    ),
-                  ),
-                ),
-                if (state.photos.length < 3)
-                  Positioned(
-                    bottom: 100,
-                    right: 20,
-                    child: FloatingActionButton(
-                      onPressed: () => _handleAddPhoto(),
-                      child: SvgPicture.asset(
-                        'assets/icon/camera_add.svg',
-                        color: Colors.white,
                       ),
-                      backgroundColor: AppColors.mainColor,
                     ),
-                  )
-              ],
+                    if (state.photos.length < 3)
+                      Positioned(
+                        bottom: 100,
+                        right: 20,
+                        child: FloatingActionButton(
+                          onPressed: () => _handleAddPhoto(),
+                          child: SvgPicture.asset(
+                            'assets/icon/camera_add.svg',
+                            color: Colors.white,
+                          ),
+                          backgroundColor: AppColors.mainColor,
+                        ),
+                      )
+                  ],
+                ),
+              ),
             );
           },
         ),

@@ -21,4 +21,8 @@ abstract class IChatRepository {
   Future<Either<ChatFailure, bool>> readMessage({
     required String roomId,
   });
+
+  Future<Either<ChatFailure, Post>> viewProfile({
+    required String userId,
+  });
 }

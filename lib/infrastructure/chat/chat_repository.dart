@@ -143,32 +143,34 @@ class ChatRepository implements IChatRepository {
       if (user == null) {
         return left(const ChatFailure.unauthenticated());
       }
+      final writeBatch = _firestore.batch();
 
       final chat = content.message.toJson();
+      final isText = content.message.type == MessageType.text;
+      final isImage = content.message.type == MessageType.image;
+      final isFile = content.message.type == MessageType.file;
       chat['roomId'] = roomId;
       chat['status'] = 'sent';
-      await _firestore
-          .collection('rooms')
-          .doc(roomId)
-          .collection('chats')
-          .add(chat);
+
+      writeBatch.set(
+        _firestore.collection('rooms').doc(roomId).collection('chats').doc(),
+        chat,
+      );
+      writeBatch.update(_firestore.collection('rooms').doc(roomId), {
+        'last_chat': chat,
+        'last_chat_at': Timestamp.fromMillisecondsSinceEpoch(
+            content.message.createdAt ?? DateTime.now().millisecondsSinceEpoch),
+      });
+      writeBatch.commit();
       final callJson = {
         'roomId': roomId,
         'text': chat['text'] ?? '',
         'uid': opponentId,
       };
       logger.d(callJson);
-      await _functions.httpsCallable('sendNotificationMessage').call(
+      _functions.httpsCallable('sendNotificationMessage').call(
             callJson,
           );
-      // await _firestore.collection('rooms').doc(roomId).update(
-      //   {
-      //     'last_chat': chat,
-      //     'last_chat_at': Timestamp.fromMillisecondsSinceEpoch(
-      //         content.message.createdAt ??
-      //             DateTime.now().millisecondsSinceEpoch),
-      //   },
-      // );
       return right(content);
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -204,6 +206,27 @@ class ChatRepository implements IChatRepository {
       });
       logger.d('func.data : ${func.data}');
       return right(true);
+    } on FirebaseException catch (e, stacktrace) {
+      logger.d(stacktrace);
+      logger.d(e.message);
+      return left(ChatFailure.serverError(e.message ?? 'An error occurred'));
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(const ChatFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<ChatFailure, Post>> viewProfile(
+      {required String userId}) async {
+    try {
+      final doc = await _firestore.collection('posts').doc(userId).get();
+      final data = doc.data();
+      if (data == null) {
+        return left(const ChatFailure.userNotFound());
+      }
+      final post = Post.fromJson(data);
+      return right(post);
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
       logger.d(e.message);

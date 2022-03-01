@@ -97,18 +97,50 @@ class PostRepository implements IPostRepository {
       logger.d('latitude: ${coordinate.latitude}');
       logger.d('longitude: ${coordinate.longitude}');
       final collectionRef = _firestore.collection('posts');
-      final query = _geoflutterfire
-          .collection(collectionRef: collectionRef)
-          .within(center: center, radius: double.maxFinite, field: 'location')
-          .asyncMap((element) => element.where((doc) {
-                final post = Post.fromJson(doc.data() as Map<String, dynamic>);
-                final isDismissed =
-                    post.dismissedBy?.containsKey(currentUser.uid) ?? false;
-                return post.uid != currentUser.uid &&
-                    !isDismissed &&
-                    post.photos.isNotEmpty &&
-                    post.isPublished;
-              }).toList());
+      final query = collectionRef
+          .where(
+            'is_published',
+            isEqualTo: true,
+          )
+          .snapshots()
+          .asyncMap((element) {
+        final list = element.docs.where((doc) {
+          final post = Post.fromJson(doc.data());
+          final isDismissed =
+              post.dismissedBy?.containsKey(currentUser.uid) ?? false;
+          return post.uid != currentUser.uid &&
+              !isDismissed &&
+              post.photos.isNotEmpty &&
+              post.isPublished;
+        }).toList();
+        list.sort((a, b) {
+          final aPost = Post.fromJson(a.data());
+          final bPost = Post.fromJson(b.data());
+          final d1 = aPost.distanceInKM(coordinate.toGeopoint());
+          final d2 = bPost.distanceInKM(coordinate.toGeopoint());
+          if (d1 > d2) {
+            return 1;
+          } else if (d1 < d2) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        logger.d('list: $list');
+        return list;
+      });
+      // final query = _geoflutterfire
+      //     .collection(collectionRef: collectionRef)
+      //     .within(center: center, radius: double.maxFinite, field: 'location')
+      //     .asyncMap((element) => element.where((doc) {
+      //           final post = Post.fromJson(doc.data() as Map<String, dynamic>);
+      //           final isDismissed =
+      //               post.dismissedBy?.containsKey(currentUser.uid) ?? false;
+      //           return post.uid != currentUser.uid &&
+      //               !isDismissed &&
+      //               post.photos.isNotEmpty &&
+      //               post.isPublished;
+      //         }).toList());
       final postStream = PostStream(stream: query, coordinate: coordinate);
       return right(postStream);
     } on FirebaseException catch (e, stacktrace) {

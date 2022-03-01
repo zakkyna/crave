@@ -5,6 +5,7 @@ class UpdateProfileState with _$UpdateProfileState {
   const factory UpdateProfileState({
     required Option<Profile> profileOption,
     required bool isLoading,
+    required bool isUploading,
     required Bio bio,
     required List<String> photos,
     required Option<Either<ProfileFailure, Unit>>
@@ -19,6 +20,7 @@ class UpdateProfileState with _$UpdateProfileState {
 
   factory UpdateProfileState.initial() => UpdateProfileState(
         isLoading: false,
+        isUploading: false,
         bio: Bio(''),
         photos: [],
         updateProfileFailureOrSuccessOption: none(),

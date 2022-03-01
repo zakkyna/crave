@@ -89,7 +89,7 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
           },
           uploadPhoto: (_event) async {
             emit(state.copyWith(
-              isLoading: true,
+              isUploading: true,
               pickPhotoFailureOrSuccessOption: none(),
             ));
 
@@ -99,7 +99,7 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
 
             emit(
               state.copyWith(
-                isLoading: false,
+                isUploading: false,
                 uploadPhotoFailureOrSuccessOption: optionOf(
                   uploadFailureOrSuccess,
                 ),

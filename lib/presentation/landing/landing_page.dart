@@ -71,6 +71,7 @@ class BottomTabView extends GetView<BottomTabController> {
 
     return Obx(
       () => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: pages[controller.tabIndex.value],
         bottomNavigationBar: Theme(
           data: ThemeData(

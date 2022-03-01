@@ -122,7 +122,7 @@ class RoomItemWidget extends StatelessWidget {
                               ),
                             )
                           : Text(
-                              roomModel.lastChat!.text!,
+                              roomModel.lastChat!.text ?? '',
                               style: Styles.sfProDisplay.copyWith(
                                 fontSize: 14.sp,
                                 fontWeight: roomModel.lastChat!.status == 'seen'

@@ -2126,6 +2126,7 @@ class _$UpdateProfileStateTearOff {
   _UpdateProfileState call(
       {required Option<Profile> profileOption,
       required bool isLoading,
+      required bool isUploading,
       required Bio bio,
       required List<String> photos,
       required Option<Either<ProfileFailure, Unit>>
@@ -2139,6 +2140,7 @@ class _$UpdateProfileStateTearOff {
     return _UpdateProfileState(
       profileOption: profileOption,
       isLoading: isLoading,
+      isUploading: isUploading,
       bio: bio,
       photos: photos,
       updateProfileFailureOrSuccessOption: updateProfileFailureOrSuccessOption,
@@ -2156,6 +2158,7 @@ const $UpdateProfileState = _$UpdateProfileStateTearOff();
 mixin _$UpdateProfileState {
   Option<Profile> get profileOption => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isUploading => throw _privateConstructorUsedError;
   Bio get bio => throw _privateConstructorUsedError;
   List<String> get photos => throw _privateConstructorUsedError;
   Option<Either<ProfileFailure, Unit>>
@@ -2183,6 +2186,7 @@ abstract class $UpdateProfileStateCopyWith<$Res> {
   $Res call(
       {Option<Profile> profileOption,
       bool isLoading,
+      bool isUploading,
       Bio bio,
       List<String> photos,
       Option<Either<ProfileFailure, Unit>> updateProfileFailureOrSuccessOption,
@@ -2205,6 +2209,7 @@ class _$UpdateProfileStateCopyWithImpl<$Res>
   $Res call({
     Object? profileOption = freezed,
     Object? isLoading = freezed,
+    Object? isUploading = freezed,
     Object? bio = freezed,
     Object? photos = freezed,
     Object? updateProfileFailureOrSuccessOption = freezed,
@@ -2220,6 +2225,10 @@ class _$UpdateProfileStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUploading: isUploading == freezed
+          ? _value.isUploading
+          : isUploading // ignore: cast_nullable_to_non_nullable
               as bool,
       bio: bio == freezed
           ? _value.bio
@@ -2263,6 +2272,7 @@ abstract class _$UpdateProfileStateCopyWith<$Res>
   $Res call(
       {Option<Profile> profileOption,
       bool isLoading,
+      bool isUploading,
       Bio bio,
       List<String> photos,
       Option<Either<ProfileFailure, Unit>> updateProfileFailureOrSuccessOption,
@@ -2287,6 +2297,7 @@ class __$UpdateProfileStateCopyWithImpl<$Res>
   $Res call({
     Object? profileOption = freezed,
     Object? isLoading = freezed,
+    Object? isUploading = freezed,
     Object? bio = freezed,
     Object? photos = freezed,
     Object? updateProfileFailureOrSuccessOption = freezed,
@@ -2302,6 +2313,10 @@ class __$UpdateProfileStateCopyWithImpl<$Res>
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUploading: isUploading == freezed
+          ? _value.isUploading
+          : isUploading // ignore: cast_nullable_to_non_nullable
               as bool,
       bio: bio == freezed
           ? _value.bio
@@ -2341,6 +2356,7 @@ class _$_UpdateProfileState implements _UpdateProfileState {
   const _$_UpdateProfileState(
       {required this.profileOption,
       required this.isLoading,
+      required this.isUploading,
       required this.bio,
       required this.photos,
       required this.updateProfileFailureOrSuccessOption,
@@ -2352,6 +2368,8 @@ class _$_UpdateProfileState implements _UpdateProfileState {
   final Option<Profile> profileOption;
   @override
   final bool isLoading;
+  @override
+  final bool isUploading;
   @override
   final Bio bio;
   @override
@@ -2370,7 +2388,7 @@ class _$_UpdateProfileState implements _UpdateProfileState {
 
   @override
   String toString() {
-    return 'UpdateProfileState(profileOption: $profileOption, isLoading: $isLoading, bio: $bio, photos: $photos, updateProfileFailureOrSuccessOption: $updateProfileFailureOrSuccessOption, pickPhotoFailureOrSuccessOption: $pickPhotoFailureOrSuccessOption, uploadPhotoFailureOrSuccessOption: $uploadPhotoFailureOrSuccessOption, deletePhotoFailureOrSuccessOption: $deletePhotoFailureOrSuccessOption)';
+    return 'UpdateProfileState(profileOption: $profileOption, isLoading: $isLoading, isUploading: $isUploading, bio: $bio, photos: $photos, updateProfileFailureOrSuccessOption: $updateProfileFailureOrSuccessOption, pickPhotoFailureOrSuccessOption: $pickPhotoFailureOrSuccessOption, uploadPhotoFailureOrSuccessOption: $uploadPhotoFailureOrSuccessOption, deletePhotoFailureOrSuccessOption: $deletePhotoFailureOrSuccessOption)';
   }
 
   @override
@@ -2382,6 +2400,8 @@ class _$_UpdateProfileState implements _UpdateProfileState {
                 other.profileOption == profileOption) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isUploading, isUploading) ||
+                other.isUploading == isUploading) &&
             (identical(other.bio, bio) || other.bio == bio) &&
             const DeepCollectionEquality().equals(other.photos, photos) &&
             (identical(other.updateProfileFailureOrSuccessOption,
@@ -2407,6 +2427,7 @@ class _$_UpdateProfileState implements _UpdateProfileState {
       runtimeType,
       profileOption,
       isLoading,
+      isUploading,
       bio,
       const DeepCollectionEquality().hash(photos),
       updateProfileFailureOrSuccessOption,
@@ -2424,6 +2445,7 @@ abstract class _UpdateProfileState implements UpdateProfileState {
   const factory _UpdateProfileState(
       {required Option<Profile> profileOption,
       required bool isLoading,
+      required bool isUploading,
       required Bio bio,
       required List<String> photos,
       required Option<Either<ProfileFailure, Unit>>
@@ -2439,6 +2461,8 @@ abstract class _UpdateProfileState implements UpdateProfileState {
   Option<Profile> get profileOption;
   @override
   bool get isLoading;
+  @override
+  bool get isUploading;
   @override
   Bio get bio;
   @override

@@ -12,4 +12,8 @@ class ChatroomEvent with _$ChatroomEvent {
   const factory ChatroomEvent.readMessage({
     required String roomId,
   }) = _ReadMessage;
+
+  const factory ChatroomEvent.viewProfile({
+    required String userId,
+  }) = _ViewProfile;
 }

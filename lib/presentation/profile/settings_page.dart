@@ -50,10 +50,16 @@ class SettingsPage extends StatelessWidget {
                     ],
                   ),
                   AddVerticalSpace(30.h),
-                  SettingItemWidget(
-                    title: 'SELECT GENDER',
-                    onTap: () {},
-                  ),
+                  // SettingItemWidget(
+                  //   title: 'SEEKING',
+                  //   trailing: Text(
+                  //     'FEMALE',
+                  //     style: Styles.kefa18Regular.copyWith(
+                  //       color: AppColors.mainColor2,
+                  //     ),
+                  //   ),
+                  //   onTap: () {},
+                  // ),
                   SettingItemWidget(
                     title: 'NOTIFICATIONS',
                     onTap: () {

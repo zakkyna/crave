@@ -5,23 +5,26 @@ class StackWithProgress extends StatelessWidget {
       {Key? key,
       required List<Widget> children,
       bool? isLoading,
+      Widget? loadingWidget,
       AlignmentGeometry? alignment,
       StackFit? fit})
       : _children = children,
         _isLoading = isLoading ?? false,
         _aligment = alignment ?? Alignment.center,
         _fit = fit ?? StackFit.expand,
+        _loadingWidget = loadingWidget,
         super(key: key);
 
   final List<Widget> _children;
   final bool _isLoading;
   final AlignmentGeometry _aligment;
   final StackFit _fit;
+  final Widget? _loadingWidget;
 
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      _children.add(_progressBar());
+      _children.add(_progressBar(_loadingWidget));
     }
     return Stack(
       alignment: _aligment,
@@ -30,10 +33,10 @@ class StackWithProgress extends StatelessWidget {
     );
   }
 
-  Widget _progressBar() {
+  Widget _progressBar(Widget? loadingWidget) {
     return Stack(
-      children: const [
-        Opacity(
+      children: [
+        const Opacity(
           opacity: 0.7,
           child: ModalBarrier(
             dismissible: false,
@@ -41,9 +44,10 @@ class StackWithProgress extends StatelessWidget {
           ),
         ),
         Center(
-          child: CircularProgressIndicator(
-            backgroundColor: Colors.white,
-          ),
+          child: loadingWidget ??
+              const CircularProgressIndicator(
+                backgroundColor: Colors.white,
+              ),
         ),
       ],
     );

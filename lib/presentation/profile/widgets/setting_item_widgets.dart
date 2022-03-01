@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SettingItemWidget extends StatelessWidget {
   final String title;
   final void Function()? onTap;
+  final Widget? trailing;
   const SettingItemWidget({
     Key? key,
     required this.title,
     this.onTap,
+    this.trailing,
   }) : super(key: key);
 
   @override
@@ -25,11 +27,12 @@ class SettingItemWidget extends StatelessWidget {
           color: AppColors.mainColor,
         ),
       ),
-      trailing: Icon(
-        Icons.chevron_right,
-        color: AppColors.mainColor,
-        size: 24.sp,
-      ),
+      trailing: trailing ??
+          Icon(
+            Icons.chevron_right,
+            color: AppColors.mainColor,
+            size: 24.sp,
+          ),
     );
   }
 }

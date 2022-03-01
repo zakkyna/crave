@@ -39,6 +39,12 @@ class _$ChatroomEventTearOff {
       roomId: roomId,
     );
   }
+
+  _ViewProfile viewProfile({required String userId}) {
+    return _ViewProfile(
+      userId: userId,
+    );
+  }
 }
 
 /// @nodoc
@@ -53,6 +59,7 @@ mixin _$ChatroomEvent {
             SendChat content, String roomId, String opponentId)
         sendMessage,
     required TResult Function(String roomId) readMessage,
+    required TResult Function(String userId) viewProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +68,7 @@ mixin _$ChatroomEvent {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +77,7 @@ mixin _$ChatroomEvent {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,6 +86,7 @@ mixin _$ChatroomEvent {
     required TResult Function(_GetChat value) getChat,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
+    required TResult Function(_ViewProfile value) viewProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +94,7 @@ mixin _$ChatroomEvent {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -91,6 +102,7 @@ mixin _$ChatroomEvent {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -189,6 +201,7 @@ class _$_GetChat implements _GetChat {
             SendChat content, String roomId, String opponentId)
         sendMessage,
     required TResult Function(String roomId) readMessage,
+    required TResult Function(String userId) viewProfile,
   }) {
     return getChat(chatRequest);
   }
@@ -200,6 +213,7 @@ class _$_GetChat implements _GetChat {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
   }) {
     return getChat?.call(chatRequest);
   }
@@ -211,6 +225,7 @@ class _$_GetChat implements _GetChat {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
     required TResult orElse(),
   }) {
     if (getChat != null) {
@@ -225,6 +240,7 @@ class _$_GetChat implements _GetChat {
     required TResult Function(_GetChat value) getChat,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
+    required TResult Function(_ViewProfile value) viewProfile,
   }) {
     return getChat(this);
   }
@@ -235,6 +251,7 @@ class _$_GetChat implements _GetChat {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
   }) {
     return getChat?.call(this);
   }
@@ -245,6 +262,7 @@ class _$_GetChat implements _GetChat {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
     required TResult orElse(),
   }) {
     if (getChat != null) {
@@ -358,6 +376,7 @@ class _$_SendMessage implements _SendMessage {
             SendChat content, String roomId, String opponentId)
         sendMessage,
     required TResult Function(String roomId) readMessage,
+    required TResult Function(String userId) viewProfile,
   }) {
     return sendMessage(content, roomId, opponentId);
   }
@@ -369,6 +388,7 @@ class _$_SendMessage implements _SendMessage {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
   }) {
     return sendMessage?.call(content, roomId, opponentId);
   }
@@ -380,6 +400,7 @@ class _$_SendMessage implements _SendMessage {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -394,6 +415,7 @@ class _$_SendMessage implements _SendMessage {
     required TResult Function(_GetChat value) getChat,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
+    required TResult Function(_ViewProfile value) viewProfile,
   }) {
     return sendMessage(this);
   }
@@ -404,6 +426,7 @@ class _$_SendMessage implements _SendMessage {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
   }) {
     return sendMessage?.call(this);
   }
@@ -414,6 +437,7 @@ class _$_SendMessage implements _SendMessage {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -505,6 +529,7 @@ class _$_ReadMessage implements _ReadMessage {
             SendChat content, String roomId, String opponentId)
         sendMessage,
     required TResult Function(String roomId) readMessage,
+    required TResult Function(String userId) viewProfile,
   }) {
     return readMessage(roomId);
   }
@@ -516,6 +541,7 @@ class _$_ReadMessage implements _ReadMessage {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
   }) {
     return readMessage?.call(roomId);
   }
@@ -527,6 +553,7 @@ class _$_ReadMessage implements _ReadMessage {
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
     required TResult orElse(),
   }) {
     if (readMessage != null) {
@@ -541,6 +568,7 @@ class _$_ReadMessage implements _ReadMessage {
     required TResult Function(_GetChat value) getChat,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
+    required TResult Function(_ViewProfile value) viewProfile,
   }) {
     return readMessage(this);
   }
@@ -551,6 +579,7 @@ class _$_ReadMessage implements _ReadMessage {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
   }) {
     return readMessage?.call(this);
   }
@@ -561,6 +590,7 @@ class _$_ReadMessage implements _ReadMessage {
     TResult Function(_GetChat value)? getChat,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
     required TResult orElse(),
   }) {
     if (readMessage != null) {
@@ -576,6 +606,154 @@ abstract class _ReadMessage implements ChatroomEvent {
   String get roomId;
   @JsonKey(ignore: true)
   _$ReadMessageCopyWith<_ReadMessage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ViewProfileCopyWith<$Res> {
+  factory _$ViewProfileCopyWith(
+          _ViewProfile value, $Res Function(_ViewProfile) then) =
+      __$ViewProfileCopyWithImpl<$Res>;
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$ViewProfileCopyWithImpl<$Res> extends _$ChatroomEventCopyWithImpl<$Res>
+    implements _$ViewProfileCopyWith<$Res> {
+  __$ViewProfileCopyWithImpl(
+      _ViewProfile _value, $Res Function(_ViewProfile) _then)
+      : super(_value, (v) => _then(v as _ViewProfile));
+
+  @override
+  _ViewProfile get _value => super._value as _ViewProfile;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_ViewProfile(
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ViewProfile implements _ViewProfile {
+  const _$_ViewProfile({required this.userId});
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'ChatroomEvent.viewProfile(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ViewProfile &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ViewProfileCopyWith<_ViewProfile> get copyWith =>
+      __$ViewProfileCopyWithImpl<_ViewProfile>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(
+            SendChat content, String roomId, String opponentId)
+        sendMessage,
+    required TResult Function(String roomId) readMessage,
+    required TResult Function(String userId) viewProfile,
+  }) {
+    return viewProfile(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
+    TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
+  }) {
+    return viewProfile?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
+    TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
+    required TResult orElse(),
+  }) {
+    if (viewProfile != null) {
+      return viewProfile(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetChat value) getChat,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_ReadMessage value) readMessage,
+    required TResult Function(_ViewProfile value) viewProfile,
+  }) {
+    return viewProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetChat value)? getChat,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
+  }) {
+    return viewProfile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetChat value)? getChat,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
+    required TResult orElse(),
+  }) {
+    if (viewProfile != null) {
+      return viewProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ViewProfile implements ChatroomEvent {
+  const factory _ViewProfile({required String userId}) = _$_ViewProfile;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$ViewProfileCopyWith<_ViewProfile> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -618,6 +796,12 @@ class _$ChatroomStateTearOff {
       response,
     );
   }
+
+  _ViewProfileSuccess viewProfileSuccess(Post post) {
+    return _ViewProfileSuccess(
+      post,
+    );
+  }
 }
 
 /// @nodoc
@@ -634,6 +818,7 @@ mixin _$ChatroomState {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -645,6 +830,7 @@ mixin _$ChatroomState {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -656,6 +842,7 @@ mixin _$ChatroomState {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -668,6 +855,7 @@ mixin _$ChatroomState {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -679,6 +867,7 @@ mixin _$ChatroomState {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -690,6 +879,7 @@ mixin _$ChatroomState {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -757,6 +947,7 @@ class _$_Initial implements _Initial {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return initial();
   }
@@ -771,6 +962,7 @@ class _$_Initial implements _Initial {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return initial?.call();
   }
@@ -785,6 +977,7 @@ class _$_Initial implements _Initial {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -803,6 +996,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return initial(this);
   }
@@ -817,6 +1011,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return initial?.call(this);
   }
@@ -831,6 +1026,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -889,6 +1085,7 @@ class _$_Loading implements _Loading {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return loading();
   }
@@ -903,6 +1100,7 @@ class _$_Loading implements _Loading {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return loading?.call();
   }
@@ -917,6 +1115,7 @@ class _$_Loading implements _Loading {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -935,6 +1134,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return loading(this);
   }
@@ -949,6 +1149,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return loading?.call(this);
   }
@@ -963,6 +1164,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1023,6 +1225,7 @@ class _$_SendingChat implements _SendingChat {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return sendingChat();
   }
@@ -1037,6 +1240,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return sendingChat?.call();
   }
@@ -1051,6 +1255,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (sendingChat != null) {
@@ -1069,6 +1274,7 @@ class _$_SendingChat implements _SendingChat {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return sendingChat(this);
   }
@@ -1083,6 +1289,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return sendingChat?.call(this);
   }
@@ -1097,6 +1304,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (sendingChat != null) {
@@ -1191,6 +1399,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return getChatSuccess(chatResponse);
   }
@@ -1205,6 +1414,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return getChatSuccess?.call(chatResponse);
   }
@@ -1219,6 +1429,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (getChatSuccess != null) {
@@ -1237,6 +1448,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return getChatSuccess(this);
   }
@@ -1251,6 +1463,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return getChatSuccess?.call(this);
   }
@@ -1265,6 +1478,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (getChatSuccess != null) {
@@ -1360,6 +1574,7 @@ class _$_Failure implements _Failure {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return failure(this.failure);
   }
@@ -1374,6 +1589,7 @@ class _$_Failure implements _Failure {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return failure?.call(this.failure);
   }
@@ -1388,6 +1604,7 @@ class _$_Failure implements _Failure {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1406,6 +1623,7 @@ class _$_Failure implements _Failure {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return failure(this);
   }
@@ -1420,6 +1638,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return failure?.call(this);
   }
@@ -1434,6 +1653,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1532,6 +1752,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return sendChatSuccess(content);
   }
@@ -1546,6 +1767,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return sendChatSuccess?.call(content);
   }
@@ -1560,6 +1782,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (sendChatSuccess != null) {
@@ -1578,6 +1801,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return sendChatSuccess(this);
   }
@@ -1592,6 +1816,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return sendChatSuccess?.call(this);
   }
@@ -1606,6 +1831,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (sendChatSuccess != null) {
@@ -1696,6 +1922,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     required TResult Function(ChatFailure failure) failure,
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
   }) {
     return readMessageSuccess(response);
   }
@@ -1710,6 +1937,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
   }) {
     return readMessageSuccess?.call(response);
   }
@@ -1724,6 +1952,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(ChatFailure failure)? failure,
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (readMessageSuccess != null) {
@@ -1742,6 +1971,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     required TResult Function(_Failure value) failure,
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
   }) {
     return readMessageSuccess(this);
   }
@@ -1756,6 +1986,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
   }) {
     return readMessageSuccess?.call(this);
   }
@@ -1770,6 +2001,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(_Failure value)? failure,
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
     required TResult orElse(),
   }) {
     if (readMessageSuccess != null) {
@@ -1785,5 +2017,183 @@ abstract class _ReadMessageSuccess implements ChatroomState {
   bool get response;
   @JsonKey(ignore: true)
   _$ReadMessageSuccessCopyWith<_ReadMessageSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ViewProfileSuccessCopyWith<$Res> {
+  factory _$ViewProfileSuccessCopyWith(
+          _ViewProfileSuccess value, $Res Function(_ViewProfileSuccess) then) =
+      __$ViewProfileSuccessCopyWithImpl<$Res>;
+  $Res call({Post post});
+
+  $PostCopyWith<$Res> get post;
+}
+
+/// @nodoc
+class __$ViewProfileSuccessCopyWithImpl<$Res>
+    extends _$ChatroomStateCopyWithImpl<$Res>
+    implements _$ViewProfileSuccessCopyWith<$Res> {
+  __$ViewProfileSuccessCopyWithImpl(
+      _ViewProfileSuccess _value, $Res Function(_ViewProfileSuccess) _then)
+      : super(_value, (v) => _then(v as _ViewProfileSuccess));
+
+  @override
+  _ViewProfileSuccess get _value => super._value as _ViewProfileSuccess;
+
+  @override
+  $Res call({
+    Object? post = freezed,
+  }) {
+    return _then(_ViewProfileSuccess(
+      post == freezed
+          ? _value.post
+          : post // ignore: cast_nullable_to_non_nullable
+              as Post,
+    ));
+  }
+
+  @override
+  $PostCopyWith<$Res> get post {
+    return $PostCopyWith<$Res>(_value.post, (value) {
+      return _then(_value.copyWith(post: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_ViewProfileSuccess implements _ViewProfileSuccess {
+  const _$_ViewProfileSuccess(this.post);
+
+  @override
+  final Post post;
+
+  @override
+  String toString() {
+    return 'ChatroomState.viewProfileSuccess(post: $post)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ViewProfileSuccess &&
+            (identical(other.post, post) || other.post == post));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, post);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ViewProfileSuccessCopyWith<_ViewProfileSuccess> get copyWith =>
+      __$ViewProfileSuccessCopyWithImpl<_ViewProfileSuccess>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() sendingChat,
+    required TResult Function(ChatResponse chatResponse) getChatSuccess,
+    required TResult Function(ChatFailure failure) failure,
+    required TResult Function(SendChat content) sendChatSuccess,
+    required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
+  }) {
+    return viewProfileSuccess(post);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? sendingChat,
+    TResult Function(ChatResponse chatResponse)? getChatSuccess,
+    TResult Function(ChatFailure failure)? failure,
+    TResult Function(SendChat content)? sendChatSuccess,
+    TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
+  }) {
+    return viewProfileSuccess?.call(post);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? sendingChat,
+    TResult Function(ChatResponse chatResponse)? getChatSuccess,
+    TResult Function(ChatFailure failure)? failure,
+    TResult Function(SendChat content)? sendChatSuccess,
+    TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
+    required TResult orElse(),
+  }) {
+    if (viewProfileSuccess != null) {
+      return viewProfileSuccess(post);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SendingChat value) sendingChat,
+    required TResult Function(_GetChatSuccess value) getChatSuccess,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_SendChatSuccess value) sendChatSuccess,
+    required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+  }) {
+    return viewProfileSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SendingChat value)? sendingChat,
+    TResult Function(_GetChatSuccess value)? getChatSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_SendChatSuccess value)? sendChatSuccess,
+    TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+  }) {
+    return viewProfileSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SendingChat value)? sendingChat,
+    TResult Function(_GetChatSuccess value)? getChatSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_SendChatSuccess value)? sendChatSuccess,
+    TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    required TResult orElse(),
+  }) {
+    if (viewProfileSuccess != null) {
+      return viewProfileSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ViewProfileSuccess implements ChatroomState {
+  const factory _ViewProfileSuccess(Post post) = _$_ViewProfileSuccess;
+
+  Post get post;
+  @JsonKey(ignore: true)
+  _$ViewProfileSuccessCopyWith<_ViewProfileSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -4,6 +4,7 @@ import 'package:crave_app/domain/chat/chat_request.dart';
 import 'package:crave_app/domain/chat/chat_response.dart';
 import 'package:crave_app/domain/chat/i_chat_repository.dart';
 import 'package:crave_app/domain/chat/send_chat.dart';
+import 'package:crave_app/domain/post/post.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -49,6 +50,16 @@ class ChatroomBloc extends Bloc<ChatroomEvent, ChatroomState> {
               (failure) => emit(ChatroomState.failure(failure)),
               (chatResponse) =>
                   emit(ChatroomState.readMessageSuccess(chatResponse)),
+            );
+          },
+          viewProfile: (_event) async {
+            emit(const ChatroomState.loading());
+            final failureOrSuccess =
+                await _chatRepository.viewProfile(userId: _event.userId);
+            failureOrSuccess.fold(
+              (failure) => emit(ChatroomState.failure(failure)),
+              (chatResponse) =>
+                  emit(ChatroomState.viewProfileSuccess(chatResponse)),
             );
           },
         );

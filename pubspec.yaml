@@ -34,6 +34,7 @@ dependencies:
   connectivity_plus: ^2.0.2
   crypto: ^3.0.1
   cupertino_icons: ^1.0.2
+  custom_pop_up_menu: ^1.2.3+1
   dio: ^4.0.0
   fast_immutable_collections: ^7.0.3
   file_picker: ^4.3.0
@@ -80,6 +81,7 @@ dependencies:
   open_file: ^3.2.1
   path_provider: ^2.0.8
   permission_handler: ^8.3.0
+  photo_view: ^0.13.0
   sign_in_with_apple: ^3.3.0
   smooth_page_indicator: ^1.0.0+2
   uuid: ^3.0.4

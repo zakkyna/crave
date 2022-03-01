@@ -190,9 +190,6 @@ class ProfileRepository implements IProfileRepository {
       if (!islive) {
         final ref = _firebaseStorage.refFromURL(path);
         await ref.delete();
-        await _firestore.collection('posts').doc(currentUser.uid).update({
-          'photos': FieldValue.arrayRemove([path])
-        });
       }
       return right(path);
     } on FirebaseException catch (e, stacktrace) {

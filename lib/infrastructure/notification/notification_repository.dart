@@ -7,11 +7,13 @@ import 'package:crave_app/presentation/chat/chat_room_page.dart';
 import 'package:crave_app/presentation/routers/routers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
+import 'dart:convert';
 
 @LazySingleton(as: INotificationRepository)
 class NotificationRepository implements INotificationRepository {
@@ -130,12 +132,10 @@ class NotificationRepository implements INotificationRepository {
         ?.createNotificationChannel(channel);
     const androidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    const iOSSettings = IOSInitializationSettings(
-      requestSoundPermission: false,
-      requestBadgePermission: false,
-      requestAlertPermission: false,
+    final iOSSettings = IOSInitializationSettings(
+      onDidReceiveLocalNotification: onDidReceiveLocalNotification,
     );
-    const initSetttings =
+    final initSetttings =
         InitializationSettings(android: androidSettings, iOS: iOSSettings);
     _localNotificationsPlugin.initialize(initSetttings,
         onSelectNotification: (message) async {
@@ -184,4 +184,40 @@ class NotificationRepository implements INotificationRepository {
             'This channel is used for important notifications.', // description
         importance: Importance.high,
       );
+
+  void onDidReceiveLocalNotification(
+      int id, String? title, String? body, String? payload) async {
+    // display a dialog with the notification details, tap ok to go to another page
+    Get.snackbar(title ?? '', body ?? '', onTap: (getSnackbar) async {
+      final currentUser = _firebaseAuth.currentUser;
+      if (currentUser == null) {
+        return;
+      }
+      final data = json.decode(payload ?? '');
+      final roomSnapshot =
+          await _firestore.collection('rooms').doc(data['room_id']).get();
+      final roomNotFound =
+          roomSnapshot.data() == null || (roomSnapshot.data()?.isEmpty ?? true);
+      if (roomNotFound) {
+        return;
+      }
+      final roomModel = RoomModel.fromJson(roomSnapshot.data()!);
+
+      final userSnapshot =
+          await _firestore.collection('users').doc(currentUser.uid).get();
+      final isNoData =
+          userSnapshot.data() == null || (userSnapshot.data()?.isEmpty ?? true);
+      if (isNoData) {
+        return;
+      }
+      final currentProfile = Profile.fromJson(userSnapshot.data()!);
+
+      Get.to(
+        () => ChatRoomPage(
+          roomModel: roomModel,
+          currentProfile: currentProfile,
+        ),
+      );
+    });
+  }
 }

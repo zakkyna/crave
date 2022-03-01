@@ -4,6 +4,7 @@ import 'package:crave_app/domain/core/entity/coordinate.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/profile.dart';
+import 'package:crave_app/presentation/core/widget/custom_photo_view.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,22 +48,35 @@ class ShowEveryOneWidget extends StatelessWidget {
               controller: pageController,
               children: [
                 ...post.photos.map((photo) {
-                  return CachedNetworkImage(
-                    imageUrl: photo,
-                    imageBuilder: (context, imageProvider) => Container(
-                      height: 415.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(Dimens.defaultBorderRadius),
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        CustomPhotoViewGalley(
+                          images: post.photos
+                              .map((photo) => CachedNetworkImageProvider(photo))
+                              .toList(),
+                          pageController: pageController,
+                          descriptions: post.bio,
+                        ),
+                      );
+                    },
+                    child: CachedNetworkImage(
+                      imageUrl: photo,
+                      imageBuilder: (context, imageProvider) => Container(
+                        height: 415.h,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimens.defaultBorderRadius),
+                          image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                        ),
                       ),
-                    ),
-                    placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => const Center(
-                      child: Icon(Icons.error),
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => const Center(
+                        child: Icon(Icons.error),
+                      ),
                     ),
                   );
                 }).toList(),
@@ -126,77 +140,111 @@ class ShowEveryOneWidget extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    child: Row(
-                  children: [
-                    Expanded(
-                      child: RawMaterialButton(
-                        onPressed: () =>
-                            _bloc.add(PostEvent.dismissPost(post.uid)),
-                        elevation: 2.0,
-                        fillColor: Colors.white,
-                        child: Icon(
-                          Icons.close_rounded,
-                          size: 24.sp,
-                          color: Colors.grey,
-                        ),
-                        padding: const EdgeInsets.all(8.0),
-                        shape: const CircleBorder(
-                          side: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 64.h,
-                        width: 64.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.shadowColor.withOpacity(0.1),
-                              spreadRadius: 4,
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: LikeButton(
-                          isLiked: post.isLikedByMe(currentProfile.uid),
-                          size: 64.r,
-                          circleColor: const CircleColor(
-                              start: Color(0xff00ddff), end: Color(0xff0099cc)),
-                          bubblesColor: const BubblesColor(
-                            dotPrimaryColor: Color(0xff33b5e5),
-                            dotSecondaryColor: Color(0xff0099cc),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: RawMaterialButton(
+                          onPressed: () =>
+                              _bloc.add(PostEvent.dismissPost(post.uid)),
+                          elevation: 2.0,
+                          fillColor: Colors.white,
+                          child: Icon(
+                            Icons.close_rounded,
+                            size: 24.sp,
+                            color: Colors.grey,
                           ),
-                          onTap: onLikeButtonTapped,
-                          animationDuration: const Duration(milliseconds: 500),
-                          likeBuilder: (bool isLiked) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                AddHorizontalSpace(1.w),
-                                Icon(
-                                  Icons.favorite,
-                                  color: isLiked
-                                      ? AppColors.mainColor
-                                      : Colors.grey,
-                                  size: 35.r,
-                                ),
-                              ],
-                            );
-                          },
+                          padding: const EdgeInsets.all(8.0),
+                          shape: const CircleBorder(
+                            side: BorderSide.none,
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(child: Container()),
-                  ],
-                ))
+                      Expanded(
+                        child: Container(
+                          height: 64.h,
+                          width: 64.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor.withOpacity(0.1),
+                                spreadRadius: 4,
+                                blurRadius: 12,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: LikeButton(
+                            isLiked: post.isLikedByMe(currentProfile.uid),
+                            size: 64.r,
+                            circleColor: const CircleColor(
+                                start: Color(0xff00ddff),
+                                end: Color(0xff0099cc)),
+                            bubblesColor: const BubblesColor(
+                              dotPrimaryColor: Color(0xff33b5e5),
+                              dotSecondaryColor: Color(0xff0099cc),
+                            ),
+                            onTap: onLikeButtonTapped,
+                            animationDuration:
+                                const Duration(milliseconds: 500),
+                            likeBuilder: (bool isLiked) {
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AddHorizontalSpace(1.w),
+                                  Icon(
+                                    Icons.favorite,
+                                    color: isLiked
+                                        ? AppColors.mainColor
+                                        : Colors.grey,
+                                    size: 35.r,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 415.h,
+            child: Column(
+              children: [
+                Expanded(child: Container()),
+                Container(
+                  width: double.infinity,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+                  margin: EdgeInsets.all(8.w),
+                  decoration: BoxDecoration(
+                    color: Colors.black38,
+                    borderRadius: BorderRadius.circular(
+                      12.r,
+                    ),
+                  ),
+                  child: Text(
+                    post.bio ?? '',
+                    style: Styles.sfProDisplay.copyWith(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 40.h,
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

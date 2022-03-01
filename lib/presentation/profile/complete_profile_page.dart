@@ -5,9 +5,11 @@ import 'package:crave_app/application/profile/update_profile/update_profile_bloc
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/custom_button.dart';
+import 'package:crave_app/presentation/core/widget/custom_photo_view.dart';
 import 'package:crave_app/presentation/core/widget/custom_textfield.dart';
 import 'package:crave_app/presentation/core/widget/stack_with_progress.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart' hide Svg;
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -251,6 +253,7 @@ class CompleteProfilePage extends StatelessWidget {
                               color: Colors.grey[400],
                               height: 1.6,
                             ),
+                            textCapitalization: TextCapitalization.characters,
                             hintMaxLines: 3,
                             hintText:
                                 'Write what you want to tell the others on Crave... '
@@ -266,21 +269,43 @@ class CompleteProfilePage extends StatelessWidget {
                               (index) => index + 1,
                             ).map(
                               (index) => state.photos.length < index
-                                  ? Ink.image(
-                                      height: 160.h,
-                                      width: 100.w,
-                                      fit: BoxFit.contain,
-                                      image: Svg(
-                                        'assets/images/add_photo_$index.svg',
-                                        size: Size(100.w, 160.h),
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                      child: InkWell(
-                                        borderRadius:
-                                            BorderRadius.circular(12.w),
-                                        onTap: () => _handleAddPhoto(),
-                                      ),
-                                    )
+                                  ? state.isUploading &&
+                                          index == (state.photos.length + 1)
+                                      ? SizedBox(
+                                          height: 160.h,
+                                          width: 100.w,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Uploading...',
+                                                style: Styles.kefa12SemiBold,
+                                              ),
+                                              SizedBox(
+                                                width: 12.w,
+                                                height: 12.h,
+                                                child:
+                                                    const CircularProgressIndicator(),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      : Ink.image(
+                                          height: 160.h,
+                                          width: 100.w,
+                                          fit: BoxFit.contain,
+                                          image: Svg(
+                                            'assets/images/add_photo_$index.svg',
+                                            size: Size(100.w, 160.h),
+                                          ),
+                                          padding: EdgeInsets.zero,
+                                          child: InkWell(
+                                            borderRadius:
+                                                BorderRadius.circular(12.w),
+                                            onTap: () => _handleAddPhoto(),
+                                          ),
+                                        )
                                   : Ink(
                                       height: 160.h,
                                       width: 100.w,
@@ -291,16 +316,23 @@ class CompleteProfilePage extends StatelessWidget {
                                           end: 6.w,
                                         ),
                                         badgeColor: Colors.black45,
-                                        badgeContent: const Icon(
-                                          Icons.close,
-                                          color: Colors.white,
-                                          size: 12,
-                                        ),
-                                        child: InkWell(
-                                          borderRadius:
-                                              BorderRadius.circular(12.w),
+                                        badgeContent: GestureDetector(
                                           onTap: () => _handleDeletePhoto(
                                               state.photos[index - 1]),
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 18,
+                                          ),
+                                        ),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Get.to(() => CustomPhotoViewSingle(
+                                                image:
+                                                    CachedNetworkImageProvider(
+                                                        state.photos[
+                                                            index - 1])));
+                                          },
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(12),
@@ -321,7 +353,8 @@ class CompleteProfilePage extends StatelessWidget {
                         CustomButton(
                           height: 56.h,
                           onPressed: state.photos.isNotEmpty &&
-                                  state.bio.isValid()
+                                  state.bio.isValid() &&
+                                  !state.isUploading
                               ? () => _bloc
                                   .add(const UpdateProfileEvent.postPressed())
                               : null,
@@ -332,6 +365,19 @@ class CompleteProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (state.photos.length < 3)
+                  Positioned(
+                    bottom: 130,
+                    right: 20,
+                    child: FloatingActionButton(
+                      onPressed: () => _handleAddPhoto(),
+                      child: SvgPicture.asset(
+                        'assets/icon/camera_add.svg',
+                        color: Colors.white,
+                      ),
+                      backgroundColor: AppColors.mainColor,
+                    ),
+                  )
               ],
             );
           },
