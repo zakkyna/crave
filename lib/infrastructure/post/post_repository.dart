@@ -212,8 +212,7 @@ class PostRepository implements IPostRepository {
             getData.docs.map((doc) => Post.fromJson(doc.data())).toList();
         posts = data
             .where((post) =>
-                ((post.dismissedBy?[currentUser.uid] ?? false) != true) &&
-                post.photos.isNotEmpty)
+                ((post.dismissedBy?[currentUser.uid] ?? false) != true))
             .toList();
       }
 

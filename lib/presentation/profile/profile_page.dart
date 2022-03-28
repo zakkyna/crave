@@ -111,7 +111,7 @@ class ProfilePage extends HookWidget {
                       onPressed: () {
                         Get.back();
                         _bloc.add(
-                          UpdateProfileEvent.deletePhoto(url, true),
+                          UpdateProfileEvent.deletePhoto(url),
                         );
                       },
                       child: Padding(

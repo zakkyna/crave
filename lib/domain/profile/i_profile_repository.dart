@@ -11,6 +11,6 @@ abstract class IProfileRepository {
   Future<Either<ProfileFailure, String>> pickPhotoViaCamera();
   Future<Either<ProfileFailure, String>> pickPhotoViaGallery();
   Future<Either<ProfileFailure, String>> uploadPhoto(String path);
-  Future<Either<ProfileFailure, String>> deletePhoto(String url, bool isLive);
+  Future<Either<ProfileFailure, String>> deletePhoto(String url);
   Future<Either<ProfileFailure, Profile>> getCurrentProfile();
 }

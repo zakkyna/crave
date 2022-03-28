@@ -106,8 +106,18 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
               ),
             );
           },
-          successUpload: (_event) {
+          successUpload: (_event) async {
             final photos = state.photos.append(_event.path).toList();
+            emit(state.copyWith(isLoading: true));
+            final currentProfile =
+                state.profileOption.match((t) => t, () => null)!;
+            final profile = currentProfile.copyWith(
+              bio: state.bio.getOrNull(),
+              photos: photos,
+              profilePicture: state.photos.isEmpty ? '' : state.photos.first,
+              isPublished: false,
+            );
+            await _profileRepository.updateProfile(profile);
             emit(
               state.copyWith(
                 isLoading: false,
@@ -121,7 +131,6 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
             emit(state.copyWith(isLoading: true));
             final deleteFailureOrSuccess = await _profileRepository.deletePhoto(
               _event.url,
-              _event.isLive,
             );
             emit(
               state.copyWith(
@@ -132,8 +141,18 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
               ),
             );
           },
-          successDelete: (_event) {
+          successDelete: (_event) async {
             final photos = state.photos.delete(_event.url).toList();
+            emit(state.copyWith(isLoading: true));
+            final currentProfile =
+                state.profileOption.match((t) => t, () => null)!;
+            final profile = currentProfile.copyWith(
+              bio: state.bio.getOrNull(),
+              photos: photos,
+              profilePicture: state.photos.isEmpty ? '' : state.photos.first,
+              isPublished: false,
+            );
+            await _profileRepository.updateProfile(profile);
             emit(
               state.copyWith(
                 isLoading: false,

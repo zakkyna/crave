@@ -106,7 +106,7 @@ class CompleteProfilePage extends StatelessWidget {
                       onPressed: () {
                         Get.back();
                         _bloc.add(
-                          UpdateProfileEvent.deletePhoto(url, false),
+                          UpdateProfileEvent.deletePhoto(url),
                         );
                       },
                       child: Padding(

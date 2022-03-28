@@ -98,6 +98,7 @@ class WhoLikesMePage extends GetView<HomeController> {
                 currentProfile: currentProfile,
                 coordinate: controller.coordinate.value ??
                     Coordinate.fromGeopoint(currentProfile.location!.geopoint),
+                isWhoLikesMe: true,
               );
             },
           ),

@@ -17,12 +17,14 @@ class PostWidget extends StatelessWidget {
   final Post post;
   final Profile currentProfile;
   final Coordinate coordinate;
+  final bool isWhoLikesMe;
 
   const PostWidget({
     Key? key,
     required this.post,
     required this.currentProfile,
     required this.coordinate,
+    required this.isWhoLikesMe,
   }) : super(key: key);
 
   @override
@@ -194,7 +196,8 @@ class PostWidget extends StatelessWidget {
                                 side: BorderSide.none,
                               ),
                             ),
-                            if (currentProfile.isEnableInstantChat == true)
+                            if (currentProfile.isEnableInstantChat == true &&
+                                !isWhoLikesMe)
                               RawMaterialButton(
                                 onPressed: () {
                                   _bloc.add(PostEvent.createInstantChat(post));
@@ -214,40 +217,61 @@ class PostWidget extends StatelessWidget {
                                   side: BorderSide.none,
                                 ),
                               ),
-                            LikeButton(
-                              isLiked: post.isLikedByMe(currentProfile.uid),
-                              size: 60.r,
-                              circleColor: const CircleColor(
-                                  start: Color(0xff00ddff),
-                                  end: Color(0xff0099cc)),
-                              bubblesColor: const BubblesColor(
-                                dotPrimaryColor: Color(0xff33b5e5),
-                                dotSecondaryColor: Color(0xff0099cc),
-                              ),
-                              onTap: onLikeButtonTapped,
-                              animationDuration:
-                                  const Duration(milliseconds: 500),
-                              likeBuilder: (bool isLiked) {
-                                return Container(
-                                  height: 64.h,
-                                  width: 64.w,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: isLiked
-                                        ? AppColors.mainColor
-                                        : const Color(0xFFEDEDED),
+                            isWhoLikesMe
+                                ? RawMaterialButton(
+                                    onPressed: () {
+                                      _bloc.add(PostEvent.createRoom(post));
+                                    },
+                                    elevation: 0,
+                                    fillColor: const Color(0xFFEDEDED),
+                                    child: SvgPicture.asset(
+                                      'assets/icon/home_chat_icon.svg',
+                                      color: AppColors.mainColor,
+                                    ),
+                                    constraints: BoxConstraints.tightFor(
+                                      width: 60.r,
+                                      height: 60.r,
+                                    ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    shape: const CircleBorder(
+                                      side: BorderSide.none,
+                                    ),
+                                  )
+                                : LikeButton(
+                                    isLiked:
+                                        post.isLikedByMe(currentProfile.uid),
+                                    size: 60.r,
+                                    circleColor: const CircleColor(
+                                        start: Color(0xff00ddff),
+                                        end: Color(0xff0099cc)),
+                                    bubblesColor: const BubblesColor(
+                                      dotPrimaryColor: Color(0xff33b5e5),
+                                      dotSecondaryColor: Color(0xff0099cc),
+                                    ),
+                                    onTap: onLikeButtonTapped,
+                                    animationDuration:
+                                        const Duration(milliseconds: 500),
+                                    likeBuilder: (bool isLiked) {
+                                      return Container(
+                                        height: 64.h,
+                                        width: 64.w,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: isLiked
+                                              ? AppColors.mainColor
+                                              : const Color(0xFFEDEDED),
+                                        ),
+                                        child: Icon(
+                                          Icons.favorite,
+                                          color: isLiked
+                                              ? Colors.white
+                                              : const Color(0xFFBDBDBD),
+                                          size: 35.r,
+                                        ),
+                                      );
+                                    },
                                   ),
-                                  child: Icon(
-                                    Icons.favorite,
-                                    color: isLiked
-                                        ? Colors.white
-                                        : const Color(0xFFBDBDBD),
-                                    size: 35.r,
-                                  ),
-                                );
-                              },
-                            ),
                           ],
                         ),
                       )

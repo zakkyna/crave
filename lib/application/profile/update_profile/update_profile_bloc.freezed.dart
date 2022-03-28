@@ -49,10 +49,9 @@ class _$UpdateProfileEventTearOff {
     );
   }
 
-  _DeletePhoto deletePhoto(String url, bool isLive) {
+  _DeletePhoto deletePhoto(String url) {
     return _DeletePhoto(
       url,
-      isLive,
     );
   }
 
@@ -88,7 +87,7 @@ mixin _$UpdateProfileEvent {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -103,7 +102,7 @@ mixin _$UpdateProfileEvent {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -118,7 +117,7 @@ mixin _$UpdateProfileEvent {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -267,7 +266,7 @@ class _$_Init implements _Init {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -285,7 +284,7 @@ class _$_Init implements _Init {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -303,7 +302,7 @@ class _$_Init implements _Init {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -453,7 +452,7 @@ class _$_BioChanged implements _BioChanged {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -471,7 +470,7 @@ class _$_BioChanged implements _BioChanged {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -489,7 +488,7 @@ class _$_BioChanged implements _BioChanged {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -617,7 +616,7 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -635,7 +634,7 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -653,7 +652,7 @@ class _$_AddPhotoViaCamera implements _AddPhotoViaCamera {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -776,7 +775,7 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -794,7 +793,7 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -812,7 +811,7 @@ class _$_AddPhotoViaGallery implements _AddPhotoViaGallery {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -958,7 +957,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -976,7 +975,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -994,7 +993,7 @@ class _$_UploadPhoto implements _UploadPhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1145,7 +1144,7 @@ class _$_SuccessUpload implements _SuccessUpload {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -1163,7 +1162,7 @@ class _$_SuccessUpload implements _SuccessUpload {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1181,7 +1180,7 @@ class _$_SuccessUpload implements _SuccessUpload {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1267,7 +1266,7 @@ abstract class _$DeletePhotoCopyWith<$Res> {
   factory _$DeletePhotoCopyWith(
           _DeletePhoto value, $Res Function(_DeletePhoto) then) =
       __$DeletePhotoCopyWithImpl<$Res>;
-  $Res call({String url, bool isLive});
+  $Res call({String url});
 }
 
 /// @nodoc
@@ -1284,17 +1283,12 @@ class __$DeletePhotoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? url = freezed,
-    Object? isLive = freezed,
   }) {
     return _then(_DeletePhoto(
       url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      isLive == freezed
-          ? _value.isLive
-          : isLive // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1302,16 +1296,14 @@ class __$DeletePhotoCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DeletePhoto implements _DeletePhoto {
-  const _$_DeletePhoto(this.url, this.isLive);
+  const _$_DeletePhoto(this.url);
 
   @override
   final String url;
-  @override
-  final bool isLive;
 
   @override
   String toString() {
-    return 'UpdateProfileEvent.deletePhoto(url: $url, isLive: $isLive)';
+    return 'UpdateProfileEvent.deletePhoto(url: $url)';
   }
 
   @override
@@ -1319,12 +1311,11 @@ class _$_DeletePhoto implements _DeletePhoto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DeletePhoto &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.isLive, isLive) || other.isLive == isLive));
+            (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, url, isLive);
+  int get hashCode => Object.hash(runtimeType, url);
 
   @JsonKey(ignore: true)
   @override
@@ -1340,13 +1331,13 @@ class _$_DeletePhoto implements _DeletePhoto {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
     required TResult Function() reset,
   }) {
-    return deletePhoto(url, isLive);
+    return deletePhoto(url);
   }
 
   @override
@@ -1358,13 +1349,13 @@ class _$_DeletePhoto implements _DeletePhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
     TResult Function()? reset,
   }) {
-    return deletePhoto?.call(url, isLive);
+    return deletePhoto?.call(url);
   }
 
   @override
@@ -1376,7 +1367,7 @@ class _$_DeletePhoto implements _DeletePhoto {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1384,7 +1375,7 @@ class _$_DeletePhoto implements _DeletePhoto {
     required TResult orElse(),
   }) {
     if (deletePhoto != null) {
-      return deletePhoto(url, isLive);
+      return deletePhoto(url);
     }
     return orElse();
   }
@@ -1449,10 +1440,9 @@ class _$_DeletePhoto implements _DeletePhoto {
 }
 
 abstract class _DeletePhoto implements UpdateProfileEvent {
-  const factory _DeletePhoto(String url, bool isLive) = _$_DeletePhoto;
+  const factory _DeletePhoto(String url) = _$_DeletePhoto;
 
   String get url;
-  bool get isLive;
   @JsonKey(ignore: true)
   _$DeletePhotoCopyWith<_DeletePhoto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1528,7 +1518,7 @@ class _$_SuccessDelete implements _SuccessDelete {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -1546,7 +1536,7 @@ class _$_SuccessDelete implements _SuccessDelete {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1564,7 +1554,7 @@ class _$_SuccessDelete implements _SuccessDelete {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1692,7 +1682,7 @@ class _$_PostPressed implements _PostPressed {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -1710,7 +1700,7 @@ class _$_PostPressed implements _PostPressed {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1728,7 +1718,7 @@ class _$_PostPressed implements _PostPressed {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1851,7 +1841,7 @@ class _$_HidePostPressed implements _HidePostPressed {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -1869,7 +1859,7 @@ class _$_HidePostPressed implements _HidePostPressed {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -1887,7 +1877,7 @@ class _$_HidePostPressed implements _HidePostPressed {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -2007,7 +1997,7 @@ class _$_Reset implements _Reset {
     required TResult Function() addPhotoViaGallery,
     required TResult Function(String path) uploadPhoto,
     required TResult Function(String path) successUpload,
-    required TResult Function(String url, bool isLive) deletePhoto,
+    required TResult Function(String url) deletePhoto,
     required TResult Function(String url) successDelete,
     required TResult Function() postPressed,
     required TResult Function() hidePostPressed,
@@ -2025,7 +2015,7 @@ class _$_Reset implements _Reset {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,
@@ -2043,7 +2033,7 @@ class _$_Reset implements _Reset {
     TResult Function()? addPhotoViaGallery,
     TResult Function(String path)? uploadPhoto,
     TResult Function(String path)? successUpload,
-    TResult Function(String url, bool isLive)? deletePhoto,
+    TResult Function(String url)? deletePhoto,
     TResult Function(String url)? successDelete,
     TResult Function()? postPressed,
     TResult Function()? hidePostPressed,

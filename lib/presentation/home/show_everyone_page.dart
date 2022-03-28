@@ -97,6 +97,7 @@ class ShowEveryOnePage extends GetView<HomeController> {
                               post: post,
                               currentProfile: currentProfile,
                               coordinate: controller.coordinate.value!,
+                              isWhoLikesMe: false,
                             );
                           } catch (_) {
                             return const Center(

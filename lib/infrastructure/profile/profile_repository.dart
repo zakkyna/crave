@@ -180,17 +180,14 @@ class ProfileRepository implements IProfileRepository {
   }
 
   @override
-  Future<Either<ProfileFailure, String>> deletePhoto(
-      String path, bool islive) async {
+  Future<Either<ProfileFailure, String>> deletePhoto(String path) async {
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser == null) {
         return left(const ProfileFailure.unauthenticated());
       }
-      if (!islive) {
-        final ref = _firebaseStorage.refFromURL(path);
-        await ref.delete();
-      }
+      final ref = _firebaseStorage.refFromURL(path);
+      await ref.delete();
       return right(path);
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
