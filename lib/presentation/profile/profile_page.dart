@@ -260,17 +260,31 @@ class ProfilePage extends HookWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: Dimens.defaultMargin),
                                         child: SvgPicture.asset(
-                                          'assets/images/crave_logo.svg',
+                                            'assets/images/crave_logo.svg'),
+                                      ),
+                                    ),
+                                    AddVerticalSpace(20.h),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: Dimens.defaultMargin),
+                                      child: Center(
+                                        child: Text(
+                                          "PROFILE",
+                                          style: Styles.kefa24Regular,
                                         ),
                                       ),
                                     ),
                                     AddVerticalSpace(10.h),
-                                    Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(top: 10.h),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: Dimens.defaultMargin),
+                                      child: Center(
                                         child: Text(
-                                          'PROFILE',
-                                          style: Styles.kefa18SemiBold,
+                                          'Post a Message here with a Photo to Share with Others',
+                                          style: Styles.kefa16Regular.copyWith(
+                                            color: Colors.grey,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     ),
@@ -304,7 +318,7 @@ class ProfilePage extends HookWidget {
                                 ),
                               ],
                             ),
-                            AddVerticalSpace(30.h),
+                            AddVerticalSpace(10.h),
                             Expanded(
                               child: CustomTextField(
                                 onTap: () {
@@ -424,8 +438,7 @@ class ProfilePage extends HookWidget {
                                     () => false)
                                 ? CustomButton(
                                     height: 56.h,
-                                    onPressed: state.photos.isNotEmpty &&
-                                            state.bio.isValid() &&
+                                    onPressed: state.bio.isValid() &&
                                             !state.isUploading
                                         ? () {
                                             isTyping.value = false;
@@ -442,8 +455,8 @@ class ProfilePage extends HookWidget {
                                   )
                                 : CustomButton(
                                     height: 56.h,
-                                    onPressed: state.photos.isNotEmpty &&
-                                            state.bio.isValid()
+                                    onPressed: state.bio.isValid() &&
+                                            !state.isUploading
                                         ? () {
                                             isTyping.value = false;
                                             _bloc.add(const UpdateProfileEvent

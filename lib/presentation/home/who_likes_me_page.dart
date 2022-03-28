@@ -5,7 +5,7 @@ import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
-import 'package:crave_app/presentation/home/widgets/who_likes_me_widget.dart';
+import 'package:crave_app/presentation/home/widgets/post_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -80,7 +80,7 @@ class WhoLikesMePage extends GetView<HomeController> {
                           color: AppColors.mainColor.withOpacity(0.6),
                         ),
                       ),
-                      AddVerticalSpace(5),
+                      const AddVerticalSpace(5),
                       Text(
                         'Keep sending Likes to Match',
                         style: Styles.kefa14Regular.copyWith(
@@ -93,7 +93,7 @@ class WhoLikesMePage extends GetView<HomeController> {
               ],
             ),
             itemBuilder: (context, post, index) {
-              return WhoLikesMeWidget(
+              return PostWidget(
                 post: post,
                 currentProfile: currentProfile,
                 coordinate: controller.coordinate.value ??

@@ -3,6 +3,11 @@ part of 'chatroom_bloc.dart';
 @freezed
 class ChatroomEvent with _$ChatroomEvent {
   const factory ChatroomEvent.getChat(ChatRequest chatRequest) = _GetChat;
+  const factory ChatroomEvent.uploadAttachment({
+    required String roomId,
+    required String path,
+  }) = _UploadAttachment;
+
   const factory ChatroomEvent.sendMessage({
     required SendChat content,
     required String roomId,

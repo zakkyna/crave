@@ -49,8 +49,11 @@ class WhoLikesMeWidget extends StatelessWidget {
                           images: post.photos
                               .map((photo) => CachedNetworkImageProvider(photo))
                               .toList(),
-                          pageController: pageController,
+                          index: pageController.page?.toInt() ?? 0,
                           descriptions: post.bio,
+                          tags: post.photos
+                              .map((photo) => photo.hashCode.toString())
+                              .toList(),
                         ),
                       );
                     },
@@ -96,7 +99,7 @@ class WhoLikesMeWidget extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                   'assets/images/location_icon.svg'),
-                              AddHorizontalSpace(5),
+                              const AddHorizontalSpace(5),
                               Text(
                                 '${post.distanceInMiles(currentProfile.location!.geopoint)} ${post.city ?? ''}, ${post.state ?? ''}',
                                 style: Styles.sfProDisplay.copyWith(

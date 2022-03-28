@@ -13,8 +13,9 @@ class ViewProfilePage extends StatelessWidget {
     return CustomPhotoViewGalley(
       images:
           post.photos.map((url) => CachedNetworkImageProvider(url)).toList(),
-      pageController: pageController,
+      index: pageController.page?.toInt() ?? 0,
       descriptions: post.bio,
+      tags: post.photos.map((url) => url.hashCode.toString()).toList(),
     );
   }
 }

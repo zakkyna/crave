@@ -10,6 +10,7 @@ abstract class IChatRepository {
   Future<Either<ChatFailure, Stream<List<RoomModel>>>> getRoomsStream();
   Future<Either<ChatFailure, String>> createRoom({
     required Post post,
+    required bool isInstantChat,
   });
   Future<Either<ChatFailure, ChatResponse>> getChatMessages(
       ChatRequest chatRequest);
@@ -24,5 +25,10 @@ abstract class IChatRepository {
 
   Future<Either<ChatFailure, Post>> viewProfile({
     required String userId,
+  });
+
+  Future<Either<ChatFailure, String>> uploadAttachment({
+    required String roomId,
+    required String path,
   });
 }

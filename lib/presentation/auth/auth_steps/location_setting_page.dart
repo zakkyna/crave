@@ -40,13 +40,13 @@ class LocationSettingPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset('assets/images/location_permission.svg'),
-                    AddVerticalSpace(40),
+                    const AddVerticalSpace(40),
                     Text(
                       'Turn on your location settings'.toUpperCase(),
                       style: Styles.kefa24Medium,
                       textAlign: TextAlign.center,
                     ),
-                    AddVerticalSpace(20),
+                    const AddVerticalSpace(20),
                     Text(
                       'We won\'t share your exact location.',
                       style: Styles.kefa16Regular.copyWith(color: Colors.grey),

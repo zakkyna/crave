@@ -10,7 +10,6 @@ import 'package:crave_app/presentation/home/show_everyone_page.dart';
 import 'package:crave_app/presentation/home/who_likes_me_page.dart';
 import 'package:crave_app/presentation/home/widgets/top_tab_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -142,7 +141,7 @@ class HomePage extends GetView<HomeController> {
                 }),
               ],
             ),
-            AddVerticalSpace(20),
+            const AddVerticalSpace(20),
             Expanded(
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),

@@ -3,7 +3,6 @@ import 'package:crave_app/presentation/auth/auth_page.dart';
 import 'package:crave_app/presentation/auth/welcome_page.dart';
 import 'package:crave_app/presentation/intro/intro_page.dart';
 import 'package:crave_app/presentation/landing/landing_page.dart';
-import 'package:crave_app/presentation/profile/notification_setting_page.dart';
 import 'package:crave_app/presentation/profile/settings_page.dart';
 import 'package:crave_app/presentation/subscription/buy_subscription_page.dart';
 import 'package:get/get.dart';
@@ -16,7 +15,6 @@ class Routers {
   static const String completeProfile = '/complete_profile';
   static const String chatRoom = '/chatroom';
   static const String settings = '/settings';
-  static const String notificationSetting = '/notification_setting';
 
   final List<GetPage> routers = [
     GetPage(
@@ -44,10 +42,6 @@ class Routers {
     GetPage(
       name: Routers.settings,
       page: () => const SettingsPage(),
-    ),
-    GetPage(
-      name: Routers.notificationSetting,
-      page: () => const NotificationSettingPage(),
     ),
   ];
 }

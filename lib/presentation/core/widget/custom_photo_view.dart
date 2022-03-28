@@ -8,20 +8,23 @@ import 'package:photo_view/photo_view_gallery.dart';
 class CustomPhotoViewGalley extends StatelessWidget {
   final List<ImageProvider> images;
   final String? descriptions;
-  final PageController pageController;
+  final int index;
   final void Function(int)? onPageChanged;
   final BoxDecoration? backgroundDecoration;
+  final List<String> tags;
   const CustomPhotoViewGalley({
     Key? key,
     required this.images,
-    required this.pageController,
+    this.index = 0,
     this.onPageChanged,
     this.backgroundDecoration,
     this.descriptions,
+    required this.tags,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _pageController = PageController(initialPage: index);
     return Scaffold(
       body: Stack(
         children: [
@@ -34,8 +37,9 @@ class CustomPhotoViewGalley extends StatelessWidget {
                 return PhotoViewGalleryPageOptions(
                   imageProvider: images[index],
                   initialScale: PhotoViewComputedScale.contained * 0.8,
-                  heroAttributes:
-                      PhotoViewHeroAttributes(tag: images[index].hashCode),
+                  heroAttributes: PhotoViewHeroAttributes(
+                    tag: tags[index],
+                  ),
                 );
               },
               itemCount: images.length,
@@ -52,7 +56,7 @@ class CustomPhotoViewGalley extends StatelessWidget {
                 ),
               ),
               backgroundDecoration: backgroundDecoration,
-              pageController: pageController,
+              pageController: _pageController,
               onPageChanged: onPageChanged,
             ),
           ),

@@ -55,8 +55,11 @@ class ShowEveryOneWidget extends StatelessWidget {
                           images: post.photos
                               .map((photo) => CachedNetworkImageProvider(photo))
                               .toList(),
-                          pageController: pageController,
+                          index: pageController.page?.toInt() ?? 0,
                           descriptions: post.bio,
+                          tags: post.photos
+                              .map((photo) => photo.hashCode.toString())
+                              .toList(),
                         ),
                       );
                     },
@@ -102,7 +105,7 @@ class ShowEveryOneWidget extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                   'assets/images/location_icon.svg'),
-                              AddHorizontalSpace(5),
+                              AddHorizontalSpace(5.w),
                               Expanded(
                                 child: Text(
                                   '${post.distanceInMiles(coordinate.toGeopoint())} ${post.city ?? ''}, ${post.state ?? ''}',

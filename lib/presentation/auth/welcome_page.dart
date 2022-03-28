@@ -81,13 +81,13 @@ class WelcomePage extends StatelessWidget {
             SafeArea(
               child: Column(
                 children: [
-                  AddVerticalSpace(20),
+                  const AddVerticalSpace(20),
                   Center(
                     child: SvgPicture.asset(
                       'assets/images/crave_logo_white.svg',
                     ),
                   ),
-                  AddVerticalSpace(80),
+                  const AddVerticalSpace(80),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Text(
@@ -122,7 +122,7 @@ class WelcomePage extends StatelessWidget {
                         children: [
                           SvgPicture.asset(
                               'assets/icon/sign_in_phone_icon.svg'),
-                          AddHorizontalSpace(5),
+                          const AddHorizontalSpace(5),
                           Text(
                             'Continue with Phone',
                             style: Styles.sfProDisplay.copyWith(
@@ -149,7 +149,7 @@ class WelcomePage extends StatelessWidget {
                         children: [
                           SvgPicture.asset(
                               'assets/icon/sign_in_apple_icon.svg'),
-                          AddHorizontalSpace(5),
+                          const AddHorizontalSpace(5),
                           Text(
                             'Continue with Apple',
                             style: Styles.sfProDisplay.copyWith(

@@ -23,6 +23,7 @@ class _$RoomModelTearOff {
 
   _RoomModel call(
       {required String id,
+      required bool? isInstantChat,
       @TimeStampConverter() required Timestamp createdAt,
       @TimeStampConverter() required Timestamp updatedAt,
       @TimeStampNullConverter() Timestamp? lastChatAt,
@@ -31,6 +32,7 @@ class _$RoomModelTearOff {
       @ChatModelConverter() ChatModel? lastChat}) {
     return _RoomModel(
       id: id,
+      isInstantChat: isInstantChat,
       createdAt: createdAt,
       updatedAt: updatedAt,
       lastChatAt: lastChatAt,
@@ -51,6 +53,7 @@ const $RoomModel = _$RoomModelTearOff();
 /// @nodoc
 mixin _$RoomModel {
   String get id => throw _privateConstructorUsedError;
+  bool? get isInstantChat => throw _privateConstructorUsedError;
   @TimeStampConverter()
   Timestamp get createdAt => throw _privateConstructorUsedError;
   @TimeStampConverter()
@@ -74,6 +77,7 @@ abstract class $RoomModelCopyWith<$Res> {
       _$RoomModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      bool? isInstantChat,
       @TimeStampConverter() Timestamp createdAt,
       @TimeStampConverter() Timestamp updatedAt,
       @TimeStampNullConverter() Timestamp? lastChatAt,
@@ -95,6 +99,7 @@ class _$RoomModelCopyWithImpl<$Res> implements $RoomModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? isInstantChat = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? lastChatAt = freezed,
@@ -107,6 +112,10 @@ class _$RoomModelCopyWithImpl<$Res> implements $RoomModelCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      isInstantChat: isInstantChat == freezed
+          ? _value.isInstantChat
+          : isInstantChat // ignore: cast_nullable_to_non_nullable
+              as bool?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -154,6 +163,7 @@ abstract class _$RoomModelCopyWith<$Res> implements $RoomModelCopyWith<$Res> {
   @override
   $Res call(
       {String id,
+      bool? isInstantChat,
       @TimeStampConverter() Timestamp createdAt,
       @TimeStampConverter() Timestamp updatedAt,
       @TimeStampNullConverter() Timestamp? lastChatAt,
@@ -177,6 +187,7 @@ class __$RoomModelCopyWithImpl<$Res> extends _$RoomModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? isInstantChat = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? lastChatAt = freezed,
@@ -189,6 +200,10 @@ class __$RoomModelCopyWithImpl<$Res> extends _$RoomModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      isInstantChat: isInstantChat == freezed
+          ? _value.isInstantChat
+          : isInstantChat // ignore: cast_nullable_to_non_nullable
+              as bool?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -218,11 +233,11 @@ class __$RoomModelCopyWithImpl<$Res> extends _$RoomModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+@JsonSerializable()
 class _$_RoomModel implements _RoomModel {
   const _$_RoomModel(
       {required this.id,
+      required this.isInstantChat,
       @TimeStampConverter() required this.createdAt,
       @TimeStampConverter() required this.updatedAt,
       @TimeStampNullConverter() this.lastChatAt,
@@ -235,6 +250,8 @@ class _$_RoomModel implements _RoomModel {
 
   @override
   final String id;
+  @override
+  final bool? isInstantChat;
   @override
   @TimeStampConverter()
   final Timestamp createdAt;
@@ -254,7 +271,7 @@ class _$_RoomModel implements _RoomModel {
 
   @override
   String toString() {
-    return 'RoomModel(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, lastChatAt: $lastChatAt, members: $members, memberIds: $memberIds, lastChat: $lastChat)';
+    return 'RoomModel(id: $id, isInstantChat: $isInstantChat, createdAt: $createdAt, updatedAt: $updatedAt, lastChatAt: $lastChatAt, members: $members, memberIds: $memberIds, lastChat: $lastChat)';
   }
 
   @override
@@ -263,6 +280,8 @@ class _$_RoomModel implements _RoomModel {
         (other.runtimeType == runtimeType &&
             other is _RoomModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.isInstantChat, isInstantChat) ||
+                other.isInstantChat == isInstantChat) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -279,6 +298,7 @@ class _$_RoomModel implements _RoomModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      isInstantChat,
       createdAt,
       updatedAt,
       lastChatAt,
@@ -300,6 +320,7 @@ class _$_RoomModel implements _RoomModel {
 abstract class _RoomModel implements RoomModel {
   const factory _RoomModel(
       {required String id,
+      required bool? isInstantChat,
       @TimeStampConverter() required Timestamp createdAt,
       @TimeStampConverter() required Timestamp updatedAt,
       @TimeStampNullConverter() Timestamp? lastChatAt,
@@ -312,6 +333,8 @@ abstract class _RoomModel implements RoomModel {
 
   @override
   String get id;
+  @override
+  bool? get isInstantChat;
   @override
   @TimeStampConverter()
   Timestamp get createdAt;

@@ -31,13 +31,15 @@ class _$ProfileTearOff {
       String? city,
       String? state,
       String? address,
+      bool? isEnableInstantChat,
       int? genderId,
       String? profilePicture,
       List<String>? photos,
       bool? isOnline,
       @TimeStampConverter()
           Timestamp? lastSeen,
-      ProfileLocation? location}) {
+      ProfileLocation? location,
+      SettingData? settingData}) {
     return _Profile(
       uid: uid,
       isPublished: isPublished,
@@ -47,12 +49,14 @@ class _$ProfileTearOff {
       city: city,
       state: state,
       address: address,
+      isEnableInstantChat: isEnableInstantChat,
       genderId: genderId,
       profilePicture: profilePicture,
       photos: photos,
       isOnline: isOnline,
       lastSeen: lastSeen,
       location: location,
+      settingData: settingData,
     );
   }
 
@@ -68,14 +72,14 @@ const $Profile = _$ProfileTearOff();
 mixin _$Profile {
   String get uid => throw _privateConstructorUsedError;
   bool get isPublished => throw _privateConstructorUsedError;
-  bool get isNewUser =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  bool get isNewUser => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: true, defaultValue: '')
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
   String? get state => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
+  bool? get isEnableInstantChat => throw _privateConstructorUsedError;
   int? get genderId => throw _privateConstructorUsedError;
   String? get profilePicture => throw _privateConstructorUsedError;
   List<String>? get photos => throw _privateConstructorUsedError;
@@ -83,6 +87,7 @@ mixin _$Profile {
   @TimeStampConverter()
   Timestamp? get lastSeen => throw _privateConstructorUsedError;
   ProfileLocation? get location => throw _privateConstructorUsedError;
+  SettingData? get settingData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -102,14 +107,17 @@ abstract class $ProfileCopyWith<$Res> {
       String? city,
       String? state,
       String? address,
+      bool? isEnableInstantChat,
       int? genderId,
       String? profilePicture,
       List<String>? photos,
       bool? isOnline,
       @TimeStampConverter() Timestamp? lastSeen,
-      ProfileLocation? location});
+      ProfileLocation? location,
+      SettingData? settingData});
 
   $ProfileLocationCopyWith<$Res>? get location;
+  $SettingDataCopyWith<$Res>? get settingData;
 }
 
 /// @nodoc
@@ -130,12 +138,14 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
     Object? city = freezed,
     Object? state = freezed,
     Object? address = freezed,
+    Object? isEnableInstantChat = freezed,
     Object? genderId = freezed,
     Object? profilePicture = freezed,
     Object? photos = freezed,
     Object? isOnline = freezed,
     Object? lastSeen = freezed,
     Object? location = freezed,
+    Object? settingData = freezed,
   }) {
     return _then(_value.copyWith(
       uid: uid == freezed
@@ -170,6 +180,10 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      isEnableInstantChat: isEnableInstantChat == freezed
+          ? _value.isEnableInstantChat
+          : isEnableInstantChat // ignore: cast_nullable_to_non_nullable
+              as bool?,
       genderId: genderId == freezed
           ? _value.genderId
           : genderId // ignore: cast_nullable_to_non_nullable
@@ -194,6 +208,10 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as ProfileLocation?,
+      settingData: settingData == freezed
+          ? _value.settingData
+          : settingData // ignore: cast_nullable_to_non_nullable
+              as SettingData?,
     ));
   }
 
@@ -205,6 +223,17 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
 
     return $ProfileLocationCopyWith<$Res>(_value.location!, (value) {
       return _then(_value.copyWith(location: value));
+    });
+  }
+
+  @override
+  $SettingDataCopyWith<$Res>? get settingData {
+    if (_value.settingData == null) {
+      return null;
+    }
+
+    return $SettingDataCopyWith<$Res>(_value.settingData!, (value) {
+      return _then(_value.copyWith(settingData: value));
     });
   }
 }
@@ -223,15 +252,19 @@ abstract class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String? city,
       String? state,
       String? address,
+      bool? isEnableInstantChat,
       int? genderId,
       String? profilePicture,
       List<String>? photos,
       bool? isOnline,
       @TimeStampConverter() Timestamp? lastSeen,
-      ProfileLocation? location});
+      ProfileLocation? location,
+      SettingData? settingData});
 
   @override
   $ProfileLocationCopyWith<$Res>? get location;
+  @override
+  $SettingDataCopyWith<$Res>? get settingData;
 }
 
 /// @nodoc
@@ -253,12 +286,14 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
     Object? city = freezed,
     Object? state = freezed,
     Object? address = freezed,
+    Object? isEnableInstantChat = freezed,
     Object? genderId = freezed,
     Object? profilePicture = freezed,
     Object? photos = freezed,
     Object? isOnline = freezed,
     Object? lastSeen = freezed,
     Object? location = freezed,
+    Object? settingData = freezed,
   }) {
     return _then(_Profile(
       uid: uid == freezed
@@ -293,6 +328,10 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String?,
+      isEnableInstantChat: isEnableInstantChat == freezed
+          ? _value.isEnableInstantChat
+          : isEnableInstantChat // ignore: cast_nullable_to_non_nullable
+              as bool?,
       genderId: genderId == freezed
           ? _value.genderId
           : genderId // ignore: cast_nullable_to_non_nullable
@@ -317,13 +356,16 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as ProfileLocation?,
+      settingData: settingData == freezed
+          ? _value.settingData
+          : settingData // ignore: cast_nullable_to_non_nullable
+              as SettingData?,
     ));
   }
 }
 
 /// @nodoc
-
-@JsonSerializable(fieldRename: FieldRename.snake)
+@JsonSerializable()
 class _$_Profile implements _Profile {
   const _$_Profile(
       {required this.uid,
@@ -334,12 +376,14 @@ class _$_Profile implements _Profile {
       this.city,
       this.state,
       this.address,
+      this.isEnableInstantChat,
       this.genderId,
       this.profilePicture,
       this.photos,
       this.isOnline,
       @TimeStampConverter() this.lastSeen,
-      this.location});
+      this.location,
+      this.settingData});
 
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFromJson(json);
@@ -350,7 +394,7 @@ class _$_Profile implements _Profile {
   final bool isPublished;
   @override
   final bool isNewUser;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeIfNull: true, defaultValue: '')
   final String? phoneNumber;
   @override
@@ -361,6 +405,8 @@ class _$_Profile implements _Profile {
   final String? state;
   @override
   final String? address;
+  @override
+  final bool? isEnableInstantChat;
   @override
   final int? genderId;
   @override
@@ -374,10 +420,12 @@ class _$_Profile implements _Profile {
   final Timestamp? lastSeen;
   @override
   final ProfileLocation? location;
+  @override
+  final SettingData? settingData;
 
   @override
   String toString() {
-    return 'Profile(uid: $uid, isPublished: $isPublished, isNewUser: $isNewUser, phoneNumber: $phoneNumber, bio: $bio, city: $city, state: $state, address: $address, genderId: $genderId, profilePicture: $profilePicture, photos: $photos, isOnline: $isOnline, lastSeen: $lastSeen, location: $location)';
+    return 'Profile(uid: $uid, isPublished: $isPublished, isNewUser: $isNewUser, phoneNumber: $phoneNumber, bio: $bio, city: $city, state: $state, address: $address, isEnableInstantChat: $isEnableInstantChat, genderId: $genderId, profilePicture: $profilePicture, photos: $photos, isOnline: $isOnline, lastSeen: $lastSeen, location: $location, settingData: $settingData)';
   }
 
   @override
@@ -396,6 +444,8 @@ class _$_Profile implements _Profile {
             (identical(other.city, city) || other.city == city) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.address, address) || other.address == address) &&
+            (identical(other.isEnableInstantChat, isEnableInstantChat) ||
+                other.isEnableInstantChat == isEnableInstantChat) &&
             (identical(other.genderId, genderId) ||
                 other.genderId == genderId) &&
             (identical(other.profilePicture, profilePicture) ||
@@ -406,7 +456,9 @@ class _$_Profile implements _Profile {
             (identical(other.lastSeen, lastSeen) ||
                 other.lastSeen == lastSeen) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            (identical(other.settingData, settingData) ||
+                other.settingData == settingData));
   }
 
   @override
@@ -420,12 +472,14 @@ class _$_Profile implements _Profile {
       city,
       state,
       address,
+      isEnableInstantChat,
       genderId,
       profilePicture,
       const DeepCollectionEquality().hash(photos),
       isOnline,
       lastSeen,
-      location);
+      location,
+      settingData);
 
   @JsonKey(ignore: true)
   @override
@@ -449,13 +503,15 @@ abstract class _Profile implements Profile {
       String? city,
       String? state,
       String? address,
+      bool? isEnableInstantChat,
       int? genderId,
       String? profilePicture,
       List<String>? photos,
       bool? isOnline,
       @TimeStampConverter()
           Timestamp? lastSeen,
-      ProfileLocation? location}) = _$_Profile;
+      ProfileLocation? location,
+      SettingData? settingData}) = _$_Profile;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
 
@@ -465,7 +521,7 @@ abstract class _Profile implements Profile {
   bool get isPublished;
   @override
   bool get isNewUser;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(includeIfNull: true, defaultValue: '')
   String? get phoneNumber;
   @override
@@ -476,6 +532,8 @@ abstract class _Profile implements Profile {
   String? get state;
   @override
   String? get address;
+  @override
+  bool? get isEnableInstantChat;
   @override
   int? get genderId;
   @override
@@ -489,6 +547,8 @@ abstract class _Profile implements Profile {
   Timestamp? get lastSeen;
   @override
   ProfileLocation? get location;
+  @override
+  SettingData? get settingData;
   @override
   @JsonKey(ignore: true)
   _$ProfileCopyWith<_Profile> get copyWith =>

@@ -5,7 +5,6 @@ import 'package:crave_app/domain/intro/entity/intro.dart';
 import 'package:crave_app/presentation/intro/intro_widget.dart';
 import 'package:crave_app/presentation/routers/routers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

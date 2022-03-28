@@ -23,6 +23,14 @@ class _$ChatroomEventTearOff {
     );
   }
 
+  _UploadAttachment uploadAttachment(
+      {required String roomId, required String path}) {
+    return _UploadAttachment(
+      roomId: roomId,
+      path: path,
+    );
+  }
+
   _SendMessage sendMessage(
       {required SendChat content,
       required String roomId,
@@ -55,6 +63,7 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(String roomId, String path) uploadAttachment,
     required TResult Function(
             SendChat content, String roomId, String opponentId)
         sendMessage,
@@ -65,6 +74,7 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -74,6 +84,7 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -84,6 +95,7 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChat value) getChat,
+    required TResult Function(_UploadAttachment value) uploadAttachment,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
     required TResult Function(_ViewProfile value) viewProfile,
@@ -92,6 +104,7 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -100,6 +113,7 @@ mixin _$ChatroomEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -197,6 +211,7 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(String roomId, String path) uploadAttachment,
     required TResult Function(
             SendChat content, String roomId, String opponentId)
         sendMessage,
@@ -210,6 +225,7 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -222,6 +238,7 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -238,6 +255,7 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChat value) getChat,
+    required TResult Function(_UploadAttachment value) uploadAttachment,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
     required TResult Function(_ViewProfile value) viewProfile,
@@ -249,6 +267,7 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -260,6 +279,7 @@ class _$_GetChat implements _GetChat {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -278,6 +298,171 @@ abstract class _GetChat implements ChatroomEvent {
   ChatRequest get chatRequest;
   @JsonKey(ignore: true)
   _$GetChatCopyWith<_GetChat> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$UploadAttachmentCopyWith<$Res> {
+  factory _$UploadAttachmentCopyWith(
+          _UploadAttachment value, $Res Function(_UploadAttachment) then) =
+      __$UploadAttachmentCopyWithImpl<$Res>;
+  $Res call({String roomId, String path});
+}
+
+/// @nodoc
+class __$UploadAttachmentCopyWithImpl<$Res>
+    extends _$ChatroomEventCopyWithImpl<$Res>
+    implements _$UploadAttachmentCopyWith<$Res> {
+  __$UploadAttachmentCopyWithImpl(
+      _UploadAttachment _value, $Res Function(_UploadAttachment) _then)
+      : super(_value, (v) => _then(v as _UploadAttachment));
+
+  @override
+  _UploadAttachment get _value => super._value as _UploadAttachment;
+
+  @override
+  $Res call({
+    Object? roomId = freezed,
+    Object? path = freezed,
+  }) {
+    return _then(_UploadAttachment(
+      roomId: roomId == freezed
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
+              as String,
+      path: path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UploadAttachment implements _UploadAttachment {
+  const _$_UploadAttachment({required this.roomId, required this.path});
+
+  @override
+  final String roomId;
+  @override
+  final String path;
+
+  @override
+  String toString() {
+    return 'ChatroomEvent.uploadAttachment(roomId: $roomId, path: $path)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UploadAttachment &&
+            (identical(other.roomId, roomId) || other.roomId == roomId) &&
+            (identical(other.path, path) || other.path == path));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, roomId, path);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UploadAttachmentCopyWith<_UploadAttachment> get copyWith =>
+      __$UploadAttachmentCopyWithImpl<_UploadAttachment>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(String roomId, String path) uploadAttachment,
+    required TResult Function(
+            SendChat content, String roomId, String opponentId)
+        sendMessage,
+    required TResult Function(String roomId) readMessage,
+    required TResult Function(String userId) viewProfile,
+  }) {
+    return uploadAttachment(roomId, path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
+    TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
+  }) {
+    return uploadAttachment?.call(roomId, path);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
+    TResult Function(SendChat content, String roomId, String opponentId)?
+        sendMessage,
+    TResult Function(String roomId)? readMessage,
+    TResult Function(String userId)? viewProfile,
+    required TResult orElse(),
+  }) {
+    if (uploadAttachment != null) {
+      return uploadAttachment(roomId, path);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetChat value) getChat,
+    required TResult Function(_UploadAttachment value) uploadAttachment,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_ReadMessage value) readMessage,
+    required TResult Function(_ViewProfile value) viewProfile,
+  }) {
+    return uploadAttachment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
+  }) {
+    return uploadAttachment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_ReadMessage value)? readMessage,
+    TResult Function(_ViewProfile value)? viewProfile,
+    required TResult orElse(),
+  }) {
+    if (uploadAttachment != null) {
+      return uploadAttachment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadAttachment implements ChatroomEvent {
+  const factory _UploadAttachment(
+      {required String roomId, required String path}) = _$_UploadAttachment;
+
+  String get roomId;
+  String get path;
+  @JsonKey(ignore: true)
+  _$UploadAttachmentCopyWith<_UploadAttachment> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -372,6 +557,7 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(String roomId, String path) uploadAttachment,
     required TResult Function(
             SendChat content, String roomId, String opponentId)
         sendMessage,
@@ -385,6 +571,7 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -397,6 +584,7 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -413,6 +601,7 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChat value) getChat,
+    required TResult Function(_UploadAttachment value) uploadAttachment,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
     required TResult Function(_ViewProfile value) viewProfile,
@@ -424,6 +613,7 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -435,6 +625,7 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -525,6 +716,7 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(String roomId, String path) uploadAttachment,
     required TResult Function(
             SendChat content, String roomId, String opponentId)
         sendMessage,
@@ -538,6 +730,7 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -550,6 +743,7 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -566,6 +760,7 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChat value) getChat,
+    required TResult Function(_UploadAttachment value) uploadAttachment,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
     required TResult Function(_ViewProfile value) viewProfile,
@@ -577,6 +772,7 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -588,6 +784,7 @@ class _$_ReadMessage implements _ReadMessage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -673,6 +870,7 @@ class _$_ViewProfile implements _ViewProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ChatRequest chatRequest) getChat,
+    required TResult Function(String roomId, String path) uploadAttachment,
     required TResult Function(
             SendChat content, String roomId, String opponentId)
         sendMessage,
@@ -686,6 +884,7 @@ class _$_ViewProfile implements _ViewProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -698,6 +897,7 @@ class _$_ViewProfile implements _ViewProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ChatRequest chatRequest)? getChat,
+    TResult Function(String roomId, String path)? uploadAttachment,
     TResult Function(SendChat content, String roomId, String opponentId)?
         sendMessage,
     TResult Function(String roomId)? readMessage,
@@ -714,6 +914,7 @@ class _$_ViewProfile implements _ViewProfile {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetChat value) getChat,
+    required TResult Function(_UploadAttachment value) uploadAttachment,
     required TResult Function(_SendMessage value) sendMessage,
     required TResult Function(_ReadMessage value) readMessage,
     required TResult Function(_ViewProfile value) viewProfile,
@@ -725,6 +926,7 @@ class _$_ViewProfile implements _ViewProfile {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -736,6 +938,7 @@ class _$_ViewProfile implements _ViewProfile {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetChat value)? getChat,
+    TResult Function(_UploadAttachment value)? uploadAttachment,
     TResult Function(_SendMessage value)? sendMessage,
     TResult Function(_ReadMessage value)? readMessage,
     TResult Function(_ViewProfile value)? viewProfile,
@@ -802,6 +1005,12 @@ class _$ChatroomStateTearOff {
       post,
     );
   }
+
+  _UploadAttachmentSuccess uploadAttachmentSuccess(String url) {
+    return _UploadAttachmentSuccess(
+      url,
+    );
+  }
 }
 
 /// @nodoc
@@ -819,6 +1028,7 @@ mixin _$ChatroomState {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -831,6 +1041,7 @@ mixin _$ChatroomState {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -843,6 +1054,7 @@ mixin _$ChatroomState {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -856,6 +1068,8 @@ mixin _$ChatroomState {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -868,6 +1082,7 @@ mixin _$ChatroomState {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -880,6 +1095,7 @@ mixin _$ChatroomState {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -948,6 +1164,7 @@ class _$_Initial implements _Initial {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return initial();
   }
@@ -963,6 +1180,7 @@ class _$_Initial implements _Initial {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return initial?.call();
   }
@@ -978,6 +1196,7 @@ class _$_Initial implements _Initial {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -997,6 +1216,8 @@ class _$_Initial implements _Initial {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return initial(this);
   }
@@ -1012,6 +1233,7 @@ class _$_Initial implements _Initial {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return initial?.call(this);
   }
@@ -1027,6 +1249,7 @@ class _$_Initial implements _Initial {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1086,6 +1309,7 @@ class _$_Loading implements _Loading {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return loading();
   }
@@ -1101,6 +1325,7 @@ class _$_Loading implements _Loading {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return loading?.call();
   }
@@ -1116,6 +1341,7 @@ class _$_Loading implements _Loading {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1135,6 +1361,8 @@ class _$_Loading implements _Loading {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return loading(this);
   }
@@ -1150,6 +1378,7 @@ class _$_Loading implements _Loading {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return loading?.call(this);
   }
@@ -1165,6 +1394,7 @@ class _$_Loading implements _Loading {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1226,6 +1456,7 @@ class _$_SendingChat implements _SendingChat {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return sendingChat();
   }
@@ -1241,6 +1472,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return sendingChat?.call();
   }
@@ -1256,6 +1488,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (sendingChat != null) {
@@ -1275,6 +1508,8 @@ class _$_SendingChat implements _SendingChat {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return sendingChat(this);
   }
@@ -1290,6 +1525,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return sendingChat?.call(this);
   }
@@ -1305,6 +1541,7 @@ class _$_SendingChat implements _SendingChat {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (sendingChat != null) {
@@ -1400,6 +1637,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return getChatSuccess(chatResponse);
   }
@@ -1415,6 +1653,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return getChatSuccess?.call(chatResponse);
   }
@@ -1430,6 +1669,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (getChatSuccess != null) {
@@ -1449,6 +1689,8 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return getChatSuccess(this);
   }
@@ -1464,6 +1706,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return getChatSuccess?.call(this);
   }
@@ -1479,6 +1722,7 @@ class _$_GetChatSuccess implements _GetChatSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (getChatSuccess != null) {
@@ -1575,6 +1819,7 @@ class _$_Failure implements _Failure {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return failure(this.failure);
   }
@@ -1590,6 +1835,7 @@ class _$_Failure implements _Failure {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return failure?.call(this.failure);
   }
@@ -1605,6 +1851,7 @@ class _$_Failure implements _Failure {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1624,6 +1871,8 @@ class _$_Failure implements _Failure {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return failure(this);
   }
@@ -1639,6 +1888,7 @@ class _$_Failure implements _Failure {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return failure?.call(this);
   }
@@ -1654,6 +1904,7 @@ class _$_Failure implements _Failure {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1753,6 +2004,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return sendChatSuccess(content);
   }
@@ -1768,6 +2020,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return sendChatSuccess?.call(content);
   }
@@ -1783,6 +2036,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (sendChatSuccess != null) {
@@ -1802,6 +2056,8 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return sendChatSuccess(this);
   }
@@ -1817,6 +2073,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return sendChatSuccess?.call(this);
   }
@@ -1832,6 +2089,7 @@ class _$_SendChatSuccess implements _SendChatSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (sendChatSuccess != null) {
@@ -1923,6 +2181,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return readMessageSuccess(response);
   }
@@ -1938,6 +2197,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return readMessageSuccess?.call(response);
   }
@@ -1953,6 +2213,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (readMessageSuccess != null) {
@@ -1972,6 +2233,8 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return readMessageSuccess(this);
   }
@@ -1987,6 +2250,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return readMessageSuccess?.call(this);
   }
@@ -2002,6 +2266,7 @@ class _$_ReadMessageSuccess implements _ReadMessageSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (readMessageSuccess != null) {
@@ -2101,6 +2366,7 @@ class _$_ViewProfileSuccess implements _ViewProfileSuccess {
     required TResult Function(SendChat content) sendChatSuccess,
     required TResult Function(bool response) readMessageSuccess,
     required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
   }) {
     return viewProfileSuccess(post);
   }
@@ -2116,6 +2382,7 @@ class _$_ViewProfileSuccess implements _ViewProfileSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
   }) {
     return viewProfileSuccess?.call(post);
   }
@@ -2131,6 +2398,7 @@ class _$_ViewProfileSuccess implements _ViewProfileSuccess {
     TResult Function(SendChat content)? sendChatSuccess,
     TResult Function(bool response)? readMessageSuccess,
     TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (viewProfileSuccess != null) {
@@ -2150,6 +2418,8 @@ class _$_ViewProfileSuccess implements _ViewProfileSuccess {
     required TResult Function(_SendChatSuccess value) sendChatSuccess,
     required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
     required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
   }) {
     return viewProfileSuccess(this);
   }
@@ -2165,6 +2435,7 @@ class _$_ViewProfileSuccess implements _ViewProfileSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
   }) {
     return viewProfileSuccess?.call(this);
   }
@@ -2180,6 +2451,7 @@ class _$_ViewProfileSuccess implements _ViewProfileSuccess {
     TResult Function(_SendChatSuccess value)? sendChatSuccess,
     TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
     TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
     required TResult orElse(),
   }) {
     if (viewProfileSuccess != null) {
@@ -2195,5 +2467,184 @@ abstract class _ViewProfileSuccess implements ChatroomState {
   Post get post;
   @JsonKey(ignore: true)
   _$ViewProfileSuccessCopyWith<_ViewProfileSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$UploadAttachmentSuccessCopyWith<$Res> {
+  factory _$UploadAttachmentSuccessCopyWith(_UploadAttachmentSuccess value,
+          $Res Function(_UploadAttachmentSuccess) then) =
+      __$UploadAttachmentSuccessCopyWithImpl<$Res>;
+  $Res call({String url});
+}
+
+/// @nodoc
+class __$UploadAttachmentSuccessCopyWithImpl<$Res>
+    extends _$ChatroomStateCopyWithImpl<$Res>
+    implements _$UploadAttachmentSuccessCopyWith<$Res> {
+  __$UploadAttachmentSuccessCopyWithImpl(_UploadAttachmentSuccess _value,
+      $Res Function(_UploadAttachmentSuccess) _then)
+      : super(_value, (v) => _then(v as _UploadAttachmentSuccess));
+
+  @override
+  _UploadAttachmentSuccess get _value =>
+      super._value as _UploadAttachmentSuccess;
+
+  @override
+  $Res call({
+    Object? url = freezed,
+  }) {
+    return _then(_UploadAttachmentSuccess(
+      url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UploadAttachmentSuccess implements _UploadAttachmentSuccess {
+  const _$_UploadAttachmentSuccess(this.url);
+
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'ChatroomState.uploadAttachmentSuccess(url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UploadAttachmentSuccess &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UploadAttachmentSuccessCopyWith<_UploadAttachmentSuccess> get copyWith =>
+      __$UploadAttachmentSuccessCopyWithImpl<_UploadAttachmentSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() sendingChat,
+    required TResult Function(ChatResponse chatResponse) getChatSuccess,
+    required TResult Function(ChatFailure failure) failure,
+    required TResult Function(SendChat content) sendChatSuccess,
+    required TResult Function(bool response) readMessageSuccess,
+    required TResult Function(Post post) viewProfileSuccess,
+    required TResult Function(String url) uploadAttachmentSuccess,
+  }) {
+    return uploadAttachmentSuccess(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? sendingChat,
+    TResult Function(ChatResponse chatResponse)? getChatSuccess,
+    TResult Function(ChatFailure failure)? failure,
+    TResult Function(SendChat content)? sendChatSuccess,
+    TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
+  }) {
+    return uploadAttachmentSuccess?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? sendingChat,
+    TResult Function(ChatResponse chatResponse)? getChatSuccess,
+    TResult Function(ChatFailure failure)? failure,
+    TResult Function(SendChat content)? sendChatSuccess,
+    TResult Function(bool response)? readMessageSuccess,
+    TResult Function(Post post)? viewProfileSuccess,
+    TResult Function(String url)? uploadAttachmentSuccess,
+    required TResult orElse(),
+  }) {
+    if (uploadAttachmentSuccess != null) {
+      return uploadAttachmentSuccess(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SendingChat value) sendingChat,
+    required TResult Function(_GetChatSuccess value) getChatSuccess,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_SendChatSuccess value) sendChatSuccess,
+    required TResult Function(_ReadMessageSuccess value) readMessageSuccess,
+    required TResult Function(_ViewProfileSuccess value) viewProfileSuccess,
+    required TResult Function(_UploadAttachmentSuccess value)
+        uploadAttachmentSuccess,
+  }) {
+    return uploadAttachmentSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SendingChat value)? sendingChat,
+    TResult Function(_GetChatSuccess value)? getChatSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_SendChatSuccess value)? sendChatSuccess,
+    TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
+  }) {
+    return uploadAttachmentSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SendingChat value)? sendingChat,
+    TResult Function(_GetChatSuccess value)? getChatSuccess,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_SendChatSuccess value)? sendChatSuccess,
+    TResult Function(_ReadMessageSuccess value)? readMessageSuccess,
+    TResult Function(_ViewProfileSuccess value)? viewProfileSuccess,
+    TResult Function(_UploadAttachmentSuccess value)? uploadAttachmentSuccess,
+    required TResult orElse(),
+  }) {
+    if (uploadAttachmentSuccess != null) {
+      return uploadAttachmentSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UploadAttachmentSuccess implements ChatroomState {
+  const factory _UploadAttachmentSuccess(String url) =
+      _$_UploadAttachmentSuccess;
+
+  String get url;
+  @JsonKey(ignore: true)
+  _$UploadAttachmentSuccessCopyWith<_UploadAttachmentSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,5 @@
 import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ToggleTileWidget extends StatelessWidget {
   final String title;

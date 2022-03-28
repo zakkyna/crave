@@ -3,7 +3,6 @@ import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/presentation/auth/auth_steps/location_setting_page.dart';
 import 'package:crave_app/presentation/auth/auth_steps/widget/gender_widget.dart';
 import 'package:crave_app/presentation/auth/widgets/auth_scafold.dart';
-import 'package:crave_app/presentation/core/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';

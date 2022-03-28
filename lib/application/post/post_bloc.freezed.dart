@@ -17,9 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PostEventTearOff {
   const _$PostEventTearOff();
 
-  _GetAllPosts getAllPostStream({required double radius}) {
+  _GetAllPosts getAllPostStream(
+      {required double radius, required Profile profile}) {
     return _GetAllPosts(
       radius: radius,
+      profile: profile,
     );
   }
 
@@ -47,6 +49,12 @@ class _$PostEventTearOff {
       post,
     );
   }
+
+  _CreateInstantChat createInstantChat(Post post) {
+    return _CreateInstantChat(
+      post,
+    );
+  }
 }
 
 /// @nodoc
@@ -56,29 +64,32 @@ const $PostEvent = _$PostEventTearOff();
 mixin _$PostEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double radius) getAllPostStream,
+    required TResult Function(double radius, Profile profile) getAllPostStream,
     required TResult Function(int page) getWhoLikesMePosts,
     required TResult Function(String postId, bool isLiked) likePost,
     required TResult Function(String postId) dismissPost,
     required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,6 +100,7 @@ mixin _$PostEvent {
     required TResult Function(_LikePost value) likePost,
     required TResult Function(_DismissPost value) dismissPost,
     required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,6 +110,7 @@ mixin _$PostEvent {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,6 +120,7 @@ mixin _$PostEvent {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,7 +146,9 @@ abstract class _$GetAllPostsCopyWith<$Res> {
   factory _$GetAllPostsCopyWith(
           _GetAllPosts value, $Res Function(_GetAllPosts) then) =
       __$GetAllPostsCopyWithImpl<$Res>;
-  $Res call({double radius});
+  $Res call({double radius, Profile profile});
+
+  $ProfileCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -148,27 +164,41 @@ class __$GetAllPostsCopyWithImpl<$Res> extends _$PostEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? radius = freezed,
+    Object? profile = freezed,
   }) {
     return _then(_GetAllPosts(
       radius: radius == freezed
           ? _value.radius
           : radius // ignore: cast_nullable_to_non_nullable
               as double,
+      profile: profile == freezed
+          ? _value.profile
+          : profile // ignore: cast_nullable_to_non_nullable
+              as Profile,
     ));
+  }
+
+  @override
+  $ProfileCopyWith<$Res> get profile {
+    return $ProfileCopyWith<$Res>(_value.profile, (value) {
+      return _then(_value.copyWith(profile: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
-  const _$_GetAllPosts({required this.radius});
+  const _$_GetAllPosts({required this.radius, required this.profile});
 
   @override
   final double radius;
+  @override
+  final Profile profile;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PostEvent.getAllPostStream(radius: $radius)';
+    return 'PostEvent.getAllPostStream(radius: $radius, profile: $profile)';
   }
 
   @override
@@ -176,7 +206,8 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PostEvent.getAllPostStream'))
-      ..add(DiagnosticsProperty('radius', radius));
+      ..add(DiagnosticsProperty('radius', radius))
+      ..add(DiagnosticsProperty('profile', profile));
   }
 
   @override
@@ -184,11 +215,12 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GetAllPosts &&
-            (identical(other.radius, radius) || other.radius == radius));
+            (identical(other.radius, radius) || other.radius == radius) &&
+            (identical(other.profile, profile) || other.profile == profile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, radius);
+  int get hashCode => Object.hash(runtimeType, radius, profile);
 
   @JsonKey(ignore: true)
   @override
@@ -198,39 +230,42 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double radius) getAllPostStream,
+    required TResult Function(double radius, Profile profile) getAllPostStream,
     required TResult Function(int page) getWhoLikesMePosts,
     required TResult Function(String postId, bool isLiked) likePost,
     required TResult Function(String postId) dismissPost,
     required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
   }) {
-    return getAllPostStream(radius);
+    return getAllPostStream(radius, profile);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
   }) {
-    return getAllPostStream?.call(radius);
+    return getAllPostStream?.call(radius, profile);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
     required TResult orElse(),
   }) {
     if (getAllPostStream != null) {
-      return getAllPostStream(radius);
+      return getAllPostStream(radius, profile);
     }
     return orElse();
   }
@@ -243,6 +278,7 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
     required TResult Function(_LikePost value) likePost,
     required TResult Function(_DismissPost value) dismissPost,
     required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
   }) {
     return getAllPostStream(this);
   }
@@ -255,6 +291,7 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
   }) {
     return getAllPostStream?.call(this);
   }
@@ -267,6 +304,7 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
     required TResult orElse(),
   }) {
     if (getAllPostStream != null) {
@@ -277,9 +315,11 @@ class _$_GetAllPosts with DiagnosticableTreeMixin implements _GetAllPosts {
 }
 
 abstract class _GetAllPosts implements PostEvent {
-  const factory _GetAllPosts({required double radius}) = _$_GetAllPosts;
+  const factory _GetAllPosts(
+      {required double radius, required Profile profile}) = _$_GetAllPosts;
 
   double get radius;
+  Profile get profile;
   @JsonKey(ignore: true)
   _$GetAllPostsCopyWith<_GetAllPosts> get copyWith =>
       throw _privateConstructorUsedError;
@@ -359,11 +399,12 @@ class _$_GetWhoLikesMePosts
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double radius) getAllPostStream,
+    required TResult Function(double radius, Profile profile) getAllPostStream,
     required TResult Function(int page) getWhoLikesMePosts,
     required TResult Function(String postId, bool isLiked) likePost,
     required TResult Function(String postId) dismissPost,
     required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
   }) {
     return getWhoLikesMePosts(page);
   }
@@ -371,11 +412,12 @@ class _$_GetWhoLikesMePosts
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
   }) {
     return getWhoLikesMePosts?.call(page);
   }
@@ -383,11 +425,12 @@ class _$_GetWhoLikesMePosts
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
     required TResult orElse(),
   }) {
     if (getWhoLikesMePosts != null) {
@@ -404,6 +447,7 @@ class _$_GetWhoLikesMePosts
     required TResult Function(_LikePost value) likePost,
     required TResult Function(_DismissPost value) dismissPost,
     required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
   }) {
     return getWhoLikesMePosts(this);
   }
@@ -416,6 +460,7 @@ class _$_GetWhoLikesMePosts
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
   }) {
     return getWhoLikesMePosts?.call(this);
   }
@@ -428,6 +473,7 @@ class _$_GetWhoLikesMePosts
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
     required TResult orElse(),
   }) {
     if (getWhoLikesMePosts != null) {
@@ -524,11 +570,12 @@ class _$_LikePost with DiagnosticableTreeMixin implements _LikePost {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double radius) getAllPostStream,
+    required TResult Function(double radius, Profile profile) getAllPostStream,
     required TResult Function(int page) getWhoLikesMePosts,
     required TResult Function(String postId, bool isLiked) likePost,
     required TResult Function(String postId) dismissPost,
     required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
   }) {
     return likePost(postId, isLiked);
   }
@@ -536,11 +583,12 @@ class _$_LikePost with DiagnosticableTreeMixin implements _LikePost {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
   }) {
     return likePost?.call(postId, isLiked);
   }
@@ -548,11 +596,12 @@ class _$_LikePost with DiagnosticableTreeMixin implements _LikePost {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
     required TResult orElse(),
   }) {
     if (likePost != null) {
@@ -569,6 +618,7 @@ class _$_LikePost with DiagnosticableTreeMixin implements _LikePost {
     required TResult Function(_LikePost value) likePost,
     required TResult Function(_DismissPost value) dismissPost,
     required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
   }) {
     return likePost(this);
   }
@@ -581,6 +631,7 @@ class _$_LikePost with DiagnosticableTreeMixin implements _LikePost {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
   }) {
     return likePost?.call(this);
   }
@@ -593,6 +644,7 @@ class _$_LikePost with DiagnosticableTreeMixin implements _LikePost {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
     required TResult orElse(),
   }) {
     if (likePost != null) {
@@ -683,11 +735,12 @@ class _$_DismissPost with DiagnosticableTreeMixin implements _DismissPost {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double radius) getAllPostStream,
+    required TResult Function(double radius, Profile profile) getAllPostStream,
     required TResult Function(int page) getWhoLikesMePosts,
     required TResult Function(String postId, bool isLiked) likePost,
     required TResult Function(String postId) dismissPost,
     required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
   }) {
     return dismissPost(postId);
   }
@@ -695,11 +748,12 @@ class _$_DismissPost with DiagnosticableTreeMixin implements _DismissPost {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
   }) {
     return dismissPost?.call(postId);
   }
@@ -707,11 +761,12 @@ class _$_DismissPost with DiagnosticableTreeMixin implements _DismissPost {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
     required TResult orElse(),
   }) {
     if (dismissPost != null) {
@@ -728,6 +783,7 @@ class _$_DismissPost with DiagnosticableTreeMixin implements _DismissPost {
     required TResult Function(_LikePost value) likePost,
     required TResult Function(_DismissPost value) dismissPost,
     required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
   }) {
     return dismissPost(this);
   }
@@ -740,6 +796,7 @@ class _$_DismissPost with DiagnosticableTreeMixin implements _DismissPost {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
   }) {
     return dismissPost?.call(this);
   }
@@ -752,6 +809,7 @@ class _$_DismissPost with DiagnosticableTreeMixin implements _DismissPost {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
     required TResult orElse(),
   }) {
     if (dismissPost != null) {
@@ -850,11 +908,12 @@ class _$_CreateRoom with DiagnosticableTreeMixin implements _CreateRoom {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(double radius) getAllPostStream,
+    required TResult Function(double radius, Profile profile) getAllPostStream,
     required TResult Function(int page) getWhoLikesMePosts,
     required TResult Function(String postId, bool isLiked) likePost,
     required TResult Function(String postId) dismissPost,
     required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
   }) {
     return createRoom(post);
   }
@@ -862,11 +921,12 @@ class _$_CreateRoom with DiagnosticableTreeMixin implements _CreateRoom {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
   }) {
     return createRoom?.call(post);
   }
@@ -874,11 +934,12 @@ class _$_CreateRoom with DiagnosticableTreeMixin implements _CreateRoom {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double radius)? getAllPostStream,
+    TResult Function(double radius, Profile profile)? getAllPostStream,
     TResult Function(int page)? getWhoLikesMePosts,
     TResult Function(String postId, bool isLiked)? likePost,
     TResult Function(String postId)? dismissPost,
     TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
     required TResult orElse(),
   }) {
     if (createRoom != null) {
@@ -895,6 +956,7 @@ class _$_CreateRoom with DiagnosticableTreeMixin implements _CreateRoom {
     required TResult Function(_LikePost value) likePost,
     required TResult Function(_DismissPost value) dismissPost,
     required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
   }) {
     return createRoom(this);
   }
@@ -907,6 +969,7 @@ class _$_CreateRoom with DiagnosticableTreeMixin implements _CreateRoom {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
   }) {
     return createRoom?.call(this);
   }
@@ -919,6 +982,7 @@ class _$_CreateRoom with DiagnosticableTreeMixin implements _CreateRoom {
     TResult Function(_LikePost value)? likePost,
     TResult Function(_DismissPost value)? dismissPost,
     TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
     required TResult orElse(),
   }) {
     if (createRoom != null) {
@@ -934,6 +998,182 @@ abstract class _CreateRoom implements PostEvent {
   Post get post;
   @JsonKey(ignore: true)
   _$CreateRoomCopyWith<_CreateRoom> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$CreateInstantChatCopyWith<$Res> {
+  factory _$CreateInstantChatCopyWith(
+          _CreateInstantChat value, $Res Function(_CreateInstantChat) then) =
+      __$CreateInstantChatCopyWithImpl<$Res>;
+  $Res call({Post post});
+
+  $PostCopyWith<$Res> get post;
+}
+
+/// @nodoc
+class __$CreateInstantChatCopyWithImpl<$Res>
+    extends _$PostEventCopyWithImpl<$Res>
+    implements _$CreateInstantChatCopyWith<$Res> {
+  __$CreateInstantChatCopyWithImpl(
+      _CreateInstantChat _value, $Res Function(_CreateInstantChat) _then)
+      : super(_value, (v) => _then(v as _CreateInstantChat));
+
+  @override
+  _CreateInstantChat get _value => super._value as _CreateInstantChat;
+
+  @override
+  $Res call({
+    Object? post = freezed,
+  }) {
+    return _then(_CreateInstantChat(
+      post == freezed
+          ? _value.post
+          : post // ignore: cast_nullable_to_non_nullable
+              as Post,
+    ));
+  }
+
+  @override
+  $PostCopyWith<$Res> get post {
+    return $PostCopyWith<$Res>(_value.post, (value) {
+      return _then(_value.copyWith(post: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_CreateInstantChat
+    with DiagnosticableTreeMixin
+    implements _CreateInstantChat {
+  const _$_CreateInstantChat(this.post);
+
+  @override
+  final Post post;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PostEvent.createInstantChat(post: $post)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PostEvent.createInstantChat'))
+      ..add(DiagnosticsProperty('post', post));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CreateInstantChat &&
+            (identical(other.post, post) || other.post == post));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, post);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateInstantChatCopyWith<_CreateInstantChat> get copyWith =>
+      __$CreateInstantChatCopyWithImpl<_CreateInstantChat>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double radius, Profile profile) getAllPostStream,
+    required TResult Function(int page) getWhoLikesMePosts,
+    required TResult Function(String postId, bool isLiked) likePost,
+    required TResult Function(String postId) dismissPost,
+    required TResult Function(Post post) createRoom,
+    required TResult Function(Post post) createInstantChat,
+  }) {
+    return createInstantChat(post);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(double radius, Profile profile)? getAllPostStream,
+    TResult Function(int page)? getWhoLikesMePosts,
+    TResult Function(String postId, bool isLiked)? likePost,
+    TResult Function(String postId)? dismissPost,
+    TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
+  }) {
+    return createInstantChat?.call(post);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double radius, Profile profile)? getAllPostStream,
+    TResult Function(int page)? getWhoLikesMePosts,
+    TResult Function(String postId, bool isLiked)? likePost,
+    TResult Function(String postId)? dismissPost,
+    TResult Function(Post post)? createRoom,
+    TResult Function(Post post)? createInstantChat,
+    required TResult orElse(),
+  }) {
+    if (createInstantChat != null) {
+      return createInstantChat(post);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAllPosts value) getAllPostStream,
+    required TResult Function(_GetWhoLikesMePosts value) getWhoLikesMePosts,
+    required TResult Function(_LikePost value) likePost,
+    required TResult Function(_DismissPost value) dismissPost,
+    required TResult Function(_CreateRoom value) createRoom,
+    required TResult Function(_CreateInstantChat value) createInstantChat,
+  }) {
+    return createInstantChat(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetAllPosts value)? getAllPostStream,
+    TResult Function(_GetWhoLikesMePosts value)? getWhoLikesMePosts,
+    TResult Function(_LikePost value)? likePost,
+    TResult Function(_DismissPost value)? dismissPost,
+    TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
+  }) {
+    return createInstantChat?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAllPosts value)? getAllPostStream,
+    TResult Function(_GetWhoLikesMePosts value)? getWhoLikesMePosts,
+    TResult Function(_LikePost value)? likePost,
+    TResult Function(_DismissPost value)? dismissPost,
+    TResult Function(_CreateRoom value)? createRoom,
+    TResult Function(_CreateInstantChat value)? createInstantChat,
+    required TResult orElse(),
+  }) {
+    if (createInstantChat != null) {
+      return createInstantChat(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateInstantChat implements PostEvent {
+  const factory _CreateInstantChat(Post post) = _$_CreateInstantChat;
+
+  Post get post;
+  @JsonKey(ignore: true)
+  _$CreateInstantChatCopyWith<_CreateInstantChat> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

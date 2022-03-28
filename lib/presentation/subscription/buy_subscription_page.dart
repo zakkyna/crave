@@ -198,10 +198,10 @@ class BuySubscriptionPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  AddVerticalSpace(40),
+                  const AddVerticalSpace(40),
                   GestureDetector(
                     onTap: () {
-                      context.read<AuthBloc>().add(AuthEvent.signedOut());
+                      context.read<AuthBloc>().add(const AuthEvent.signedOut());
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(Dimens.defaultMargin),

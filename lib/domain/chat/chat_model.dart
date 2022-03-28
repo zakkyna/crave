@@ -10,8 +10,6 @@ String chatModelToJson(ChatModel data) => json.encode(data.toJson());
 
 @freezed
 class ChatModel with _$ChatModel {
-  // ignore: invalid_annotation_target
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory ChatModel({
     required Author? author,
     required int? createdAt,

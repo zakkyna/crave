@@ -4,6 +4,7 @@ import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/chat/widgets/room_item_widget.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -85,6 +86,9 @@ class RoomsPage extends StatelessWidget {
                             );
                           }
                           if (snapshot.hasError) {
+                            if (kDebugMode) {
+                              print(snapshot.error);
+                            }
                             return Center(
                               child: Text('Error: ${snapshot.error}'),
                             );
@@ -98,31 +102,15 @@ class RoomsPage extends StatelessWidget {
                                 child: Text('No user found at the moment'),
                               );
                             }
-                            return Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: Dimens.defaultMargin,
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                vertical: 5.h,
-                              ),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 0.5,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.zero,
-                                itemCount: data.length,
-                                itemBuilder: (context, index) {
-                                  return RoomItemWidget(
-                                    roomModel: data[index],
-                                    currentProfile: currentProfile,
-                                  );
-                                },
-                              ),
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              itemCount: data.length,
+                              itemBuilder: (context, index) {
+                                return RoomItemWidget(
+                                  roomModel: data[index],
+                                  currentProfile: currentProfile,
+                                );
+                              },
                             );
                           } else {
                             return Stack(
@@ -159,7 +147,7 @@ class RoomsPage extends StatelessWidget {
                                               .withOpacity(0.6),
                                         ),
                                       ),
-                                      AddVerticalSpace(5),
+                                      const AddVerticalSpace(5),
                                       Text(
                                         'Keep sending Likes to Match \nYou can send your matches \nMessages here.',
                                         style: Styles.kefa14Regular.copyWith(

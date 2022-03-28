@@ -66,7 +66,7 @@ class InputNumberPage extends HookWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AddVerticalSpace(Dimens.defaultMargin),
+                const AddVerticalSpace(Dimens.defaultMargin),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: Dimens.defaultMargin),

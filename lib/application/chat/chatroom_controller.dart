@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:crave_app/application/chat/chatroom/chatroom_bloc.dart';
+import 'package:crave_app/domain/chat/chat_failure.dart';
 import 'package:crave_app/domain/chat/room_model.dart';
 import 'package:crave_app/domain/chat/send_chat.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:image_picker/image_picker.dart';
@@ -96,21 +100,51 @@ class ChatRoomController extends GetxController {
 
   handleFileSelection() async {
     final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
+      type: FileType.video,
     );
 
     if (result != null && result.files.single.path != null) {
-      final message = FileMessage(
-        author: currentProfile.value!.toTypes(),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: const Uuid().v4(),
-        mimeType: lookupMimeType(result.files.single.path!),
-        name: result.files.single.name,
-        size: result.files.single.size,
-        uri: result.files.single.path!,
-      );
+      final _completer = Completer<Either<ChatFailure, String>>();
+      Get.context!.read<ChatroomBloc>().add(
+            ChatroomEvent.uploadAttachment(
+              roomId: roomModel.id,
+              path: result.files.single.path!,
+            ),
+          );
+      final uploadStream =
+          Get.context!.read<ChatroomBloc>().stream.listen((state) {
+        state.maybeMap(
+          uploadAttachmentSuccess: (value) {
+            _completer.complete(right(value.url));
+          },
+          failure: (value) {
+            _completer.complete(left(value.failure));
+          },
+          orElse: () {},
+        );
+      });
+      final failureOrSuccess = await _completer.future.then((value) {
+        uploadStream.cancel();
+        return value;
+      });
 
-      sendMessage(message);
+      final filePath = failureOrSuccess.fold(
+        (l) => null,
+        (r) => r,
+      );
+      if (filePath != null) {
+        final message = FileMessage(
+          author: currentProfile.value!.toTypes(),
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+          id: const Uuid().v4(),
+          mimeType: lookupMimeType(result.files.single.path!),
+          name: result.files.single.name,
+          size: result.files.single.size,
+          uri: filePath,
+        );
+
+        sendMessage(message);
+      }
     }
   }
 
@@ -124,19 +158,47 @@ class ChatRoomController extends GetxController {
     if (result != null) {
       final bytes = await result.readAsBytes();
       final image = await decodeImageFromList(bytes);
+      final _completer = Completer<Either<ChatFailure, String>>();
+      Get.context!.read<ChatroomBloc>().add(
+            ChatroomEvent.uploadAttachment(
+              roomId: roomModel.id,
+              path: result.path,
+            ),
+          );
+      final uploadStream =
+          Get.context!.read<ChatroomBloc>().stream.listen((state) {
+        state.maybeMap(
+          uploadAttachmentSuccess: (value) {
+            _completer.complete(right(value.url));
+          },
+          failure: (value) {
+            _completer.complete(left(value.failure));
+          },
+          orElse: () {},
+        );
+      });
+      final failureOrSuccess = await _completer.future.then((value) {
+        uploadStream.cancel();
+        return value;
+      });
 
-      final message = ImageMessage(
-        author: currentProfile.value!.toTypes(),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        height: image.height.toDouble(),
-        id: const Uuid().v4(),
-        name: result.name,
-        size: bytes.length,
-        uri: result.path,
-        width: image.width.toDouble(),
+      final filePath = failureOrSuccess.fold(
+        (l) => null,
+        (r) => r,
       );
-
-      sendMessage(message);
+      if (filePath != null) {
+        final message = ImageMessage(
+          author: currentProfile.value!.toTypes(),
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+          height: image.height.toDouble(),
+          id: const Uuid().v4(),
+          name: result.name,
+          size: bytes.length,
+          uri: filePath,
+          width: image.width.toDouble(),
+        );
+        sendMessage(message);
+      }
     }
   }
 
@@ -150,19 +212,49 @@ class ChatRoomController extends GetxController {
     if (result != null) {
       final bytes = await result.readAsBytes();
       final image = await decodeImageFromList(bytes);
+      final _completer = Completer<Either<ChatFailure, String>>();
+      Get.context!.read<ChatroomBloc>().add(
+            ChatroomEvent.uploadAttachment(
+              roomId: roomModel.id,
+              path: result.path,
+            ),
+          );
+      final uploadStream =
+          Get.context!.read<ChatroomBloc>().stream.listen((state) {
+        state.maybeMap(
+          uploadAttachmentSuccess: (value) {
+            _completer.complete(right(value.url));
+          },
+          failure: (value) {
+            _completer.complete(left(value.failure));
+          },
+          orElse: () {},
+        );
+      });
+      final failureOrSuccess = await _completer.future.then((value) {
+        uploadStream.cancel();
+        return value;
+      });
 
-      final message = ImageMessage(
-        author: currentProfile.value!.toTypes(),
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-        height: image.height.toDouble(),
-        id: const Uuid().v4(),
-        name: result.name,
-        size: bytes.length,
-        uri: result.path,
-        width: image.width.toDouble(),
+      final filePath = failureOrSuccess.fold(
+        (l) => null,
+        (r) => r,
       );
 
-      sendMessage(message);
+      if (filePath != null) {
+        final message = ImageMessage(
+          author: currentProfile.value!.toTypes(),
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+          height: image.height.toDouble(),
+          id: const Uuid().v4(),
+          name: result.name,
+          size: bytes.length,
+          uri: result.path,
+          width: image.width.toDouble(),
+        );
+
+        sendMessage(message);
+      }
     }
   }
 

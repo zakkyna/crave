@@ -12,7 +12,7 @@ _$_Subscription _$$_SubscriptionFromJson(Map<String, dynamic> json) =>
       price: (json['price'] as num).toDouble(),
       title: json['title'] as String,
       description: json['description'] as String,
-      bannerUrl: json['bannerUrl'] as String,
+      bannerUrl: json['banner_url'] as String,
     );
 
 Map<String, dynamic> _$$_SubscriptionToJson(_$_Subscription instance) =>
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_SubscriptionToJson(_$_Subscription instance) =>
       'price': instance.price,
       'title': instance.title,
       'description': instance.description,
-      'bannerUrl': instance.bannerUrl,
+      'banner_url': instance.bannerUrl,
     };

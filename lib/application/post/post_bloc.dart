@@ -7,6 +7,7 @@ import 'package:crave_app/domain/post/post_failure.dart';
 import 'package:crave_app/domain/post/post_request.dart';
 import 'package:crave_app/domain/post/post_snapshot.dart';
 import 'package:crave_app/domain/post/post_stream.dart';
+import 'package:crave_app/domain/profile/profile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -27,6 +28,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         getAllPostStream: (_event) async {
           final failureOrSuccess = await _postRepository.getAllPost(
             radius: _event.radius,
+            profile: _event.profile,
           );
           failureOrSuccess.match((l) {
             emit(PostState.failure(l));
@@ -72,6 +74,19 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           emit(const PostState.isCreatingRoom());
           final failureOrSuccess = await _chatRepository.createRoom(
             post: _event.post,
+            isInstantChat: false,
+          );
+          failureOrSuccess.match((l) {
+            emit(PostState.chatFailure(l));
+          }, (roomId) {
+            emit(PostState.createRoomSuccess(roomId));
+          });
+        },
+        createInstantChat: (_event) async {
+          emit(const PostState.isCreatingRoom());
+          final failureOrSuccess = await _chatRepository.createRoom(
+            post: _event.post,
+            isInstantChat: true,
           );
           failureOrSuccess.match((l) {
             emit(PostState.chatFailure(l));

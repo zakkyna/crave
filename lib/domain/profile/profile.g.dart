@@ -15,6 +15,7 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
       city: json['city'] as String?,
       state: json['state'] as String?,
       address: json['address'] as String?,
+      isEnableInstantChat: json['is_enable_instant_chat'] as bool?,
       genderId: json['gender_id'] as int?,
       profilePicture: json['profile_picture'] as String?,
       photos:
@@ -25,6 +26,9 @@ _$_Profile _$$_ProfileFromJson(Map<String, dynamic> json) => _$_Profile(
       location: json['location'] == null
           ? null
           : ProfileLocation.fromJson(json['location'] as Map<String, dynamic>),
+      settingData: json['setting_data'] == null
+          ? null
+          : SettingData.fromJson(json['setting_data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
@@ -37,10 +41,12 @@ Map<String, dynamic> _$$_ProfileToJson(_$_Profile instance) =>
       'city': instance.city,
       'state': instance.state,
       'address': instance.address,
+      'is_enable_instant_chat': instance.isEnableInstantChat,
       'gender_id': instance.genderId,
       'profile_picture': instance.profilePicture,
       'photos': instance.photos,
       'is_online': instance.isOnline,
       'last_seen': const TimeStampConverter().toJson(instance.lastSeen),
-      'location': instance.location,
+      'location': instance.location?.toJson(),
+      'setting_data': instance.settingData?.toJson(),
     };

@@ -8,10 +8,9 @@ part 'room_model.g.dart';
 
 @freezed
 class RoomModel with _$RoomModel {
-  // ignore: invalid_annotation_target
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory RoomModel({
     required String id,
+    required bool? isInstantChat,
     @TimeStampConverter() required Timestamp createdAt,
     @TimeStampConverter() required Timestamp updatedAt,
     @TimeStampNullConverter() Timestamp? lastChatAt,

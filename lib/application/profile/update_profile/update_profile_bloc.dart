@@ -45,7 +45,7 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
             final profile = currentProfile.copyWith(
               bio: state.bio.getOrNull(),
               photos: state.photos,
-              profilePicture: state.photos.first,
+              profilePicture: state.photos.isEmpty ? '' : state.photos.first,
               isPublished: true,
             );
             final failureOrSuccess =
@@ -152,7 +152,7 @@ class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {
             final profile = currentProfile.copyWith(
               bio: state.bio.getOrNull(),
               photos: state.photos,
-              profilePicture: state.photos.first,
+              profilePicture: state.photos.isEmpty ? '' : state.photos.first,
               isPublished: false,
             );
             final failureOrSuccess =

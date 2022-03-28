@@ -24,19 +24,20 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i25;
 
 import 'application/app/app_bloc.dart' as _i28;
-import 'application/auth/auth_bloc.dart' as _i51;
-import 'application/auth/login/login_bloc.dart' as _i43;
-import 'application/auth/register/register_bloc.dart' as _i47;
-import 'application/chat/chatroom/chatroom_bloc.dart' as _i52;
-import 'application/chat/rooms/rooms_bloc.dart' as _i48;
+import 'application/auth/auth_bloc.dart' as _i54;
+import 'application/auth/login/login_bloc.dart' as _i45;
+import 'application/auth/register/register_bloc.dart' as _i49;
+import 'application/chat/chatroom/chatroom_bloc.dart' as _i55;
+import 'application/chat/rooms/rooms_bloc.dart' as _i50;
 import 'application/home/home_controller.dart' as _i16;
 import 'application/landing/bottom_tab_controller.dart' as _i3;
 import 'application/notification/notification_bloc.dart' as _i26;
-import 'application/post/post_bloc.dart' as _i44;
-import 'application/profile/profile_bloc.dart' as _i45;
-import 'application/profile/update_profile/update_profile_bloc.dart' as _i50;
-import 'application/subscription/purchase/purchase_bloc.dart' as _i46;
-import 'application/subscription/subscription_bloc.dart' as _i49;
+import 'application/post/post_bloc.dart' as _i46;
+import 'application/profile/profile_bloc.dart' as _i47;
+import 'application/profile/update_profile/update_profile_bloc.dart' as _i53;
+import 'application/settings/settings_bloc.dart' as _i51;
+import 'application/subscription/purchase/purchase_bloc.dart' as _i48;
+import 'application/subscription/subscription_bloc.dart' as _i52;
 import 'domain/auth/i_auth_facade.dart' as _i30;
 import 'domain/chat/i_chat_repository.dart' as _i32;
 import 'domain/core/interfaces/i_handle_error.dart' as _i17;
@@ -46,17 +47,19 @@ import 'domain/core/interfaces/i_storage.dart' as _i21;
 import 'domain/notification/i_notification_repository.dart' as _i35;
 import 'domain/post/i_post_repository.dart' as _i37;
 import 'domain/profile/i_profile_repository.dart' as _i39;
-import 'domain/subscription/i_subscription_repository.dart' as _i41;
+import 'domain/settings/i_setting_repository.dart' as _i41;
+import 'domain/subscription/i_subscription_repository.dart' as _i43;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i31;
 import 'infrastructure/chat/chat_repository.dart' as _i33;
 import 'infrastructure/core/handle_error.dart' as _i18;
 import 'infrastructure/core/location_service.dart' as _i20;
-import 'infrastructure/core/register_module.dart' as _i53;
+import 'infrastructure/core/register_module.dart' as _i56;
 import 'infrastructure/core/storage.dart' as _i22;
 import 'infrastructure/notification/notification_repository.dart' as _i36;
 import 'infrastructure/post/post_repository.dart' as _i38;
 import 'infrastructure/profile/profile_repository.dart' as _i40;
-import 'infrastructure/subscription/subscription_repository.dart' as _i42;
+import 'infrastructure/settings/setting_repository.dart' as _i42;
+import 'infrastructure/subscription/subscription_repository.dart' as _i44;
 import 'presentation/app_widget.dart' as _i29;
 import 'simple_bloc_delegate.dart'
     as _i27; // ignore_for_file: unnecessary_lambdas
@@ -104,11 +107,13 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i30.IAuthFacade>(() => _i31.FirebaseAuthFacade(
       get<_i6.FirebaseAuth>(),
       get<_i7.FirebaseFirestore>(),
-      get<_i25.Logger>()));
+      get<_i25.Logger>(),
+      get<_i21.IStorage<dynamic>>()));
   gh.lazySingleton<_i32.IChatRepository>(() => _i33.ChatRepository(
       get<_i6.FirebaseAuth>(),
       get<_i7.FirebaseFirestore>(),
       get<_i8.FirebaseFunctions>(),
+      get<_i10.FirebaseStorage>(),
       get<_i25.Logger>()));
   await gh.lazySingletonAsync<_i34.INetworkService>(
       () => registerModule.network(
@@ -135,34 +140,41 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       get<_i23.ImagePicker>(),
       get<_i19.ILocationService>(),
       get<_i13.Geoflutterfire>()));
-  gh.lazySingleton<_i41.ISubscriptionRepository>(() =>
-      _i42.SubscriptionRepository(
+  gh.lazySingleton<_i41.ISettingRepository>(() => _i42.SettingRepository(
+      get<_i7.FirebaseFirestore>(),
+      get<_i6.FirebaseAuth>(),
+      get<_i21.IStorage<dynamic>>(),
+      get<_i25.Logger>()));
+  gh.lazySingleton<_i43.ISubscriptionRepository>(() =>
+      _i44.SubscriptionRepository(
           get<_i25.Logger>(),
           get<_i6.FirebaseAuth>(),
           get<_i7.FirebaseFirestore>(),
           get<_i8.FirebaseFunctions>(),
           get<_i24.InAppPurchase>()));
-  gh.lazySingleton<_i43.LoginBloc>(
-      () => _i43.LoginBloc(get<_i30.IAuthFacade>()));
-  gh.lazySingleton<_i44.PostBloc>(() =>
-      _i44.PostBloc(get<_i37.IPostRepository>(), get<_i32.IChatRepository>()));
-  gh.lazySingleton<_i45.ProfileBloc>(
-      () => _i45.ProfileBloc(get<_i39.IProfileRepository>()));
-  gh.lazySingleton<_i46.PurchaseBloc>(
-      () => _i46.PurchaseBloc(get<_i41.ISubscriptionRepository>()));
-  gh.lazySingleton<_i47.RegisterBloc>(
-      () => _i47.RegisterBloc(get<_i30.IAuthFacade>()));
-  gh.lazySingleton<_i48.RoomsBloc>(
-      () => _i48.RoomsBloc(get<_i32.IChatRepository>()));
-  gh.lazySingleton<_i49.SubscriptionBloc>(
-      () => _i49.SubscriptionBloc(get<_i41.ISubscriptionRepository>()));
-  gh.lazySingleton<_i50.UpdateProfileBloc>(
-      () => _i50.UpdateProfileBloc(get<_i39.IProfileRepository>()));
-  gh.lazySingleton<_i51.AuthBloc>(() => _i51.AuthBloc(
+  gh.lazySingleton<_i45.LoginBloc>(
+      () => _i45.LoginBloc(get<_i30.IAuthFacade>()));
+  gh.lazySingleton<_i46.PostBloc>(() =>
+      _i46.PostBloc(get<_i37.IPostRepository>(), get<_i32.IChatRepository>()));
+  gh.lazySingleton<_i47.ProfileBloc>(
+      () => _i47.ProfileBloc(get<_i39.IProfileRepository>()));
+  gh.lazySingleton<_i48.PurchaseBloc>(
+      () => _i48.PurchaseBloc(get<_i43.ISubscriptionRepository>()));
+  gh.lazySingleton<_i49.RegisterBloc>(
+      () => _i49.RegisterBloc(get<_i30.IAuthFacade>()));
+  gh.lazySingleton<_i50.RoomsBloc>(
+      () => _i50.RoomsBloc(get<_i32.IChatRepository>()));
+  gh.factory<_i51.SettingsBloc>(
+      () => _i51.SettingsBloc(get<_i41.ISettingRepository>()));
+  gh.lazySingleton<_i52.SubscriptionBloc>(
+      () => _i52.SubscriptionBloc(get<_i43.ISubscriptionRepository>()));
+  gh.lazySingleton<_i53.UpdateProfileBloc>(
+      () => _i53.UpdateProfileBloc(get<_i39.IProfileRepository>()));
+  gh.lazySingleton<_i54.AuthBloc>(() => _i54.AuthBloc(
       get<_i30.IAuthFacade>(), get<_i35.INotificationRepository>()));
-  gh.lazySingleton<_i52.ChatroomBloc>(
-      () => _i52.ChatroomBloc(get<_i32.IChatRepository>()));
+  gh.lazySingleton<_i55.ChatroomBloc>(
+      () => _i55.ChatroomBloc(get<_i32.IChatRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i53.RegisterModule {}
+class _$RegisterModule extends _i56.RegisterModule {}

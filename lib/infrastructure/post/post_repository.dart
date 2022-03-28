@@ -8,6 +8,7 @@ import 'package:crave_app/domain/post/post_failure.dart';
 import 'package:crave_app/domain/post/post_request.dart';
 import 'package:crave_app/domain/post/post_snapshot.dart';
 import 'package:crave_app/domain/post/post_stream.dart';
+import 'package:crave_app/domain/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
@@ -83,6 +84,7 @@ class PostRepository implements IPostRepository {
   @override
   Future<Either<PostFailure, PostStream>> getAllPost({
     required double radius,
+    required Profile profile,
   }) async {
     try {
       final currentUser = _firebaseAuth.currentUser;
@@ -94,13 +96,23 @@ class PostRepository implements IPostRepository {
         latitude: coordinate.latitude,
         longitude: coordinate.longitude,
       );
+      center;
       logger.d('latitude: ${coordinate.latitude}');
       logger.d('longitude: ${coordinate.longitude}');
       final collectionRef = _firestore.collection('posts');
+      final defaultSeeking = profile.genderId == 1
+          ? [2]
+          : profile.genderId == 2
+              ? [1]
+              : [1, 2, 3];
       final query = collectionRef
           .where(
             'is_published',
             isEqualTo: true,
+          )
+          .where(
+            'gender_id',
+            whereIn: profile.settingData?.seeking ?? defaultSeeking,
           )
           .snapshots()
           .asyncMap((element) {
@@ -110,7 +122,6 @@ class PostRepository implements IPostRepository {
               post.dismissedBy?.containsKey(currentUser.uid) ?? false;
           return post.uid != currentUser.uid &&
               !isDismissed &&
-              post.photos.isNotEmpty &&
               post.isPublished;
         }).toList();
         list.sort((a, b) {

@@ -81,15 +81,15 @@ class PushNotificationSettingPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    AddVerticalSpace(40),
+                    const AddVerticalSpace(40),
                     SvgPicture.asset('assets/images/push_notif_permission.svg'),
-                    AddVerticalSpace(40),
+                    const AddVerticalSpace(40),
                     Text(
                       'Turn on your Push-notifications'.toUpperCase(),
                       style: Styles.kefa24Medium,
                       textAlign: TextAlign.center,
                     ),
-                    AddVerticalSpace(20),
+                    const AddVerticalSpace(20),
                     Text(
                       '24 Hours. That\'s how long you\'ve got to match. \n Make it count!',
                       style: Styles.kefa16Regular.copyWith(color: Colors.grey),

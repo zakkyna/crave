@@ -5,7 +5,9 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crave_app/domain/auth/auth_failure.dart';
 import 'package:crave_app/domain/auth/i_auth_facade.dart';
+import 'package:crave_app/domain/core/interfaces/i_storage.dart';
 import 'package:crave_app/domain/profile/profile.dart';
+import 'package:crave_app/domain/settings/setting_data.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
@@ -20,12 +22,11 @@ class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
   final Logger _logger;
+  final IStorage _storage;
 
   FirebaseAuthFacade(
-    this._firebaseAuth,
-    this._firestore,
-    this._logger,
-  ) : super();
+      this._firebaseAuth, this._firestore, this._logger, this._storage)
+      : super();
   @override
   Future<Option<Profile>> getSignedInUserProfile() async {
     final currentUser = _firebaseAuth.currentUser;
@@ -105,6 +106,8 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<void> signOut() async {
+    final _box = await _storage.openBox(StorageConstants.user);
+    await _storage.clear(_box);
     await _firebaseAuth.signOut();
     return;
   }
@@ -162,7 +165,8 @@ class FirebaseAuthFacade implements IAuthFacade {
         verificationCompleted: (AuthCredential credential) {},
         verificationFailed: (exception) {
           _logger.e(exception);
-          // _completer.complete(left(AuthFailure.serverError(e.message??'An error occured')));
+          _completer.complete(left(AuthFailure.serverError(
+              exception.message ?? 'An error occured')));
         },
         codeSent: (String verificationId, int? forceResendingToken) {
           _completer.complete(right(verificationId));
@@ -193,12 +197,24 @@ class FirebaseAuthFacade implements IAuthFacade {
       {required int genderId}) async {
     try {
       final currentUser = _firebaseAuth.currentUser!;
+      final defaultSeeking = genderId == 1
+          ? [2]
+          : genderId == 2
+              ? [1]
+              : [1, 2, 3];
       final profile = Profile(
         uid: currentUser.uid,
         isPublished: false,
         isNewUser: false,
         genderId: genderId,
         phoneNumber: currentUser.phoneNumber ?? '',
+        settingData: SettingData(
+          chatTimerNotification: true,
+          likeNotification: true,
+          newMessageAlert: true,
+          pushNotification: true,
+          seeking: defaultSeeking,
+        ),
       );
 
       await _firestore

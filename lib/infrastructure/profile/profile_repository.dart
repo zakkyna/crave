@@ -52,7 +52,7 @@ class ProfileRepository implements IProfileRepository {
         return left(const ProfileFailure.notFound());
       }
       final profile = Profile.fromJson(userSnapshot.data()!);
-
+      logger.d(userSnapshot.data());
       return right(profile);
     } on FirebaseException catch (e) {
       return left(ProfileFailure.serverError(e.message ?? 'An error occurred'));

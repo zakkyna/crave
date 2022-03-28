@@ -28,13 +28,13 @@ Map<String, dynamic> _$$_ChatModelToJson(_$_ChatModel instance) =>
     };
 
 _$_Author _$$_AuthorFromJson(Map<String, dynamic> json) => _$_Author(
-      firstName: json['firstName'] as String?,
+      firstName: json['first_name'] as String?,
       id: json['id'] as String,
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['image_url'] as String?,
     );
 
 Map<String, dynamic> _$$_AuthorToJson(_$_Author instance) => <String, dynamic>{
-      'firstName': instance.firstName,
+      'first_name': instance.firstName,
       'id': instance.id,
-      'imageUrl': instance.imageUrl,
+      'image_url': instance.imageUrl,
     };

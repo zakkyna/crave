@@ -62,6 +62,18 @@ class ChatroomBloc extends Bloc<ChatroomEvent, ChatroomState> {
                   emit(ChatroomState.viewProfileSuccess(chatResponse)),
             );
           },
+          uploadAttachment: (_event) async {
+            emit(const ChatroomState.loading());
+            final failureOrSuccess = await _chatRepository.uploadAttachment(
+              roomId: _event.roomId,
+              path: _event.path,
+            );
+            failureOrSuccess.fold(
+              (failure) => emit(ChatroomState.failure(failure)),
+              (chatResponse) =>
+                  emit(ChatroomState.uploadAttachmentSuccess(chatResponse)),
+            );
+          },
         );
       },
     );

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:crave_app/domain/chat/chat_failure.dart';
@@ -9,11 +11,13 @@ import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/domain/chat/room_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ntp/ntp.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
+import 'package:path/path.dart';
 
 @LazySingleton(as: IChatRepository)
 class ChatRepository implements IChatRepository {
@@ -21,17 +25,20 @@ class ChatRepository implements IChatRepository {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
   final FirebaseFunctions _functions;
+  final FirebaseStorage _firebaseStorage;
 
   ChatRepository(
     this._firebaseAuth,
     this._firestore,
     this._functions,
+    this._firebaseStorage,
     this.logger,
   );
 
   @override
   Future<Either<ChatFailure, String>> createRoom({
     required Post post,
+    required bool isInstantChat,
   }) async {
     try {
       final user = _firebaseAuth.currentUser;
@@ -55,6 +62,7 @@ class ChatRepository implements IChatRepository {
         createdAt: now,
         updatedAt: now,
         memberIds: memberIds,
+        isInstantChat: isInstantChat,
       );
 
       final doc = await _firestore.collection('rooms').doc(roomId).get();
@@ -83,9 +91,13 @@ class ChatRepository implements IChatRepository {
       final query = _firestore
           .collection('rooms')
           .where('member_ids', arrayContains: user.uid)
+          .orderBy('updated_at', descending: true)
           .snapshots()
-          .asyncMap((event) =>
-              event.docs.map((doc) => RoomModel.fromJson(doc.data())).toList());
+          .asyncMap(
+            (event) => event.docs
+                .map((doc) => RoomModel.fromJson(doc.data()))
+                .toList(),
+          );
       return right(query);
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
@@ -146,9 +158,9 @@ class ChatRepository implements IChatRepository {
       final writeBatch = _firestore.batch();
 
       final chat = content.message.toJson();
-      final isText = content.message.type == MessageType.text;
-      final isImage = content.message.type == MessageType.image;
-      final isFile = content.message.type == MessageType.file;
+      // final isText = content.message.type == MessageType.text;
+      // final isImage = content.message.type == MessageType.image;
+      // final isFile = content.message.type == MessageType.file;
       chat['roomId'] = roomId;
       chat['status'] = 'sent';
 
@@ -159,6 +171,8 @@ class ChatRepository implements IChatRepository {
       writeBatch.update(_firestore.collection('rooms').doc(roomId), {
         'last_chat': chat,
         'last_chat_at': Timestamp.fromMillisecondsSinceEpoch(
+            content.message.createdAt ?? DateTime.now().millisecondsSinceEpoch),
+        'updated_at': Timestamp.fromMillisecondsSinceEpoch(
             content.message.createdAt ?? DateTime.now().millisecondsSinceEpoch),
       });
       writeBatch.commit();
@@ -230,6 +244,36 @@ class ChatRepository implements IChatRepository {
     } on FirebaseException catch (e, stacktrace) {
       logger.d(stacktrace);
       logger.d(e.message);
+      return left(ChatFailure.serverError(e.message ?? 'An error occurred'));
+    } catch (e, stacktrace) {
+      logger.d(stacktrace);
+      return left(const ChatFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<ChatFailure, String>> uploadAttachment({
+    required String roomId,
+    required String path,
+  }) async {
+    try {
+      final currentUser = _firebaseAuth.currentUser;
+      if (currentUser == null) {
+        return left(const ChatFailure.unauthenticated());
+      }
+      logger.d('bisa');
+      final _imageFile = File(path);
+      final fileName = basename(_imageFile.path);
+      final firebaseStorageRef = _firebaseStorage
+          .ref('room')
+          .child(roomId)
+          .child('attachment')
+          .child(fileName);
+      final uploadTask = await firebaseStorageRef.putFile(_imageFile);
+      final downloadUrl = await uploadTask.ref.getDownloadURL();
+      return right(downloadUrl);
+    } on FirebaseException catch (e, stacktrace) {
+      logger.d(stacktrace);
       return left(ChatFailure.serverError(e.message ?? 'An error occurred'));
     } catch (e, stacktrace) {
       logger.d(stacktrace);

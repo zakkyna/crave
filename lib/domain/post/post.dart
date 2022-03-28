@@ -9,8 +9,7 @@ part 'post.g.dart';
 @freezed
 class Post with _$Post {
   const Post._();
-  // ignore: invalid_annotation_target
-  @JsonSerializable(fieldRename: FieldRename.snake)
+
   const factory Post({
     required String uid,
     required bool isPublished,

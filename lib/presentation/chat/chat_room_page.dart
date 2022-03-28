@@ -7,7 +7,6 @@ import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/chat/view_profile_page.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
-import 'package:crave_app/presentation/core/widget/stack_with_progress.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -54,7 +53,6 @@ class ChatRoomPage extends StatelessWidget {
       ),
     );
     return Scaffold(
-      backgroundColor: Colors.black,
       body: BlocListener<ChatroomBloc, ChatroomState>(
         bloc: context.read<ChatroomBloc>()
           ..add(
@@ -91,292 +89,300 @@ class ChatRoomPage extends StatelessWidget {
           );
         },
         child: SafeArea(
-          child: StackWithProgress(
-            isLoading: isExpired,
-            loadingWidget: Center(
-              child: Text(
-                'Chat Expired',
-                style: Styles.kefa14Regular.copyWith(
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Dimens.defaultMargin,
+                  vertical: 15,
+                ),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
                   color: Colors.white,
                 ),
-              ),
-            ),
-            children: [
-              Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Dimens.defaultMargin,
-                      vertical: 15,
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(24),
-                        topRight: Radius.circular(24),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => Get.back(),
+                      child: const Icon(
+                        Icons.arrow_back_ios,
                       ),
-                      color: Colors.white,
                     ),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Get.back(),
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                          ),
-                        ),
-                        AddHorizontalSpace(20.h),
-                        GestureDetector(
-                          onTap: context.read<ChatroomBloc>().state.maybeMap(
-                                    loading: (_) => true,
-                                    orElse: () => false,
-                                  )
-                              ? null
-                              : () {
-                                  context.read<ChatroomBloc>().add(
-                                        ChatroomEvent.viewProfile(
-                                          userId:
-                                              roomModel.memberIds.firstWhere(
-                                            (element) =>
-                                                element != currentProfile.uid,
-                                          ),
-                                        ),
-                                      );
-                                },
-                          child: CircleAvatar(
-                            radius: 25.r,
-                            backgroundColor: Colors.white,
-                            child: Stack(
-                              children: [
-                                Positioned.fill(
-                                  child: CircularProgressIndicator(
-                                    value: indicatorRemaining,
-                                    strokeWidth: 3,
-                                    valueColor:
-                                        AlwaysStoppedAnimation(colorRemaining),
-                                  ),
-                                ),
-                                Positioned.fill(
-                                  child: CircleAvatar(
-                                    radius: 12.r,
-                                    backgroundImage: CachedNetworkImageProvider(
-                                        room.imageUrl!),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        AddHorizontalSpace(20),
-                        Expanded(
-                          child: Text(
-                            isExpired
-                                ? 'Chat Room Expired'
-                                : expiredRemaining > 1
-                                    ? '$expiredRemaining hour left'
-                                    : '$expiredDiffInMinutes min left',
-                          ),
-                        ),
-                        CustomPopupMenu(
-                          controller: extendChatController,
-                          menuBuilder: () {
-                            return GestureDetector(
-                              onTap: () {
-                                extendChatController.hideMenu();
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 18.w,
-                                  vertical: 10.h,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.mainColor2,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Text(
-                                  'Extend Chat Timer',
-                                  style: Styles.sfProDisplay.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
+                    AddHorizontalSpace(20.h),
+                    GestureDetector(
+                      onTap: context.read<ChatroomBloc>().state.maybeMap(
+                                loading: (_) => true,
+                                orElse: () => false,
+                              )
+                          ? null
+                          : () {
+                              context.read<ChatroomBloc>().add(
+                                    ChatroomEvent.viewProfile(
+                                      userId: roomModel.memberIds.firstWhere(
+                                        (element) =>
+                                            element != currentProfile.uid,
+                                      ),
+                                    ),
+                                  );
+                            },
+                      child: CircleAvatar(
+                        radius: 25.r,
+                        backgroundColor: Colors.white,
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: CircularProgressIndicator(
+                                value: indicatorRemaining,
+                                strokeWidth: 3,
+                                valueColor:
+                                    AlwaysStoppedAnimation(colorRemaining),
                               ),
-                            );
-                          },
-                          pressType: PressType.singleClick,
-                          arrowSize: 16.w,
-                          arrowColor: AppColors.mainColor2,
-                          child: CircleAvatar(
-                            radius: 15.r,
-                            child: SvgPicture.asset(
-                              'assets/icon/extend_time_icon.svg',
                             ),
-                          ),
-                        ),
-                        AddHorizontalSpace(20),
-                        Material(
-                          child: InkWell(
-                            onTap: () {},
-                            child: Ink(
+                            Positioned.fill(
                               child: CircleAvatar(
-                                radius: 15.r,
-                                child: SvgPicture.asset(
-                                  'assets/icon/video_call_icon.svg',
-                                ),
+                                radius: 12.r,
+                                backgroundImage:
+                                    CachedNetworkImageProvider(room.imageUrl!),
                               ),
-                            ),
-                          ),
-                        ),
-                        AddHorizontalSpace(20),
-                        CustomPopupMenu(
-                          menuBuilder: () {
-                            return GestureDetector(
-                              onTap: () {
-                                reportController.hideMenu();
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 18.w,
-                                  vertical: 10.h,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.mainColor2,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Text(
-                                  'Report',
-                                  style: Styles.sfProDisplay.copyWith(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          pressType: PressType.singleClick,
-                          arrowSize: 16.w,
-                          arrowColor: AppColors.mainColor2,
-                          controller: reportController,
-                          child: CircleAvatar(
-                            backgroundColor: const Color(0xFFFF6278),
-                            radius: 15.r,
-                            child: SvgPicture.asset(
-                              'assets/icon/flag_icon.svg',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => StreamBuilder<List<types.Message>>(
-                        stream: controller.messageStream.value,
-                        builder: (context, snapshot) => Chat(
-                          messages: snapshot.data ?? [],
-                          theme: DefaultChatTheme(
-                            primaryColor: AppColors.mainColor,
-                            inputTextColor: Colors.black,
-                            secondaryColor: AppColors.greyBackground,
-                            inputBackgroundColor: Colors.white,
-                            inputTextDecoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30.r),
-                                borderSide: const BorderSide(
-                                  color: Colors.grey,
-                                  width: 1,
-                                ),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                            ),
-                            sendButtonIcon: OverflowBox(
-                              maxHeight: 60.h,
-                              maxWidth: 60.w,
-                              child: Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.mainColor2,
-                                ),
-                                child: SvgPicture.asset(
-                                    'assets/icon/send_icon.svg',
-                                    height: 30.h,
-                                    width: 30.w,
-                                    color: Colors.white),
-                              ),
-                            ),
-                            attachmentButtonIcon: OverflowBox(
-                              maxHeight: 60.h,
-                              maxWidth: 60.h,
-                              child: SpeedDial(
-                                spacing: 12.h,
-                                spaceBetweenChildren: 8.h,
-                                backgroundColor: AppColors.mainColor,
-                                buttonSize: Size(42.w, 42.h),
-                                childrenButtonSize: Size(42.w, 42.h),
-                                childPadding: EdgeInsets.zero,
-                                childMargin: const EdgeInsets.all(30),
-                                openCloseDial: controller.isDialOpen,
-                                children: [
-                                  SpeedDialChild(
-                                    onTap: () =>
-                                        controller.handleCameraSelection(),
-                                    backgroundColor: AppColors.mainColor,
-                                    child: SvgPicture.asset(
-                                      'assets/icon/attach_camera_icon.svg',
-                                      height: 25.h,
-                                      width: 25.w,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SpeedDialChild(
-                                    onTap: () =>
-                                        controller.handleImageSelection(),
-                                    backgroundColor: AppColors.mainColor,
-                                    child: SvgPicture.asset(
-                                      'assets/icon/attach_gallery_icon.svg',
-                                      height: 25.h,
-                                      width: 25.w,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SpeedDialChild(
-                                    onTap: () =>
-                                        controller.handleFileSelection(),
-                                    backgroundColor: AppColors.mainColor,
-                                    child: SvgPicture.asset(
-                                      'assets/icon/attach_video_icon.svg',
-                                      height: 25.h,
-                                      width: 25.w,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                                child: Icon(
-                                  Icons.add,
-                                  size: 30.sp,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          // onEndReached: ,
-                          showUserAvatars: true,
-                          sendButtonVisibilityMode:
-                              SendButtonVisibilityMode.always,
-                          onAttachmentPressed: () {},
-                          onMessageTap: controller.handleMessageTap,
-                          onPreviewDataFetched:
-                              controller.handlePreviewDataFetched,
-                          onSendPressed: controller.handleSendPressed,
-                          user: currentProfile.toTypes(),
+                            )
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    const AddHorizontalSpace(20),
+                    Expanded(
+                      child: Text(
+                        isExpired
+                            ? 'Chat Room Expired'
+                            : expiredRemaining > 1
+                                ? '$expiredRemaining hour left'
+                                : '$expiredDiffInMinutes min left',
+                      ),
+                    ),
+                    CustomPopupMenu(
+                      controller: extendChatController,
+                      menuBuilder: () {
+                        return GestureDetector(
+                          onTap: () {
+                            extendChatController.hideMenu();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 18.w,
+                              vertical: 10.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.mainColor2,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'Extend Chat Timer',
+                              style: Styles.sfProDisplay.copyWith(
+                                color: Colors.white,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      pressType: PressType.singleClick,
+                      arrowSize: 16.w,
+                      arrowColor: AppColors.mainColor2,
+                      child: CircleAvatar(
+                        radius: 15.r,
+                        child: SvgPicture.asset(
+                          'assets/icon/extend_time_icon.svg',
+                        ),
+                      ),
+                    ),
+                    const AddHorizontalSpace(20),
+                    Material(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Ink(
+                          child: CircleAvatar(
+                            radius: 15.r,
+                            child: SvgPicture.asset(
+                              'assets/icon/video_call_icon.svg',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const AddHorizontalSpace(20),
+                    CustomPopupMenu(
+                      menuBuilder: () {
+                        return GestureDetector(
+                          onTap: () {
+                            reportController.hideMenu();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 18.w,
+                              vertical: 10.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.mainColor2,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              'Report',
+                              style: Styles.sfProDisplay.copyWith(
+                                color: Colors.white,
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      pressType: PressType.singleClick,
+                      arrowSize: 16.w,
+                      arrowColor: AppColors.mainColor2,
+                      controller: reportController,
+                      child: CircleAvatar(
+                        backgroundColor: const Color(0xFFFF6278),
+                        radius: 15.r,
+                        child: SvgPicture.asset(
+                          'assets/icon/flag_icon.svg',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: isExpired
+                    ? Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(20.w),
+                          child: Text(
+                            'Chat Expired. You can extend time to chat again.',
+                            style: Styles.kefa14SemiBold,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      )
+                    : Obx(
+                        () => StreamBuilder<List<types.Message>>(
+                          stream: controller.messageStream.value,
+                          builder: (context, snapshot) => Chat(
+                            messages: snapshot.data ?? [],
+                            theme: DefaultChatTheme(
+                              deliveredIcon: Icon(
+                                Icons.done_all,
+                                color: Colors.grey,
+                                size: 16.sp,
+                              ),
+                              seenIcon: Icon(
+                                Icons.done_all,
+                                color: Colors.blue,
+                                size: 16.sp,
+                              ),
+                              primaryColor: AppColors.mainColor,
+                              inputTextColor: Colors.black,
+                              secondaryColor: AppColors.greyBackground,
+                              inputBackgroundColor: Colors.white,
+                              inputTextDecoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30.r),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1,
+                                  ),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                              ),
+                              sendButtonIcon: OverflowBox(
+                                maxHeight: 60.h,
+                                maxWidth: 60.w,
+                                child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.mainColor2,
+                                  ),
+                                  child: SvgPicture.asset(
+                                      'assets/icon/send_icon.svg',
+                                      height: 30.h,
+                                      width: 30.w,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              attachmentButtonIcon: OverflowBox(
+                                maxHeight: 60.h,
+                                maxWidth: 60.h,
+                                child: SpeedDial(
+                                  spacing: 12.h,
+                                  spaceBetweenChildren: 8.h,
+                                  backgroundColor: AppColors.mainColor,
+                                  buttonSize: Size(42.w, 42.h),
+                                  childrenButtonSize: Size(42.w, 42.h),
+                                  childPadding: EdgeInsets.zero,
+                                  childMargin: const EdgeInsets.all(30),
+                                  openCloseDial: controller.isDialOpen,
+                                  children: [
+                                    SpeedDialChild(
+                                      onTap: () =>
+                                          controller.handleCameraSelection(),
+                                      backgroundColor: AppColors.mainColor,
+                                      child: SvgPicture.asset(
+                                        'assets/icon/attach_camera_icon.svg',
+                                        height: 25.h,
+                                        width: 25.w,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SpeedDialChild(
+                                      onTap: () =>
+                                          controller.handleImageSelection(),
+                                      backgroundColor: AppColors.mainColor,
+                                      child: SvgPicture.asset(
+                                        'assets/icon/attach_gallery_icon.svg',
+                                        height: 25.h,
+                                        width: 25.w,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SpeedDialChild(
+                                      onTap: () =>
+                                          controller.handleFileSelection(),
+                                      backgroundColor: AppColors.mainColor,
+                                      child: SvgPicture.asset(
+                                        'assets/icon/attach_video_icon.svg',
+                                        height: 25.h,
+                                        width: 25.w,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 30.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            // onEndReached: ,
+                            showUserAvatars: true,
+                            sendButtonVisibilityMode:
+                                SendButtonVisibilityMode.always,
+                            onAttachmentPressed: () {},
+                            onMessageTap: controller.handleMessageTap,
+                            onPreviewDataFetched:
+                                controller.handlePreviewDataFetched,
+                            onSendPressed: controller.handleSendPressed,
+                            user: currentProfile.toTypes(),
+                          ),
+                        ),
+                      ),
               ),
             ],
           ),
@@ -473,8 +479,6 @@ class ChatRoomPage extends StatelessWidget {
 //       _addMessage(message);
 //     }
 //   }
-
-
 
 //     if (result != null) {
 //       final bytes = await result.readAsBytes();

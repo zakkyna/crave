@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crave_app/domain/chat/room_model.dart';
+import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/notification/i_notification_repository.dart';
 import 'package:crave_app/domain/notification/notification_failure.dart';
 import 'package:crave_app/domain/profile/profile.dart';
@@ -7,8 +8,9 @@ import 'package:crave_app/presentation/chat/chat_room_page.dart';
 import 'package:crave_app/presentation/routers/routers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
@@ -137,17 +139,20 @@ class NotificationRepository implements INotificationRepository {
     );
     final initSetttings =
         InitializationSettings(android: androidSettings, iOS: iOSSettings);
-    _localNotificationsPlugin.initialize(initSetttings,
-        onSelectNotification: (message) async {
-      // This function handles the click in the notification when the app is in foreground
-      // Get.toNamed(NOTIFICATIOINS_ROUTE);
-    });
-// onMessage is called when the app is in foreground and a notification is received
+    _localNotificationsPlugin.initialize(
+      initSetttings,
+      onSelectNotification: (message) async {
+        // This function handles the click in the notification when the app is in foreground
+        // Get.toNamed(NOTIFICATIOINS_ROUTE);
+      },
+    );
+    // onMessage is called when the app is in foreground and a notification is received
     FirebaseMessaging.onMessage.listen((RemoteMessage? message) {
       // Get.find<HomeController>().getNotificationsNumber();
       RemoteNotification? notification = message!.notification;
       AndroidNotification? android = message.notification?.android;
-// If `onMessage` is triggered with a notification, construct our own
+      final data = message.data;
+      // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
       if (notification != null && android != null) {
         _localNotificationsPlugin.show(
@@ -161,6 +166,80 @@ class NotificationRepository implements INotificationRepository {
               channelDescription: channel.description,
               icon: android.smallIcon,
               playSound: true,
+            ),
+          ),
+        );
+        Get.closeAllSnackbars();
+        Get.showSnackbar(
+          GetSnackBar(
+            duration: const Duration(seconds: 3),
+            onTap: (_) async {
+              if (data['type'] == 'chat') {
+                final currentUser = _firebaseAuth.currentUser;
+                if (currentUser == null) {
+                  return;
+                }
+                final roomSnapshot = await _firestore
+                    .collection('rooms')
+                    .doc(message.data['room_id'])
+                    .get();
+                final roomNotFound = roomSnapshot.data() == null ||
+                    (roomSnapshot.data()?.isEmpty ?? true);
+                if (roomNotFound) {
+                  return;
+                }
+                final roomModel = RoomModel.fromJson(roomSnapshot.data()!);
+
+                final userSnapshot = await _firestore
+                    .collection('users')
+                    .doc(currentUser.uid)
+                    .get();
+                final isNoData = userSnapshot.data() == null ||
+                    (userSnapshot.data()?.isEmpty ?? true);
+                if (isNoData) {
+                  return;
+                }
+                final currentProfile = Profile.fromJson(userSnapshot.data()!);
+
+                Get.to(
+                  () => ChatRoomPage(
+                    roomModel: roomModel,
+                    currentProfile: currentProfile,
+                  ),
+                );
+              }
+            },
+            titleText: Text(
+              notification.title ?? '',
+              style: Styles.kefa16Bold.copyWith(
+                color: Colors.white,
+              ),
+            ),
+            messageText: Text(
+              notification.body ?? '',
+              style: Styles.kefa14Medium.copyWith(
+                color: Colors.white,
+              ),
+            ),
+            shouldIconPulse: false,
+            snackPosition: SnackPosition.TOP,
+            margin: EdgeInsets.all(20.w),
+            borderRadius: 20,
+            padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 15.h),
+            icon: CircleAvatar(
+              radius: 21.r,
+              backgroundColor: Colors.white,
+              child: Icon(
+                data['type'] == 'chat' ? Icons.chat : Icons.favorite,
+                size: 25.sp,
+                color: AppColors.mainColor2,
+              ),
+            ),
+            backgroundGradient: const LinearGradient(
+              colors: [
+                AppColors.mainColor2,
+                AppColors.mainColor,
+              ],
             ),
           ),
         );

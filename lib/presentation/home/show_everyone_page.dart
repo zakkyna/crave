@@ -6,7 +6,7 @@ import 'package:crave_app/domain/core/theme/theme.dart';
 import 'package:crave_app/domain/post/post.dart';
 import 'package:crave_app/domain/profile/profile.dart';
 import 'package:crave_app/presentation/core/widget/spacing.dart';
-import 'package:crave_app/presentation/home/widgets/show_everyone_widget.dart';
+import 'package:crave_app/presentation/home/widgets/post_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +24,10 @@ class ShowEveryOnePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final _bloc = context.read<PostBloc>();
 
-    _bloc.add(PostEvent.getAllPostStream(radius: controller.radius.value));
+    _bloc.add(PostEvent.getAllPostStream(
+      radius: controller.radius.value,
+      profile: currentProfile,
+    ));
 
     return BlocListener<PostBloc, PostState>(
       listener: (context, state) {
@@ -90,7 +93,7 @@ class ShowEveryOnePage extends GetView<HomeController> {
                             //     false) {
                             //   return Container();
                             // }
-                            return ShowEveryOneWidget(
+                            return PostWidget(
                               post: post,
                               currentProfile: currentProfile,
                               coordinate: controller.coordinate.value!,
@@ -156,8 +159,10 @@ class ShowEveryOnePage extends GetView<HomeController> {
                 ),
         ),
         onRefresh: () async {
-          _bloc
-              .add(PostEvent.getAllPostStream(radius: controller.radius.value));
+          _bloc.add(PostEvent.getAllPostStream(
+            radius: controller.radius.value,
+            profile: currentProfile,
+          ));
         },
       ),
     );

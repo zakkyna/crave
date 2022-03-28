@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_PostToJson(_$_Post instance) => <String, dynamic>{
       'is_published': instance.isPublished,
       'gender_id': instance.genderId,
       'photos': instance.photos,
-      'location': instance.location,
+      'location': instance.location?.toJson(),
       'bio': instance.bio,
       'city': instance.city,
       'address': instance.address,

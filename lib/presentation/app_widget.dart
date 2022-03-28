@@ -8,6 +8,7 @@ import 'package:crave_app/application/notification/notification_bloc.dart';
 import 'package:crave_app/application/post/post_bloc.dart';
 import 'package:crave_app/application/profile/profile_bloc.dart';
 import 'package:crave_app/application/profile/update_profile/update_profile_bloc.dart';
+import 'package:crave_app/application/settings/settings_bloc.dart';
 import 'package:crave_app/application/subscription/purchase/purchase_bloc.dart';
 import 'package:crave_app/application/subscription/subscription_bloc.dart';
 import 'package:crave_app/domain/core/theme/theme.dart';
@@ -74,6 +75,9 @@ class AppWidget extends StatelessWidget {
         BlocProvider<PurchaseBloc>(
           create: (_) => getIt<PurchaseBloc>(),
         ),
+        BlocProvider<SettingsBloc>(
+          create: (_) => getIt<SettingsBloc>(),
+        )
       ],
       child: BlocBuilder<AppBloc, AppState>(
         builder: (context, state) => ScreenUtilInit(

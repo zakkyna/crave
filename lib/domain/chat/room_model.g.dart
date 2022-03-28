@@ -8,6 +8,7 @@ part of 'room_model.dart';
 
 _$_RoomModel _$$_RoomModelFromJson(Map<String, dynamic> json) => _$_RoomModel(
       id: json['id'] as String,
+      isInstantChat: json['is_instant_chat'] as bool?,
       createdAt:
           const TimeStampConverter().fromJson(json['created_at'] as Timestamp),
       updatedAt:
@@ -27,6 +28,7 @@ _$_RoomModel _$$_RoomModelFromJson(Map<String, dynamic> json) => _$_RoomModel(
 Map<String, dynamic> _$$_RoomModelToJson(_$_RoomModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'is_instant_chat': instance.isInstantChat,
       'created_at': const TimeStampConverter().toJson(instance.createdAt),
       'updated_at': const TimeStampConverter().toJson(instance.updatedAt),
       'last_chat_at':

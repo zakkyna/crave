@@ -20,20 +20,20 @@ class IntroWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(intro.asset),
-          AddVerticalSpace(50),
+          const AddVerticalSpace(50),
           Text(
             intro.title,
             style: Styles.kefa24Regular,
             textAlign: TextAlign.center,
           ),
-          AddVerticalSpace(20),
+          const AddVerticalSpace(20),
           Text(
             intro.description,
             style: Styles.kefa16Light
                 .copyWith(color: AppColors.mainColor.withOpacity(0.7)),
             textAlign: TextAlign.center,
           ),
-          AddVerticalSpace(50),
+          const AddVerticalSpace(50),
         ],
       ),
     );

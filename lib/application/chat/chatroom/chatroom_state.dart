@@ -14,4 +14,6 @@ class ChatroomState with _$ChatroomState {
       _ReadMessageSuccess;
   const factory ChatroomState.viewProfileSuccess(Post post) =
       _ViewProfileSuccess;
+  const factory ChatroomState.uploadAttachmentSuccess(String url) =
+      _UploadAttachmentSuccess;
 }
